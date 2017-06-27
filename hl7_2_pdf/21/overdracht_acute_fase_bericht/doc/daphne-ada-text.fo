@@ -1,0 +1,951 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" xml:lang="nl">
+   <fo:layout-master-set>
+      <fo:simple-page-master page-height="210mm"
+                             page-width="297mm"
+                             margin-top="10mm"
+                             margin-left="10mm"
+                             margin-right="10mm"
+                             margin-bottom="10mm"
+                             master-name="overdrachtpdf">
+         <fo:region-body margin-top="20mm"
+                         margin-left="0pt"
+                         margin-right="0pt"
+                         margin-bottom="5mm"/>
+         <fo:region-before extent="20mm"/>
+         <fo:region-after extent="5mm"/>
+      </fo:simple-page-master>
+   </fo:layout-master-set>
+   <fo:page-sequence master-reference="overdrachtpdf"
+                     font-family="Calibri, sans-serif"
+                     font-size="small"
+                     hyphenate="false"
+                     wrap-option="wrap">
+      <fo:static-content flow-name="xsl-region-after">
+         <fo:block text-align="center"> Pagina <fo:page-number/> / <fo:page-number-citation ref-id="end"/>
+         </fo:block>
+      </fo:static-content>
+      <fo:static-content flow-name="xsl-region-before">
+         <fo:table font-size="x-small" font-style="italic" color="grey">
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="105mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="105mm"/>
+            <fo:table-body>
+               <fo:table-row>
+                  <fo:table-cell>
+                     <fo:block>Naam:</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                     <fo:block>Daphne Heilema (28 dec 1985)</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                     <fo:block>Naam zorgverlener:</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                     <fo:block>Hugo Heilema</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+               <fo:table-row>
+                  <fo:table-cell>
+                     <fo:block>BSN:</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                     <fo:block>189135293</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                     <fo:block>Naam zorginstelling:</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                     <fo:block>Verloskundigenpraktijk Heilema</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+               <fo:table-row>
+                  <fo:table-cell>
+                     <fo:block>Zwangerschap:</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                     <fo:block>G/P 3/1</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                     <fo:block>Zorginstelling OID:</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                     <fo:block>ERROR: NO TEXT FOR zorginstelling_oid</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+               <fo:table-row>
+                  <fo:table-cell>
+                     <fo:block>At. Datum: </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                     <fo:block>18 aug 2015</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                     <fo:block>Telefoon:</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                     <fo:block>075-6401042</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+      </fo:static-content>
+      <fo:flow flow-name="xsl-region-body">
+         <fo:table font-size="small">
+            <fo:table-column column-width="100mm"/>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell>
+                     <fo:block space-before="1em"
+                               font-size="small"
+                               background-color="black"
+                               color="white">OVERDRACHT GEBOORTEZORG PER 12 apr 2017 09:56:13</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="x-small">
+            <fo:table-header>
+               <fo:table-row background-color="lightgrey">
+                  <fo:table-cell border-style="solid" color="red">
+                     <fo:block>Reden overdracht</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid" number-columns-spanned="3">
+                     <fo:block>Toelichting</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-header>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell border="solid black" color="red">
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black" number-columns-spanned="3">
+                     <fo:block/>
+                  </fo:table-cell>
+               </fo:table-row>
+               <fo:table-row background-color="lightgrey">
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Bloedverlies</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Actuele Bloeddruk</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Intra-uteriene vruchtdood?</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Taalvaardigheid</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell border="solid black">
+                     <fo:block>0 ml</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>120 mm[Hg] / </fo:block>
+                     <fo:block>68 mm[Hg]</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Nee</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Vrouw spreekt goed Nederlands</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="small" space-before="1em">
+            <fo:table-column column-width="100mm"/>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell>
+                     <fo:block space-before="1em"
+                               font-size="small"
+                               background-color="grey"
+                               color="white">ANAMNESE</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="x-small">
+            <fo:table-column column-width="88mm"/>
+            <fo:table-column column-width="88mm"/>
+            <fo:table-column column-width="20mm"/>
+            <fo:table-column column-width="20mm"/>
+            <fo:table-column column-width="20mm"/>
+            <fo:table-column column-width="20mm"/>
+            <fo:table-column column-width="21mm"/>
+            <fo:table-header>
+               <fo:table-row background-color="lightgrey">
+                  <fo:table-cell border-style="solid ">
+                     <fo:block>Bijzonderheden algemene anamnese</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid ">
+                     <fo:block>Bijzonderheden obstetrische anamnese</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid ">
+                     <fo:block>Allergieën</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid ">
+                     <fo:block>Actuele medicatie</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid ">
+                     <fo:block>Bloed-transfusie</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid ">
+                     <fo:block>BMI</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid ">
+                     <fo:block>Negatieve seksuele ervaringen</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-header>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell border="solid black">
+                     <fo:block>Ja</fo:block>
+                     <fo:block>Overige preëxistente aandoeningen vrouw, niet gynaecologisch</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Nee</fo:block>
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Ja</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Nee</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>28 </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Nee</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="small" space-before="1em">
+            <fo:table-column column-width="100mm"/>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell>
+                     <fo:block background-color="dodgerblue" color="white">VOORGAANDE ZWANGERSCHAPPEN</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="x-small">
+            <fo:table-column column-width="23mm"/>
+            <fo:table-column column-width="23mm"/>
+            <fo:table-column column-width="23mm"/>
+            <fo:table-column column-width="23mm"/>
+            <fo:table-column column-width="23mm"/>
+            <fo:table-column column-width="23mm"/>
+            <fo:table-column column-width="23mm"/>
+            <fo:table-column column-width="23mm"/>
+            <fo:table-column column-width="23mm"/>
+            <fo:table-column column-width="23mm"/>
+            <fo:table-column column-width="23mm"/>
+            <fo:table-column column-width="24mm"/>
+            <fo:table-header>
+               <fo:table-row background-color="lightgrey">
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Identificatie zwangerschap</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Wijze einde zwangerschap</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Zwangerschaps-duur</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Bloedverlies</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Duur ontsluiting</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Duur uitdrijving</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Conditie perineum postpartum</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Type partus</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Geboortegewicht</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Apgarscore na 5 min.</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Vaginale kunstverlossing</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Beslismoment sectio caesarea</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-header>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell border="solid black">
+                     <fo:block>686</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Partus</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>40w3d</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>500 ml</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Gaaf</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Spontaan</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>3320 g</fo:block>
+                     <fo:block>P: </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>10</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+               </fo:table-row>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell border="solid black">
+                     <fo:block>748</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Miskraam</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>7w1d</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+               </fo:table-row>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell border="solid black">
+                     <fo:block>754</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Partus</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>40w4d</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>200 ml</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>2e graads perineumruptuur</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Spontaan</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>3140 g</fo:block>
+                     <fo:block>P: </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>10</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="small" space-before="1em">
+            <fo:table-column column-width="100mm"/>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell>
+                     <fo:block background-color="lightblue" color="white">LABORATORIUM UITSLAGEN</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="x-small">
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="32mm"/>
+            <fo:table-header>
+               <fo:table-row background-color="lightgrey">
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Bloedgroep vrouw</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Rhesus c Factor</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Rhesus D Factor vrouw</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Rhesus D Factor foetus</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Hb</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Irregulaire antistoffen</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Afwijkende infectieparameters HBsAg?</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>MRSA besmetting aangetoond?</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-header>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell border="solid black">
+                     <fo:block>0</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Rh c Negatief</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Rh D Positief</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>8,1 mmol/L</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block/>
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Nee</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Nee</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="small" space-before="1em">
+            <fo:table-column column-width="100mm"/>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell>
+                     <fo:block background-color="limegreen" color="white">HUIDIGE ZWANGERSCHAP</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="x-small">
+            <fo:table-column column-width="70mm"/>
+            <fo:table-column column-width="70mm"/>
+            <fo:table-column column-width="70mm"/>
+            <fo:table-column column-width="67mm"/>
+            <fo:table-header>
+               <fo:table-row background-color="lightgrey">
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Identificatie van de zwangerschap</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Aantal levende kinderen</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Einde zwangerschap</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Bevalplan</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-header>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell border="solid black">
+                     <fo:block>754</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>1</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Partus</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Zie meegeleverd bevalplan</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="small" space-before="1em">
+            <fo:table-column column-width="100mm"/>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell>
+                     <fo:block background-color="gold" color="white">PARTUS</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="x-small">
+            <fo:table-column column-width="40mm"/>
+            <fo:table-column column-width="40mm"/>
+            <fo:table-column column-width="40mm"/>
+            <fo:table-column column-width="40mm"/>
+            <fo:table-column column-width="40mm"/>
+            <fo:table-column column-width="40mm"/>
+            <fo:table-column column-width="37mm"/>
+            <fo:table-header>
+               <fo:table-row background-color="lightgrey">
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Wijze waarop de baring begon</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Tijdstip begin actieve ontsluiting</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Kleur vruchtwater</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Medicatie nageboortetijdperk</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Geboorte placenta</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Placenta Compleet</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Conditie perineum postpartum</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-header>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell border="solid black">
+                     <fo:block>Spontane weeën</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>22 aug 2015 15:00:00</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Kleurloos</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Oxytocine</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Spontaan</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Compleet</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="solid black">
+                     <fo:block>Gaaf</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="small" space-before="1em">
+            <fo:table-column column-width="100mm"/>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell>
+                     <fo:block background-color="orange" color="white">BARING PER KIND</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="x-small">
+            <fo:table-column column-width="40mm"/>
+            <fo:table-column column-width="40mm"/>
+            <fo:table-column column-width="40mm"/>
+            <fo:table-column column-width="40mm"/>
+            <fo:table-column column-width="40mm"/>
+            <fo:table-column column-width="40mm"/>
+            <fo:table-column column-width="37mm"/>
+            <fo:table-header>
+               <fo:table-row background-color="lightgrey">
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Tijdstip breken vliezen</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Tijdstip actief meepersen</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Type partus</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Ligging bij geboorte</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Apgarscore na 5 min.</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Congenitale afwijkingen?</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Fase perinatale sterfte</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-header>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>22 aug 2015 19:09:00</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>22 aug 2015 19:27:00</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>Spontaan</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>Achterhoofd-voor</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>10</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>Ja</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>Nee</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="x-small">
+            <fo:table-column column-width="40mm"/>
+            <fo:table-column column-width="40mm"/>
+            <fo:table-column column-width="40mm"/>
+            <fo:table-column column-width="40mm"/>
+            <fo:table-column column-width="40mm"/>
+            <fo:table-column column-width="77mm"/>
+            <fo:table-header>
+               <fo:table-row background-color="lightgrey">
+                  <fo:table-cell border-style="solid">
+                     <fo:block>BSN kind</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Lokale identificatie kind</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Geslacht</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Geboortedatum</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Geboortegewicht</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Overige interventies</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-header>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell border="1px solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>03-02-2016 21:23:09</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>vrouwelijk</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>22 aug 2015 19:35:00</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>3140 g P: </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block/>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="small" space-before="1em">
+            <fo:table-column column-width="100mm"/>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell>
+                     <fo:block background-color="lightblue" color="white">ONDERZOEK MOEDER</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="x-small">
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="32mm"/>
+            <fo:table-header>
+               <fo:table-row background-color="lightgrey">
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Datum onderzoek</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Zwangerschapsduur</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Portio</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Ontsluiting</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Vliezen</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Indaling Hodge</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Aard v.h. voorliggend deel</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Stand</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-header>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>22 aug 2015 19:09</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>40w4d</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>Verstreken</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>8</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>Staand</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>H1</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>Achterhoofd</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>geen informatie</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="x-small">
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="32mm"/>
+            <fo:table-header>
+               <fo:table-row background-color="lightgrey">
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Datum onderzoek</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Zwangerschapsduur</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Portio</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Ontsluiting</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Vliezen</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Indaling Hodge</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Aard v.h. voorliggend deel</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Stand</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-header>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>22 aug 2015 18:37</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>40w4d</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>Half Verstreken</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>6</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>Staand</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>Niet ingedaald</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>Achterhoofd</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>geen informatie</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="x-small">
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="35mm"/>
+            <fo:table-column column-width="32mm"/>
+            <fo:table-header>
+               <fo:table-row background-color="lightgrey">
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Datum onderzoek</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Zwangerschapsduur</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Portio</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Ontsluiting</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Vliezen</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Indaling Hodge</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Aard v.h. voorliggend deel</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border-style="solid">
+                     <fo:block>Stand</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-header>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>22 aug 2015 14:31</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>40w4d</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>Half Verstreken</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>1</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>Staand</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>Niet ingedaald</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>Achterhoofd</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="1px solid black">
+                     <fo:block>geen informatie</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:table font-size="small" space-before="1em">
+            <fo:table-column column-width="100mm"/>
+            <fo:table-body>
+               <fo:table-row font-weight="bold">
+                  <fo:table-cell>
+                     <fo:block background-color="lightblue" color="white">ANTE PARTUM ONDERZOEK FOETUS</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:block id="end"/>
+      </fo:flow>
+   </fo:page-sequence>
+</fo:root>

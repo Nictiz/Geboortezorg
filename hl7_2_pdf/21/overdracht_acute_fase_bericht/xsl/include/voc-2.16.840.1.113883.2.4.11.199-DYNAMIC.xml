@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<valueSets>
+   <valueSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:decor="http://art-decor.org/ns/decor"
+             xmlns:peri="urn:nictiz-nl:v3/peri"
+             name="GeassConceptie22"
+             displayName="GeassConceptie (2.2)"
+             effectiveDate="2014-01-28T00:00:00"
+             id="2.16.840.1.113883.2.4.11.199"
+             statusCode="draft">
+      <sourceCodeSystem id="2.16.840.1.113883.6.96" identifierName="Snomed CT"/>
+      <sourceCodeSystem id="2.16.840.1.113883.5.1008" identifierName="NullFlavor"/>
+      <conceptList>
+                <concept code=" 236896006"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="Snomed CT"
+                  displayName="Artificial insemination by donor (procedure)"
+                  level="0"
+                  type="L"/>
+                <concept code="265064001"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="Snomed CT"
+                  displayName="Intrauterine artificial insemination (procedure)"
+                  level="0"
+                  type="L"/>
+                <concept code="52637005"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="Snomed CT"
+                  displayName="Test tube ovum fertilization (procedure)"
+                  level="0"
+                  type="L"/>
+                <concept code="425901007"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="Snomed CT"
+                  displayName="IVF - In vitro fertilisation with intracytoplasmic sperm injection (ICSI)"
+                  level="0"
+                  type="L"/>
+                <exception code="UNK"
+                    codeSystem="2.16.840.1.113883.5.1008"
+                    displayName="onbekend"
+                    level="0"
+                    type="L"/>
+            </conceptList>
+   </valueSet>
+</valueSets>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<valueSets>
+   <valueSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:decor="http://art-decor.org/ns/decor"
+             xmlns:peri="urn:nictiz-nl:v3/peri"
+             id="2.16.840.1.113883.2.4.11.188"
+             effectiveDate="2014-01-02T00:00:00"
+             name="Ligging"
+             displayName="Ligging"
+             statusCode="draft">
+      <desc language="nl-NL"/>
+      <sourceCodeSystem id="2.16.840.1.113883.6.96" identifierName="Snomed"/>
+      <sourceCodeSystem id="2.16.840.1.113883.5.1008" identifierName="NullFlavor"/>
+      <conceptList>
+                <concept code="70028003"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  displayName="Vertex presentation (finding)"
+                  level="0"
+                  type="L"/>
+                <concept code="6096002"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  displayName="Breech presentation (finding)"
+                  level="0"
+                  type="L"/>
+                <concept code="288203005"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  displayName="Transverse/oblique lie (finding)"
+                  level="0"
+                  type="L"/>
+                <concept code="86356004"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  displayName="Unstable lie (disorder)"
+                  level="0"
+                  type="L"/>
+                <exception code="UNK"
+                    codeSystem="2.16.840.1.113883.5.1008"
+                    displayName="Onbekend"
+                    level="0"
+                    type="L"/>
+                <exception code="NI"
+                    codeSystem="2.16.840.1.113883.5.1008"
+                    displayName="Geen informatie"
+                    level="0"
+                    type="L"/>
+            </conceptList>
+   </valueSet>
+</valueSets>

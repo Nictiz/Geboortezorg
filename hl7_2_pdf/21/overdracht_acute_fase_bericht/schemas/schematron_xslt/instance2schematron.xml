@@ -1,0 +1,37 @@
+<!-- Used to map an instance to a specific Schematron. How to read:
+    - For every template-id that is used in instances there is an element map, e.g.
+      <map model="REPC_IN004110UV01" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.59" sch="peri20-counseling-fase-1c.sch" schsvrl="peri20-counseling-fase-1c.xsl"/>
+      
+      - @model       - optional    - hint as to the XML Schema that could be used
+      - @namespace   - mandatory   - default namespace-uri() of the project and of the instance unless specified otherwise
+      - templateRoot - mandatory   - in HL7v3 this would be an OID. In other instance types it might be something else, but then this mapping file might need adjusted setup
+      
+      One of the following is required, normally schsvrl makes sense:
+      - @schsvrl     - conditional - path+file name of the SVRL XSL. The path should be relative to this index/map file
+      - @schtext     - conditional - path+file name of the Text XSL. The path should be relative to this index/map file
+      - @sch         - conditional - path+file name of the original Schematron file. The path should be relative to this index/map file
+        
+      Note that the same template may be part of multiple transactions, hence multiple map element could be present for the same template. The attached Schematron
+      will have different names, but will have the exact same rules (same template, same rules) hence only the first match is needed for validation.
+      
+    - As final fallback, when no template-id is found in the instance, code should rely on root element of the instance to determine the Schematron file name ... --><mappings>
+<!-- template name: acufov --><map model="REPC_IN002120NL" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.63" sch="peri20-acufov.sch" schsvrl="peri20-acufov.xsl"/>
+   <!-- template name: mcci2-ack --><map model="MCCI_IN000002" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.46" sch="peri20-acufov-ack.sch" schsvrl="peri20-acufov-ack.xsl"/>
+   <!-- template name: mcci2-ack --><map model="MCCI_IN000002" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.46" sch="peri20-mcci2-admgeboorte-1a2-ack.sch" schsvrl="peri20-mcci2-admgeboorte-1a2-ack.xsl"/>
+   <!-- template name: mcci2-ack --><map model="MCCI_IN000002" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.46" sch="peri20-albprn-1el-21-ack.sch" schsvrl="peri20-albprn-1el-21-ack.xsl"/>
+   <!-- template name: mcci2-ack --><map model="MCCI_IN000002" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.46" sch="peri20-albprn-2el-21-ack.sch" schsvrl="peri20-albprn-2el-21-ack.xsl"/>
+   <!-- template name: mcci2-ack --><map model="MCCI_IN000002" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.46" sch="peri20-mcci2-admgeboorte-1a-ack.sch" schsvrl="peri20-mcci2-admgeboorte-1a-ack.xsl"/>
+   <!-- template name: counseling-fase-1c --><map model="REPC_IN004110UV01" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.59" sch="peri20-counseling-fase-1c.sch" schsvrl="peri20-counseling-fase-1c.xsl"/>
+   <!-- template name: counseling-1c --><map model="REPC_IN004110UV01" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.54" sch="peri20-counseling-1c.sch" schsvrl="peri20-counseling-1c.xsl"/>
+   <!-- template name: admgeboorte-1a --><map model="PRPA_IN101001" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.45" sch="peri20-admgeb-21.sch" schsvrl="peri20-admgeb-21.xsl"/>
+   <!-- template name: admgeboorte-1a --><map model="PRPA_IN101001" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.45" sch="peri20-admgeb-1a.sch" schsvrl="peri20-admgeb-1a.xsl"/>
+   <!-- template name: albprn-1el-20 --><map model="REPC_IN004014NL" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.70" sch="peri20-albprn-1el-21.sch" schsvrl="peri20-albprn-1el-21.xsl"/>
+   <!-- template name: albprn-2el-21 --><map model="REPC_IN004014NL" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.71" sch="peri20-albprn-2el-21.sch" schsvrl="peri20-albprn-2el-21.xsl"/>
+   <!-- template name: albprn-1el-20 --><map model="REPC_IN004014NL" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.70" sch="peri20-albprn-1el-20.sch" schsvrl="peri20-albprn-1el-20.xsl"/>
+   <!-- template name: albprn-2el-21 --><map model="REPC_IN004014NL" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.71" sch="peri20-albprn-2el-20.sch" schsvrl="peri20-albprn-2el-20.xsl"/>
+   <!-- template name: uitkomst-1c-1el --><map model="REPC_IN004211UV01" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.51" sch="peri20-uitkomst-1c-1el.sch" schsvrl="peri20-uitkomst-1c-1el.xsl"/>
+   <!-- template name: cda-jze --><map model="POCD_MT000040NL" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.1" sch="peri20-jze-1c.sch" schsvrl="peri20-jze-1c.xsl"/>
+   <!-- template name: cda-ntm --><map model="POCD_MT000040NL" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.2" sch="peri20-ntm-1c.sch" schsvrl="peri20-ntm-1c.xsl"/>
+   <!-- template name: cda-ctk --><map model="POCD_MT000040NL" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.3" sch="peri20-ctk-1c.sch" schsvrl="peri20-ctk-1c.xsl"/>
+   <!-- template name: cda-seo --><map model="POCD_MT000040NL" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.4" sch="peri20-seo-1c.sch" schsvrl="peri20-seo-1c.xsl"/>
+   <!-- template name: cda-guo --><map model="POCD_MT000040NL" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.5" sch="peri20-guo-1c.sch" schsvrl="peri20-guo-1c.xsl"/></mappings>

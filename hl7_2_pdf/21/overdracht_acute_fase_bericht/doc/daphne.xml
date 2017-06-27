@@ -1,0 +1,823 @@
+<REPC_IN002120NL xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <id root="2.16.528.1.1007.3.3.53543.1.2.3.1.1.1.1.1" extension="8765"/>
+    <creationTime value="20170412095613"/>
+    <versionCode code="NICTIZEd2005-Okt"/>
+    <interactionId extension="REPC_IN002120NL" root="2.16.840.1.113883.1.6"/>
+    <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+    <processingCode code="P"/>
+    <processingModeCode code="T"/>
+    <acceptAckCode code="AL"/>
+    <receiver typeCode="RCV">
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <id root="2.16.840.1.113883.2.4.3.38.1.1" extension="HL7Prod"/>
+        </device>
+    </receiver>
+    <sender typeCode="SND">
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <id extension="1" root="2.16.528.1.1007.3.3.53543.1.2.3.1.1.2.3"/>
+            <name>Orfeus 3.10.17 - (30-03-2017)-Verloskundigenpraktijk Heilema</name>
+        </device>
+    </sender>
+    <ControlActProcess classCode="ACTN" moodCode="EVN">
+        <effectiveTime value="20170412095613"/>
+        <authorOrPerformer typeCode="AUT">
+            <participant>
+                <AssignedPerson>
+                    <id root="2.16.528.1.1007.3.1" extension="000025103"/>
+                    <id root="2.16.840.1.113883.2.4.6.1" extension="08000208"/>
+                    <id root="2.16.840.1.113883.2.4.3.22.98.2" extension="1403"/>
+                    <code codeSystem="2.16.840.1.113883.2.4.15.111" code="03.000"/>
+                    <assignedPrincipalChoiceList>
+                        <assignedPerson>
+                            <name use="L">
+                                <given>Hugo</given>
+                                <family>Heilema</family>
+                            </name>
+                        </assignedPerson>
+                    </assignedPrincipalChoiceList>
+                    <Organization>
+                        <id root="2.16.528.1.1007.3.3" extension="00022991"/>
+                        <id root="2.16.528.1.1007.3.3.53543.1.2.3.1"/>
+                        <id root="2.16.840.1.113883.2.4.6.1" extension="08000207"/>
+                        <id root="2.16.840.1.113883.2.4.3.22.98.1" extension="1557"/>
+                        <code codeSystem="2.16.840.1.113883.2.4.15.1060" code="G3"/>
+                        <name use="L">Verloskundigenpraktijk Heilema</name>
+                        <addr>
+                            <streetName>Duke Ellingtonstraat</streetName>
+                            <houseNumber>49</houseNumber>
+                            <postalCode>1544 KP</postalCode>
+                            <city>Zaandijk</city>
+                        </addr>
+                    </Organization>
+                </AssignedPerson>
+            </participant>
+        </authorOrPerformer>
+        <overseer typeCode="RESP">
+            <AssignedPerson>
+                <id root="2.16.528.1.1007.3.1" extension="000025103"/>
+                <id root="2.16.840.1.113883.2.4.6.1" extension="08000208"/>
+                <id root="2.16.840.1.113883.2.4.3.22.98.2" extension="1403"/>
+                <code codeSystem="2.16.840.1.113883.2.4.15.111" code="03.000"/>
+                <assignedPrincipalChoiceList>
+                    <assignedPerson>
+                        <name use="L">
+                            <given>Hugo</given>
+                            <family>Heilema</family>
+                        </name>
+                    </assignedPerson>
+                </assignedPrincipalChoiceList>
+                <Organization>
+                    <id root="2.16.528.1.1007.3.3" extension="00022991"/>
+                    <id root="2.16.528.1.1007.3.3.53543.1.2.3.1"/>
+                    <id root="2.16.840.1.113883.2.4.6.1" extension="08000207"/>
+                    <id root="2.16.840.1.113883.2.4.3.22.98.1" extension="1557"/>
+                    <code codeSystem="2.16.840.1.113883.2.4.15.1060" code="G3"/>
+                    <name use="L">Verloskundigenpraktijk Heilema</name>
+                    <addr>
+                        <streetName>Duke Ellingtonstraat</streetName>
+                        <houseNumber>49</houseNumber>
+                        <postalCode>1544 KP</postalCode>
+                        <city>Zaandijk</city>
+                    </addr>
+                </Organization>
+            </AssignedPerson>
+        </overseer>
+        <subject typeCode="SUBJ">
+            <careProvisionRequest classCode="PCPR" moodCode="RQO">
+                <templateId root="2.16.840.1.113883.2.4.6.10.90.63"/>
+                <id root="2.16.528.1.1007.3.3.53543.1.2.3.1.1.1.2.1" extension="150007.0.03.1557"/>
+                <statusCode code="active"/>
+                <subject typeCode="SBJ">
+                    <patient classCode="PAT">
+                        <id root="2.16.840.1.113883.2.4.6.3" extension="189135293"/>
+                        <addr use="HP">
+                            <streetName>Hennepad</streetName>
+                            <houseNumber>38</houseNumber>
+                            <postalCode>1521 DG</postalCode>
+                            <city>Wormerveer</city>
+                        </addr>
+                        <statusCode code="active"/>
+                        <patientPerson classCode="PSN" determinerCode="INSTANCE">
+                            <name use="L">
+                                <given>Daphne</given>
+                                <family qualifier="BR">Heilema</family>
+                            </name>
+                            <birthTime value="19851228"/>
+                            <languageCommunication>
+                                <languageCode code="nl-NL" codeSystem="2.16.840.1.113883.6.121"/>
+                                <proficiencyLevelCode code="G" codeSystem="2.16.840.1.113883.5.61"/>
+                            </languageCommunication>
+                        </patientPerson>
+                    </patient>
+                </subject>
+                <author typeCode="AUT">
+                    <time value="20170412095613"/>
+                    <modeCode nullFlavor="NA"/>
+                    <signatureCode nullFlavor="NA"/>
+                    <responsibleParty classCode="ASSIGNED">
+                        <id root="2.16.528.1.1007.3.1" extension="000025103"/>
+                        <id root="2.16.840.1.113883.2.4.6.1" extension="08000208"/>
+                        <id root="2.16.840.1.113883.2.4.3.22.98.2" extension="1403"/>
+                        <code codeSystem="2.16.840.1.113883.2.4.15.111" code="03.000"/>
+                        <telecom value="tel:075-6401042"/>
+                        <agentPerson classCode="PSN" determinerCode="INSTANCE">
+                            <name use="L">
+                                <given>Hugo</given>
+                                <family>Heilema</family>
+                            </name>
+                        </agentPerson>
+                        <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                            <id root="2.16.528.1.1007.3.3" extension="00022991"/>
+                            <id root="2.16.528.1.1007.3.3.53543.1.2.3.1"/>
+                            <id root="2.16.840.1.113883.2.4.6.1" extension="08000207"/>
+                            <id root="2.16.840.1.113883.2.4.3.22.98.1" extension="1557"/>
+                            <name use="L">Verloskundigenpraktijk Heilema</name>
+                            <addr>
+                                <streetName>Duke Ellingtonstraat</streetName>
+                                <houseNumber>49</houseNumber>
+                                <postalCode>1544 KP</postalCode>
+                                <city>Zaandijk</city>
+                            </addr>
+                        </representedOrganization>
+                    </responsibleParty>
+                </author>
+                <reason typeCode="RSON">
+                    <conditionEvent classCode="COND" moodCode="EVN">
+                        <id nullFlavor="NI"/>
+                        <code xsi:type="CE" code="3999" codeSystem="2.16.840.1.113883.6.96"/>
+                        <text>gisteren minder leven. 2 uur gelegen en toen wel 10x gevoeld. Vandaag weer moeite met voelen</text>
+                    </conditionEvent>
+                </reason>
+                <reason typeCode="RSON">
+                    <conditionEvent classCode="COND" moodCode="EVN">
+                        <id nullFlavor="NI"/>
+                        <code xsi:type="CE" code="3999" codeSystem="2.16.840.1.113883.6.96"/>
+                        <text>gisteren minder leven. 2 uur gelegen en toen wel 10x gevoeld. Vandaag weer moeite met voelen</text>
+                    </conditionEvent>
+                </reason>
+                <reason typeCode="RSON">
+                    <conditionEvent classCode="COND" moodCode="EVN">
+                        <id nullFlavor="NI"/>
+                        <code xsi:type="CE" code="3999" codeSystem="2.16.840.1.113883.6.96"/>
+                        <text>gisteren minder leven. 2 uur gelegen en toen wel 10x gevoeld. Vandaag weer moeite met voelen</text>
+                    </conditionEvent>
+                </reason>
+                <pertinentInformation2 typeCode="PERT" contextConductionInd="true">
+                    <careProvisionEvent classCode="PCPR" moodCode="EVN">
+                        <pertinentInformation2 typeCode="PERT" contextConductionInd="true">
+                            <actList classCode="LIST" moodCode="EVN">
+                                <code code="VERLIND" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                                <component typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="VERLIND" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                                        <value xsi:type="BL" value="true"/>
+                                        <inboundRelationship typeCode="COMP">
+                                            <observation classCode="OBS" moodCode="EVN">
+                                                <code code="VERLIND" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                                                <value xsi:type="CD" code="1999" codeSystem="2.16.840.1.113883.2.4.3.22.1.2.1"/>
+                                            </observation>
+                                        </inboundRelationship>
+                                    </observation>
+                                </component>
+                            </actList>
+                        </pertinentInformation2>
+                    </careProvisionEvent>
+                </pertinentInformation2>
+                <pertinentInformation2 typeCode="PERT" contextConductionInd="true">
+                    <careProvisionEvent classCode="PCPR" moodCode="EVN">
+                        <pertinentInformation2 typeCode="PERT" contextConductionInd="true">
+                            <actList classCode="LIST" moodCode="EVN">
+                                <code code="OBSTANAM" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                                <component typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="OBSTANAM" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                                        <value xsi:type="BL" value="false"/>
+                                    </observation>
+                                </component>
+                            </actList>
+                        </pertinentInformation2>
+                    </careProvisionEvent>
+                </pertinentInformation2>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <code code="364332008" codeSystem="2.16.840.1.113883.6.96"/>
+                        <value xsi:type="PQ" value="0" unit="ml"/>
+                    </observation>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <code code="59291004" codeSystem="2.16.840.1.113883.6.96"/>
+                        <value xsi:type="BL" value="false"/>
+                    </observation>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <code code="129019007" codeSystem="2.16.840.1.113883.6.96"/>
+                        <value xsi:type="BL" value="true"/>
+                        <inboundRelationship typeCode="COMP">
+                            <substanceAdministration classCode="SBADM" moodCode="EVN">
+                                <consumable typeCode="CSM">
+                                    <manufacturedProduct classCode="MANU">
+                                        <manufacturedProduct classCode="MMAT" determinerCode="KIND">
+                                            <name>ferro</name>
+                                        </manufacturedProduct>
+                                    </manufacturedProduct>
+                                </consumable>
+                            </substanceAdministration>
+                        </inboundRelationship>
+                    </observation>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <code code="NEGSE" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                        <value xsi:type="BL" value="false"/>
+                    </observation>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <code code="266096002" codeSystem="2.16.840.1.113883.6.96"/>
+                        <value xsi:type="BL" value="false"/>
+                    </observation>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <code code="161664006" codeSystem="2.16.840.1.113883.6.96"/>
+                        <value xsi:type="BL" value="false"/>
+                    </observation>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <code code="39156-5" codeSystem="2.16.840.1.113883.6.1"/>
+                        <value xsi:type="PQ" value="28" unit="kg/m2"/>
+                    </observation>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <organizer classCode="CONTAINER" moodCode="EVN">
+                        <code code="75367002" codeSystem="2.16.840.1.113883.6.96"/>
+                        <component typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="271649006" codeSystem="2.16.840.1.113883.6.96"/>
+                                <value xsi:type="PQ" value="120" unit="mm[Hg]"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="271650006" codeSystem="2.16.840.1.113883.6.96"/>
+                                <value xsi:type="PQ" value="68" unit="mm[Hg]"/>
+                            </observation>
+                        </component>
+                    </organizer>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <code code="883-9" codeSystem="2.16.840.1.113883.6.1"/>
+                        <value xsi:type="CE" code="58460004" codeSystem="2.16.840.1.113883.6.96"/>
+                    </observation>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <code code="978-7" codeSystem="2.16.840.1.113883.6.1"/>
+                        <value xsi:type="CE" code="165747007" codeSystem="2.16.840.1.113883.6.96"/>
+                    </observation>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <observation classCode="OBS" moodCode="EVN" negationInd="true">
+                        <code code="312457003" codeSystem="2.16.840.1.113883.6.96"/>
+                    </observation>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <code code="948-0" codeSystem="2.16.840.1.113883.6.1"/>
+                        <value xsi:type="CE" code="rhcneg" codeSystem="2.16.840.1.113883.2.4.4.13.45"/>
+                    </observation>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <code code="165806002" codeSystem="2.16.840.1.113883.6.96"/>
+                        <value xsi:type="BL" value="false"/>
+                    </observation>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <organizer classCode="CONTAINER" moodCode="EVN">
+                        <code code="248983002" codeSystem="2.16.840.1.113883.6.96"/>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="X_PREGNBR" codeSystem="2.16.840.1.113883.6.1"/>
+                                <value xsi:type="INT" value="686"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="EindeZw" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                                <value xsi:type="CE" code="1" codeSystem="2.16.840.1.113883.2.4.4.13.46"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="412726003" codeSystem="2.16.840.1.113883.6.96"/>
+                                <value xsi:type="PQ" value="283" unit="d"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <procedure classCode="PROC" moodCode="EVN">
+                                <id nullFlavor="NI"/>
+                                <code code="236973005" codeSystem="2.16.840.1.113883.6.96"/>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="364332008" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="PQ" value="500" unit="ml"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="PRN5704" codeSystem="2.16.840.1.113883.2.4.3.22.1.1"/>
+                                        <value xsi:type="CE" code="A" codeSystem="2.16.840.1.113883.2.4.3.22.1.2.62"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <procedure classCode="PROC" moodCode="EVN">
+                                        <id nullFlavor="NI"/>
+                                        <code code="Baring" codeSystem="2.16.840.1.113883.2.4.3.22.1.3"/>
+                                        <subject typeCode="SBJ">
+                                            <personalRelationship classCode="PRS">
+                                                <code code="CHILD" codeSystem="2.16.840.1.113883.5.111"/>
+                                                <relationshipHolder classCode="PSN" determinerCode="INSTANCE"/>
+                                            </personalRelationship>
+                                        </subject>
+                                        <inboundRelationship typeCode="COMP">
+                                            <observation classCode="OBS" moodCode="EVN">
+                                                <code code="289258004" codeSystem="2.16.840.1.113883.6.96"/>
+                                                <value xsi:type="CE" code="48782003" codeSystem="2.16.840.1.113883.6.96"/>
+                                            </observation>
+                                        </inboundRelationship>
+                                        <inboundRelationship typeCode="COMP">
+                                            <procedure classCode="PROC" moodCode="EVN" negationInd="true">
+                                                <id nullFlavor="NI"/>
+                                                <code code="KuVerl" codeSystem="2.16.840.1.113883.2.4.4.14"/>
+                                            </procedure>
+                                        </inboundRelationship>
+                                        <inboundRelationship typeCode="COMP">
+                                            <observation classCode="OBS" moodCode="EVN">
+                                                <code code="8339-4" codeSystem="2.16.840.1.113883.6.1"/>
+                                                <value xsi:type="PQ" value="3320" unit="g"/>
+                                            </observation>
+                                        </inboundRelationship>
+                                        <inboundRelationship typeCode="COMP">
+                                            <observation classCode="OBS" moodCode="EVN">
+                                                <code code="9274-2" codeSystem="2.16.840.1.113883.6.1"/>
+                                                <value xsi:type="INT" value="10"/>
+                                            </observation>
+                                        </inboundRelationship>
+                                    </procedure>
+                                </inboundRelationship>
+                            </procedure>
+                        </component>
+                    </organizer>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <organizer classCode="CONTAINER" moodCode="EVN">
+                        <code code="248983002" codeSystem="2.16.840.1.113883.6.96"/>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="X_PREGNBR" codeSystem="2.16.840.1.113883.6.1"/>
+                                <value xsi:type="INT" value="748"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="EindeZw" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                                <value xsi:type="CE" code="2" codeSystem="2.16.840.1.113883.2.4.4.13.46"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="412726003" codeSystem="2.16.840.1.113883.6.96"/>
+                                <value xsi:type="PQ" value="50" unit="d"/>
+                            </observation>
+                        </component>
+                    </organizer>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <organizer classCode="CONTAINER" moodCode="EVN">
+                        <code code="248983002" codeSystem="2.16.840.1.113883.6.96"/>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="X_PREGNBR" codeSystem="2.16.840.1.113883.6.1"/>
+                                <value xsi:type="INT" value="754"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="EindeZw" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                                <value xsi:type="CE" code="1" codeSystem="2.16.840.1.113883.2.4.4.13.46"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="412726003" codeSystem="2.16.840.1.113883.6.96"/>
+                                <value xsi:type="PQ" value="284" unit="d"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <procedure classCode="PROC" moodCode="EVN">
+                                <id nullFlavor="NI"/>
+                                <code code="236973005" codeSystem="2.16.840.1.113883.6.96"/>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="364332008" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="PQ" value="200" unit="ml"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="PRN5704" codeSystem="2.16.840.1.113883.2.4.3.22.1.1"/>
+                                        <value xsi:type="CE" code="C" codeSystem="2.16.840.1.113883.2.4.3.22.1.2.62"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <procedure classCode="PROC" moodCode="EVN">
+                                        <id nullFlavor="NI"/>
+                                        <code code="Baring" codeSystem="2.16.840.1.113883.2.4.3.22.1.3"/>
+                                        <subject typeCode="SBJ">
+                                            <personalRelationship classCode="PRS">
+                                                <code code="CHILD" codeSystem="2.16.840.1.113883.5.111"/>
+                                                <relationshipHolder classCode="PSN" determinerCode="INSTANCE"/>
+                                            </personalRelationship>
+                                        </subject>
+                                        <inboundRelationship typeCode="COMP">
+                                            <observation classCode="OBS" moodCode="EVN">
+                                                <code code="289258004" codeSystem="2.16.840.1.113883.6.96"/>
+                                                <value xsi:type="CE" code="48782003" codeSystem="2.16.840.1.113883.6.96"/>
+                                            </observation>
+                                        </inboundRelationship>
+                                        <inboundRelationship typeCode="COMP">
+                                            <procedure classCode="PROC" moodCode="EVN" negationInd="true">
+                                                <id nullFlavor="NI"/>
+                                                <code code="KuVerl" codeSystem="2.16.840.1.113883.2.4.4.14"/>
+                                            </procedure>
+                                        </inboundRelationship>
+                                        <inboundRelationship typeCode="COMP">
+                                            <observation classCode="OBS" moodCode="EVN">
+                                                <code code="8339-4" codeSystem="2.16.840.1.113883.6.1"/>
+                                                <value xsi:type="PQ" value="3140" unit="g"/>
+                                            </observation>
+                                        </inboundRelationship>
+                                        <inboundRelationship typeCode="COMP">
+                                            <observation classCode="OBS" moodCode="EVN">
+                                                <code code="9274-2" codeSystem="2.16.840.1.113883.6.1"/>
+                                                <value xsi:type="INT" value="10"/>
+                                            </observation>
+                                        </inboundRelationship>
+                                    </procedure>
+                                </inboundRelationship>
+                            </procedure>
+                        </component>
+                    </organizer>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <organizer classCode="CONTAINER" moodCode="EVN">
+                        <code code="364320009" codeSystem="2.16.840.1.113883.6.96"/>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="X_PREGNBR" codeSystem="2.16.840.1.113883.6.1"/>
+                                <value xsi:type="INT" value="754"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="EindeZw" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                                <value xsi:type="CE" code="1" codeSystem="2.16.840.1.113883.2.4.4.13.46"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="Gravidity" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                                <value xsi:type="INT" value="3"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="Parturit" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                                <value xsi:type="INT" value="1"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="AantalLevendeKinderen" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                                <value xsi:type="INT" value="1"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="EDD" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                                <value xsi:type="TS" value="20150818"/>
+                                <inboundRelationship typeCode="PERT">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="ActualEDD" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                                        <value xsi:type="BL" value="true"/>
+                                    </observation>
+                                </inboundRelationship>
+                            </observation>
+                        </component>
+                    </organizer>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <organizer classCode="CONTAINER" moodCode="EVN">
+                        <code code="236973005" codeSystem="2.16.840.1.113883.6.96"/>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="BeginDeliv" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                                <value xsi:type="CE" code="1" codeSystem="2.16.840.1.113883.2.4.3.22.1.2.46"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="249120008" codeSystem="2.16.840.1.113883.6.96"/>
+                                <effectiveTime value="20150822150000"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="38386-9" codeSystem="2.16.840.1.113883.6.1"/>
+                                <value xsi:type="CE" code="1" codeSystem="2.16.840.1.113883.2.4.4.13.18"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="Medic3stage" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                                <value xsi:type="BL" value="true"/>
+                                <inboundRelationship typeCode="COMP">
+                                    <substanceAdministration classCode="SBADM" moodCode="EVN">
+                                        <consumable typeCode="CSM">
+                                            <manufacturedProduct classCode="MANU">
+                                                <manufacturedProduct classCode="MMAT" determinerCode="KIND">
+                                                    <code code="1" codeSystem="2.16.840.1.113883.2.4.3.22.1.4.7"/>
+                                                </manufacturedProduct>
+                                            </manufacturedProduct>
+                                        </consumable>
+                                    </substanceAdministration>
+                                </inboundRelationship>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="AfterBirthMethod" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                                <value xsi:type="CE" code="0" codeSystem="2.16.840.1.113883.2.4.4.13.19"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="364343000" codeSystem="2.16.840.1.113883.6.96"/>
+                                <value xsi:type="CE" code="249170006" codeSystem="2.16.840.1.113883.6.96"/>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="PRN5704" codeSystem="2.16.840.1.113883.2.4.3.22.1.1"/>
+                                <value xsi:type="CE" code="A" codeSystem="2.16.840.1.113883.2.4.3.22.1.2.62"/>
+                            </observation>
+                        </component>
+                    </organizer>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="false">
+                    <procedure classCode="PROC" moodCode="EVN">
+                        <id nullFlavor="NI"/>
+                        <code code="Baring" codeSystem="2.16.840.1.113883.2.4.3.22.1.3"/>
+                        <subject typeCode="SBJ">
+                            <personalRelationship classCode="PRS">
+                                <code code="CHILD" codeSystem="2.16.840.1.113883.5.111"/>
+                                <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                                    <id root="2.16.528.1.1007.3.3.53543.1.2.3.1.1.1.4.1" extension="03-02-2016 21:23:09"/>
+                                    <birthTime value="20150822193500"/>
+                                    <deceasedInd value="false"/>
+                                </relationshipHolder>
+                            </personalRelationship>
+                        </subject>
+                        <inboundRelationship typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="46098-0" codeSystem="2.16.840.1.113883.6.1"/>
+                                <value xsi:type="CE" code="2" codeSystem="2.16.840.1.113883.2.4.4.13.21"/>
+                            </observation>
+                        </inboundRelationship>
+                        <inboundRelationship typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="289251005" codeSystem="2.16.840.1.113883.6.96"/>
+                                <effectiveTime value="20150822190900"/>
+                            </observation>
+                        </inboundRelationship>
+                        <inboundRelationship typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="249160009" codeSystem="2.16.840.1.113883.6.96"/>
+                                <effectiveTime value="20150822192700"/>
+                            </observation>
+                        </inboundRelationship>
+                        <inboundRelationship typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="289258004" codeSystem="2.16.840.1.113883.6.96"/>
+                                <value xsi:type="CE" code="48782003" codeSystem="2.16.840.1.113883.6.96"/>
+                            </observation>
+                        </inboundRelationship>
+                        <inboundRelationship typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="8339-4" codeSystem="2.16.840.1.113883.6.1"/>
+                                <value xsi:type="PQ" value="3140" unit="g"/>
+                            </observation>
+                        </inboundRelationship>
+                        <inboundRelationship typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="9274-2" codeSystem="2.16.840.1.113883.6.1"/>
+                                <value xsi:type="INT" value="10"/>
+                            </observation>
+                        </inboundRelationship>
+                        <inboundRelationship typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="66091009" codeSystem="2.16.840.1.113883.6.96"/>
+                                <value xsi:type="BL" value="true"/>
+                            </observation>
+                            <!--<observation classCode="OBS" moodCode="EVN">
+                                <code code="66091009" codeSystem="2.16.840.1.113883.6.96"/>
+                                <value xsi:type="BL" value="false"/>
+                            </observation>-->
+                        </inboundRelationship>
+                        <inboundRelationship typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="LigGbrt" codeSystem="2.16.840.1.113883.2.4.3.22.1.1"/>
+                                <value xsi:type="CE" code="1" codeSystem="2.16.840.1.113883.2.4.3.22.1.2.50"/>
+                            </observation>
+                        </inboundRelationship>
+                        <inboundRelationship typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN" negationInd="true">
+                                <code code="Interv" codeSystem="2.16.840.1.113883.2.4.3.22.1.1"/>
+                            </observation>
+                        </inboundRelationship>
+                    </procedure>
+                </pertinentInformation3>
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <organizer classCode="CONTAINER" moodCode="EVN">
+                        <code code="12131-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code code="59260-0" codeSystem="2.16.840.1.113883.6.1"/>
+                                <effectiveTime value="20150519"/>
+                                <value xsi:type="PQ" unit="mmol/L" value="8.1"/>
+                                <inboundRelationship typeCode="PERT" contextConductionInd="true">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="445872007" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="PQ" value="189" unit="d"/>
+                                    </observation>
+                                </inboundRelationship>
+                            </observation>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <procedure classCode="PROC" moodCode="EVN" negationInd="false">
+                                <id nullFlavor="NI"/>
+                                <code code="51597003" codeSystem="2.16.840.1.113883.6.96"/>
+                                <effectiveTime value="201508221909"/>
+                                <inboundRelationship typeCode="PERT" contextConductionInd="true">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="445872007" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="PQ" value="284" unit="d"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="249021005" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="CE" code="19337000" codeSystem="2.16.840.1.113883.6.96"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="289761004" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="CE" code="39333005" codeSystem="2.16.840.1.113883.6.96"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="112074005" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="CE" code="46914009" codeSystem="2.16.840.1.113883.6.96"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="364611006" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="CE" code="289379002" codeSystem="2.16.840.1.113883.6.96"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="364612004" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="CE" code="249083005" codeSystem="2.16.840.1.113883.6.96"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="163520002" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="CE" nullFlavor="NI"/>
+                                    </observation>
+                                </inboundRelationship>
+                            </procedure>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <procedure classCode="PROC" moodCode="EVN" negationInd="false">
+                                <id nullFlavor="NI"/>
+                                <code code="51597003" codeSystem="2.16.840.1.113883.6.96"/>
+                                <effectiveTime value="201508221837"/>
+                                <inboundRelationship typeCode="PERT" contextConductionInd="true">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="445872007" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="PQ" value="284" unit="d"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="249021005" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="CE" code="278058008" codeSystem="2.16.840.1.113883.6.96"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="289761004" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="CE" code="66895001" codeSystem="2.16.840.1.113883.6.96"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="112074005" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="CE" code="46914009" codeSystem="2.16.840.1.113883.6.96"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="364611006" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="CE" code="289377000" codeSystem="2.16.840.1.113883.6.96"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="364612004" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="CE" code="249083005" codeSystem="2.16.840.1.113883.6.96"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="163520002" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="CE" nullFlavor="NI"/>
+                                    </observation>
+                                </inboundRelationship>
+                            </procedure>
+                        </component>
+                        <component typeCode="COMP" contextConductionInd="true">
+                            <procedure classCode="PROC" moodCode="EVN" negationInd="false">
+                                <id nullFlavor="NI"/>
+                                <code code="51597003" codeSystem="2.16.840.1.113883.6.96"/>
+                                <effectiveTime value="201508221431"/>
+                                <inboundRelationship typeCode="PERT" contextConductionInd="true">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="445872007" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="PQ" value="284" unit="d"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="249021005" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="CE" code="278058008" codeSystem="2.16.840.1.113883.6.96"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="289761004" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="CE" code="320003" codeSystem="2.16.840.1.113883.6.96"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="112074005" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="CE" code="46914009" codeSystem="2.16.840.1.113883.6.96"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="364611006" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="CE" code="289377000" codeSystem="2.16.840.1.113883.6.96"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="364612004" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="CE" code="249083005" codeSystem="2.16.840.1.113883.6.96"/>
+                                    </observation>
+                                </inboundRelationship>
+                                <inboundRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code code="163520002" codeSystem="2.16.840.1.113883.6.96"/>
+                                        <value xsi:type="CE" nullFlavor="NI"/>
+                                    </observation>
+                                </inboundRelationship>
+                            </procedure>
+                        </component>
+                    </organizer>
+                </pertinentInformation3>
+            </careProvisionRequest>
+        </subject>
+    </ControlActProcess>
+</REPC_IN002120NL>

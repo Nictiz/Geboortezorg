@@ -1,0 +1,86 @@
+<REPC_IN002120NL xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <id root="2.16.528.1.1007.3.3.53543.1.2.3.1.1.1.1.1" extension="8765"/>
+    <creationTime value="20170412095613"/>
+    <versionCode code="NICTIZEd2005-Okt"/>
+    <interactionId extension="REPC_IN002120NL" root="2.16.840.1.113883.1.6"/>
+    <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+    <processingCode code="P"/>
+    <processingModeCode code="T"/>
+    <acceptAckCode code="AL"/>
+    <receiver typeCode="RCV">
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <id root="2.16.840.1.113883.2.4.3.38.1.1" extension="HL7Prod"/>
+        </device>
+    </receiver>
+    <sender typeCode="SND">
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <id extension="1" root="2.16.528.1.1007.3.3.53543.1.2.3.1.1.2.3"/>
+            <name>Orfeus 3.10.17 - (30-03-2017)-Verloskundigenpraktijk Heilema</name>
+        </device>
+    </sender>
+    <ControlActProcess classCode="ACTN" moodCode="EVN">
+        <effectiveTime value="20170412095613"/>
+        <authorOrPerformer typeCode="AUT">
+            <participant>
+                <AssignedPerson>
+                    <id root="2.16.528.1.1007.3.1" extension="000025103"/>
+                    <id root="2.16.840.1.113883.2.4.6.1" extension="08000208"/>
+                    <id root="2.16.840.1.113883.2.4.3.22.98.2" extension="1403"/>
+                    <code codeSystem="2.16.840.1.113883.2.4.15.111" code="03.000"/>
+                    <assignedPrincipalChoiceList>
+                        <assignedPerson>
+                            <name use="L">
+                                <given>Hugo</given>
+                                <family>Heilema</family>
+                            </name>
+                        </assignedPerson>
+                    </assignedPrincipalChoiceList>
+                    <Organization>
+                        <id root="2.16.528.1.1007.3.3" extension="00022991"/>
+                        <id root="2.16.528.1.1007.3.3.53543.1.2.3.1"/>
+                        <id root="2.16.840.1.113883.2.4.6.1" extension="08000207"/>
+                        <id root="2.16.840.1.113883.2.4.3.22.98.1" extension="1557"/>
+                        <code codeSystem="2.16.840.1.113883.2.4.15.1060" code="G3"/>
+                        <name use="L">Verloskundigenpraktijk Heilema</name>
+                        <addr>
+                            <streetName>Duke Ellingtonstraat</streetName>
+                            <houseNumber>49</houseNumber>
+                            <postalCode>1544 KP</postalCode>
+                            <city>Zaandijk</city>
+                        </addr>
+                    </Organization>
+                </AssignedPerson>
+            </participant>
+        </authorOrPerformer>
+        <overseer typeCode="RESP">
+            <AssignedPerson>
+                <id root="2.16.528.1.1007.3.1" extension="000025103"/>
+                <id root="2.16.840.1.113883.2.4.6.1" extension="08000208"/>
+                <id root="2.16.840.1.113883.2.4.3.22.98.2" extension="1403"/>
+                <code codeSystem="2.16.840.1.113883.2.4.15.111" code="03.000"/>
+                <assignedPrincipalChoiceList>
+                    <assignedPerson>
+                        <name use="L">
+                            <given>Hugo</given>
+                            <family>Heilema</family>
+                        </name>
+                    </assignedPerson>
+                </assignedPrincipalChoiceList>
+                <Organization>
+                    <id root="2.16.528.1.1007.3.3" extension="00022991"/>
+                    <id root="2.16.528.1.1007.3.3.53543.1.2.3.1"/>
+                    <id root="2.16.840.1.113883.2.4.6.1" extension="08000207"/>
+                    <id root="2.16.840.1.113883.2.4.3.22.98.1" extension="1557"/>
+                    <code codeSystem="2.16.840.1.113883.2.4.15.1060" code="G3"/>
+                    <name use="L">Verloskundigenpraktijk Heilema</name>
+                    <addr>
+                        <streetName>Duke Ellingtonstraat</streetName>
+                        <houseNumber>49</houseNumber>
+                        <postalCode>1544 KP</postalCode>
+                        <city>Zaandijk</city>
+                    </addr>
+                </Organization>
+            </AssignedPerson>
+        </overseer>
+    </ControlActProcess>
+</REPC_IN002120NL>

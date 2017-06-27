@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings><!-- Chapter 1: Release Info (if publication is a release) --><!-- ========= -->
+   <release project="2.16.840.1.113883.2.4.3.11.60.90"
+            prefix="peri20-"
+            signature="develop"
+            date="2014-07-10T14:09:39"
+            versionLabel="pwd-20140710"/>
+   <!--
+                    :
+                    :
+                    :
+                    :
+                    -->
+   <!-- Chapter 2: Mapping based on model list -->
+   <!-- ========= -->
+   <!-- Used to map an instance to a specific Schematron. How to read:
+    - For every template-id that is used in instances there is an element map, e.g.
+      <map model="REPC_IN004110UV01" namespace="urn:hl7-org:v3" templateRoot="2.16.840.1.113883.2.4.6.10.90.59" sch="peri20-counseling-fase-1c.sch" schsvrl="peri20-counseling-fase-1c.xsl"/>
+      or 
+      <map rootelement="REPC_IN004110UV01" namespace="urn:hl7-org:v3" sch="peri20-counseling-fase-1c.sch" schsvrl="peri20-counseling-fase-1c.xsl"/>
+      
+      - @model       - optional    - hint as to the XML Schema that could be used
+      - @namespace   - mandatory   - default namespace-uri() of the project and of the instance unless specified otherwise
+      - templateRoot - mandatory   - in HL7v3 this would be an OID. In other instance types it might be something else, but then this mapping file might need adjusted setup
+      or
+      - @rootelement - required    - local-name() of the root element of the instance
+      - @namespace   - mandatory   - namespace-uri() of the root element
+      
+      One of the following is required, normally schsvrl makes sense:
+      - @schsvrl     - conditional - path+file name of the SVRL XSL. The path should be relative to this index/map file
+      - @schtext     - conditional - path+file name of the Text XSL. The path should be relative to this index/map file
+      - @sch         - conditional - path+file name of the original Schematron file. The path should be relative to this index/map file
+        
+      Note that the same template may be part of multiple transactions, hence multiple map element could be present for the same template. The attached Schematron
+      will have different names, but will have the exact same rules (same template, same rules) hence only the first match is needed for validation.
+      
+    - As final fallback, when no template-id is found in the instance, code should rely on root element of the instance to determine the Schematron file name ... -->
+   <!-- template name: aanmelding-zwangerschap-22 -->
+   <map model="REPC_IN004014NL"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.900927"
+        sch="peri20-aanmelding-zwangerschap-22.sch"
+        schsvrl="peri20-aanmelding-zwangerschap-22.xsl"/>
+   <map rootelement="REPC_IN004014NL"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-aanmelding-zwangerschap-22.sch"
+        schsvrl="peri20-aanmelding-zwangerschap-22.xsl"/>
+   <!-- template name: albprn-1el-20 -->
+   <map model="REPC_IN004014NL"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.70"
+        sch="peri20-albprn-1el-21.sch"
+        schsvrl="peri20-albprn-1el-21.xsl"/>
+   <map rootelement="registrationProcess"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-albprn-1el-21.sch"
+        schsvrl="peri20-albprn-1el-21.xsl"/>
+   <!-- template name: albprn-2el-21 -->
+   <map model="REPC_IN004014NL"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.71"
+        sch="peri20-albprn-2el-21.sch"
+        schsvrl="peri20-albprn-2el-21.xsl"/>
+   <map rootelement="registrationProcess"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-albprn-2el-21.sch"
+        schsvrl="peri20-albprn-2el-21.xsl"/>
+   <!-- template name: albprn-1el-20 -->
+   <map model="REPC_IN004014NL"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.70"
+        sch="peri20-albprn-1el-20.sch"
+        schsvrl="peri20-albprn-1el-20.xsl"/>
+   <map rootelement="registrationProcess"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-albprn-1el-20.sch"
+        schsvrl="peri20-albprn-1el-20.xsl"/>
+   <!-- template name: albprn-2el-21 -->
+   <map model="REPC_IN004014NL"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.71"
+        sch="peri20-albprn-2el-20.sch"
+        schsvrl="peri20-albprn-2el-20.xsl"/>
+   <map rootelement="registrationProcess"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-albprn-2el-20.sch"
+        schsvrl="peri20-albprn-2el-20.xsl"/>
+   <!-- template name: counseling-22 -->
+   <map model="REPC_IN004014NL"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.900924"
+        sch="peri20-counseling-22.sch"
+        schsvrl="peri20-counseling-22.xsl"/>
+   <map rootelement="REPC_IN004014NL"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-counseling-22.sch"
+        schsvrl="peri20-counseling-22.xsl"/>
+   <!-- template name: acufov -->
+   <map model="REPC_IN002120NL"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.63"
+        sch="peri20-acufov.sch"
+        schsvrl="peri20-acufov.xsl"/>
+   <!-- template name: mcci2-ack -->
+   <map model="MCCI_IN000002"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.46"
+        sch="peri20-acufov-ack.sch"
+        schsvrl="peri20-acufov-ack.xsl"/>
+   <map rootelement="MCCI_IN000002"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-acufov-ack.sch"
+        schsvrl="peri20-acufov-ack.xsl"/>
+   <!-- template name: mcci2-ack -->
+   <map model="MCCI_IN000002"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.46"
+        sch="peri20-regvwz-ack.sch"
+        schsvrl="peri20-regvwz-ack.xsl"/>
+   <map rootelement="MCCI_IN000002"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-regvwz-ack.sch"
+        schsvrl="peri20-regvwz-ack.xsl"/>
+   <!-- template name: mcci2-ack -->
+   <map model="MCCI_IN000002"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.46"
+        sch="peri20-mcci2-admgeboorte-1a2-ack.sch"
+        schsvrl="peri20-mcci2-admgeboorte-1a2-ack.xsl"/>
+   <map rootelement="MCCI_IN000002"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-mcci2-admgeboorte-1a2-ack.sch"
+        schsvrl="peri20-mcci2-admgeboorte-1a2-ack.xsl"/>
+   <!-- template name: mcci2-ack -->
+   <map model="MCCI_IN000002"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.46"
+        sch="peri20-albprn-1el-21-ack.sch"
+        schsvrl="peri20-albprn-1el-21-ack.xsl"/>
+   <map rootelement="MCCI_IN000002"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-albprn-1el-21-ack.sch"
+        schsvrl="peri20-albprn-1el-21-ack.xsl"/>
+   <!-- template name: mcci2-ack -->
+   <map model="MCCI_IN000002"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.46"
+        sch="peri20-albprn-2el-21-ack.sch"
+        schsvrl="peri20-albprn-2el-21-ack.xsl"/>
+   <map rootelement="MCCI_IN000002"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-albprn-2el-21-ack.sch"
+        schsvrl="peri20-albprn-2el-21-ack.xsl"/>
+   <!-- template name: mcci2-ack -->
+   <map model="MCCI_IN000002"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.46"
+        sch="peri20-mcci2-admgeboorte-1a-ack.sch"
+        schsvrl="peri20-mcci2-admgeboorte-1a-ack.xsl"/>
+   <map rootelement="MCCI_IN000002"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-mcci2-admgeboorte-1a-ack.sch"
+        schsvrl="peri20-mcci2-admgeboorte-1a-ack.xsl"/>
+   <!-- template name: admgeboorte-1a -->
+   <map model="PRPA_IN101001"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.45"
+        sch="peri20-admgeb-21.sch"
+        schsvrl="peri20-admgeb-21.xsl"/>
+   <map rootelement="subject[hl7:registrationProcess]"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-admgeb-21.sch"
+        schsvrl="peri20-admgeb-21.xsl"/>
+   <!-- template name: admgeboorte-1a -->
+   <map model="PRPA_IN101001"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.45"
+        sch="peri20-admgeb-1a.sch"
+        schsvrl="peri20-admgeb-1a.xsl"/>
+   <map rootelement="subject[hl7:registrationProcess]"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-admgeb-1a.sch"
+        schsvrl="peri20-admgeb-1a.xsl"/>
+   <!-- template name: counseling-1c -->
+   <map model="REPC_IN004110UV01"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.54"
+        sch="peri20-counseling-1c.sch"
+        schsvrl="peri20-counseling-1c.xsl"/>
+   <!-- template name: uitkomst-1c-1el -->
+   <map model="REPC_IN004211UV01"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.51"
+        sch="peri20-uitkomst-1c-1el.sch"
+        schsvrl="peri20-uitkomst-1c-1el.xsl"/>
+   <!-- template name: cda-jze -->
+   <map model="POCD_MT000040NL"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.1"
+        sch="peri20-jze-1c.sch"
+        schsvrl="peri20-jze-1c.xsl"/>
+   <map rootelement="ClinicalDocument"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-jze-1c.sch"
+        schsvrl="peri20-jze-1c.xsl"/>
+   <!-- template name: cda-ntm -->
+   <map model="POCD_MT000040NL"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.2"
+        sch="peri20-ntm-1c.sch"
+        schsvrl="peri20-ntm-1c.xsl"/>
+   <map rootelement="ClinicalDocument"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-ntm-1c.sch"
+        schsvrl="peri20-ntm-1c.xsl"/>
+   <!-- template name: cda-ctk -->
+   <map model="POCD_MT000040NL"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.3"
+        sch="peri20-ctk-1c.sch"
+        schsvrl="peri20-ctk-1c.xsl"/>
+   <map rootelement="ClinicalDocument"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-ctk-1c.sch"
+        schsvrl="peri20-ctk-1c.xsl"/>
+   <!-- template name: cda-seo -->
+   <map model="POCD_MT000040NL"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.4"
+        sch="peri20-seo-1c.sch"
+        schsvrl="peri20-seo-1c.xsl"/>
+   <map rootelement="ClinicalDocument"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-seo-1c.sch"
+        schsvrl="peri20-seo-1c.xsl"/>
+   <!-- template name: cda-guo -->
+   <map model="POCD_MT000040NL"
+        namespace="urn:hl7-org:v3"
+        templateRoot="2.16.840.1.113883.2.4.6.10.90.5"
+        sch="peri20-guo-1c.sch"
+        schsvrl="peri20-guo-1c.xsl"/>
+   <map rootelement="ClinicalDocument"
+        namespace="urn:hl7-org:v3"
+        sch="peri20-guo-1c.sch"
+        schsvrl="peri20-guo-1c.xsl"/>
+   <!--
+                    :
+                    :
+                    :
+                    :
+                    -->
+   <!-- Chapter 3: Mapping based on representing templates -->
+   <!-- ========= -->
+   <!-- Used to map a representing template to a specific Schematron. How to read:
+    - For every representing template the schematron file and sch svrl xsl conversion file is mentioned
+    - The corresponding root element plus its namespace is mentioned 
+    - Every transaction represented by this template is named-->
+   <template id="2.16.840.1.113883.2.4.6.10.90.900927"
+             effectiveDate="2014-01-22T00:00:00"
+             sch="peri20-aanmelding-zwangerschap-22.sch"
+             schsvrl="peri20-aanmelding-zwangerschap-22.xsl">
+      <root rootelement="REPC_IN004014NL" namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.2407"
+                   effectiveDate="2014-01-08T15:19:23"
+                   statusCode="draft"
+                   name="Bericht Aanmelding zwangerschap (2.2)"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.63"
+             effectiveDate="2013-11-08T00:00:00"
+             sch="peri20-acufov.sch"
+             schsvrl="peri20-acufov.xsl">
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.2301"
+                   effectiveDate="2013-11-08T00:00:00"
+                   statusCode="final"
+                   name="Overdracht Acute Fase bericht"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.46"
+             effectiveDate="2012-12-20T00:00:00"
+             sch="peri20-acufov-ack.sch"
+             schsvrl="peri20-acufov-ack.xsl">
+      <root rootelement="MCCI_IN000002" namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.2302"
+                   effectiveDate="2013-11-08T00:00:00"
+                   statusCode="final"
+                   name="Acknowledgement Overdracht Acute Fase bericht"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.46"
+             effectiveDate="2012-12-20T00:00:00"
+             sch="peri20-regvwz-ack.sch"
+             schsvrl="peri20-regvwz-ack.xsl">
+      <root rootelement="MCCI_IN000002" namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.2402"
+                   effectiveDate="2013-09-10T00:00:00"
+                   statusCode="draft"
+                   name="Acknowledgement voor Verwijzing Regulier bericht"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.45"
+             effectiveDate="2012-06-26T00:00:00"
+             sch="peri20-admgeb-21.sch"
+             schsvrl="peri20-admgeb-21.xsl">
+      <root rootelement="subject[hl7:registrationProcess]"
+            namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.2001"
+                   effectiveDate="2012-09-21T00:00:00"
+                   statusCode="draft"
+                   name="Administratief geboortebericht (2012)"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.46"
+             effectiveDate="2012-12-20T00:00:00"
+             sch="peri20-mcci2-admgeboorte-1a2-ack.sch"
+             schsvrl="peri20-mcci2-admgeboorte-1a2-ack.xsl">
+      <root rootelement="MCCI_IN000002" namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.2002"
+                   effectiveDate="2012-09-21T00:00:00"
+                   statusCode="draft"
+                   name="Acknowledgement Administratief geboortebericht fase 1a"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.70"
+             effectiveDate="2012-05-31T00:00:00"
+             sch="peri20-albprn-1el-21.sch"
+             schsvrl="peri20-albprn-1el-21.xsl">
+      <root rootelement="registrationProcess" namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.1801"
+                   effectiveDate="2012-08-06T00:00:00"
+                   statusCode="final"
+                   name="Obstetrisch aanleverbericht PRN 1e lijn"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.46"
+             effectiveDate="2012-12-20T00:00:00"
+             sch="peri20-albprn-1el-21-ack.sch"
+             schsvrl="peri20-albprn-1el-21-ack.xsl">
+      <root rootelement="MCCI_IN000002" namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.1802"
+                   effectiveDate="2012-08-06T00:00:00"
+                   statusCode="final"
+                   name="Acknowledgement Obstetrisch aanleverbericht PRN 1e lijn"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.71"
+             effectiveDate="2012-12-07T00:00:00"
+             sch="peri20-albprn-2el-21.sch"
+             schsvrl="peri20-albprn-2el-21.xsl">
+      <root rootelement="registrationProcess" namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.1901"
+                   effectiveDate="2012-08-06T00:00:00"
+                   statusCode="final"
+                   name="Obstetrisch aanleverbericht PRN 2e lijn"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.46"
+             effectiveDate="2012-12-20T00:00:00"
+             sch="peri20-albprn-2el-21-ack.sch"
+             schsvrl="peri20-albprn-2el-21-ack.xsl">
+      <root rootelement="MCCI_IN000002" namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.1902"
+                   effectiveDate="2012-08-06T00:00:00"
+                   statusCode="final"
+                   name="Acknowledgement Obstetrisch aanleverbericht PRN 2e lijn"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.70"
+             effectiveDate="2012-05-31T00:00:00"
+             sch="peri20-albprn-1el-20.sch"
+             schsvrl="peri20-albprn-1el-20.xsl">
+      <root rootelement="registrationProcess" namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.701"
+                   effectiveDate="2012-03-01T00:00:00"
+                   statusCode="final"
+                   name="Aanleverbericht PRN 1e lijn naar PRN"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.71"
+             effectiveDate="2012-12-07T00:00:00"
+             sch="peri20-albprn-2el-20.sch"
+             schsvrl="peri20-albprn-2el-20.xsl">
+      <root rootelement="registrationProcess" namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.801"
+                   effectiveDate="2012-03-01T00:00:00"
+                   statusCode="final"
+                   name="Aanleverbericht PRN 2e lijn naar PRN"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.51"
+             effectiveDate="2012-03-11T00:00:00"
+             sch="peri20-uitkomst-1c-1el.sch"
+             schsvrl="peri20-uitkomst-1c-1el.xsl">
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.401"
+                   effectiveDate="2011-01-28T00:00:00"
+                   statusCode="final"
+                   name="Uitkomst bericht fase 1c vanuit 1e lijn naar registraties"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.54"
+             effectiveDate="2012-10-20T00:00:00"
+             sch="peri20-counseling-1c.sch"
+             schsvrl="peri20-counseling-1c.xsl">
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.501"
+                   effectiveDate="2011-01-28T00:00:00"
+                   statusCode="final"
+                   name="Counseling bericht fase 1c"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.900924"
+             effectiveDate="2014-06-05T00:00:00"
+             sch="peri20-counseling-22.sch"
+             schsvrl="peri20-counseling-22.xsl">
+      <root rootelement="REPC_IN004014NL" namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.2404"
+                   effectiveDate="2014-01-08T15:19:23"
+                   statusCode="draft"
+                   name="Counseling bericht (2.2)"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.1"
+             effectiveDate="2012-03-11T00:00:00"
+             sch="peri20-jze-1c.sch"
+             schsvrl="peri20-jze-1c.xsl">
+      <root rootelement="ClinicalDocument" namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.1101"
+                   effectiveDate="2011-01-28T00:00:00"
+                   statusCode="final"
+                   name="Jonge zwangerschapsecho (JZE)"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.2"
+             effectiveDate="2012-03-11T00:00:00"
+             sch="peri20-ntm-1c.sch"
+             schsvrl="peri20-ntm-1c.xsl">
+      <root rootelement="ClinicalDocument" namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.1201"
+                   effectiveDate="2011-01-28T00:00:00"
+                   statusCode="final"
+                   name="NT-meting"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.3"
+             effectiveDate="2012-03-11T00:00:00"
+             sch="peri20-ctk-1c.sch"
+             schsvrl="peri20-ctk-1c.xsl">
+      <root rootelement="ClinicalDocument" namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.1301"
+                   effectiveDate="2011-01-28T00:00:00"
+                   statusCode="final"
+                   name="Combinatietest kansbepaling"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.4"
+             effectiveDate="2012-03-11T00:00:00"
+             sch="peri20-seo-1c.sch"
+             schsvrl="peri20-seo-1c.xsl">
+      <root rootelement="ClinicalDocument" namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.1401"
+                   effectiveDate="2011-01-28T00:00:00"
+                   statusCode="final"
+                   name="Structureel Echoscopisch Onderzoek (SEO)"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.5"
+             effectiveDate="2012-03-11T00:00:00"
+             sch="peri20-guo-1c.sch"
+             schsvrl="peri20-guo-1c.xsl">
+      <root rootelement="ClinicalDocument" namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.1501"
+                   effectiveDate="2011-01-28T00:00:00"
+                   statusCode="final"
+                   name="Geavanceerd Echoscopisch Onderzoek (GEO)"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.45"
+             effectiveDate="2012-06-26T00:00:00"
+             sch="peri20-admgeb-1a.sch"
+             schsvrl="peri20-admgeb-1a.xsl">
+      <root rootelement="subject[hl7:registrationProcess]"
+            namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.901"
+                   effectiveDate="2011-01-28T00:00:00"
+                   statusCode="final"
+                   name="Administratief geboortebericht fase 1a"/>
+   </template>
+   <template id="2.16.840.1.113883.2.4.6.10.90.46"
+             effectiveDate="2012-12-20T00:00:00"
+             sch="peri20-mcci2-admgeboorte-1a-ack.sch"
+             schsvrl="peri20-mcci2-admgeboorte-1a-ack.xsl">
+      <root rootelement="MCCI_IN000002" namespace="urn:hl7-org:v3"/>
+      <transaction id="2.16.840.1.113883.2.4.3.11.60.90.77.4.902"
+                   effectiveDate="2011-01-28T00:00:00"
+                   statusCode="final"
+                   name="Acknowledgement Administratief geboortebericht fase 1a"/>
+   </template>
+</mappings>

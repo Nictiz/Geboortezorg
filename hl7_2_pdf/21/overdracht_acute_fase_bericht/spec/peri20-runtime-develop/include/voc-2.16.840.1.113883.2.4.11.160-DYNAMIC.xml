@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<valueSets>
+   <valueSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:decor="http://art-decor.org/ns/decor"
+             xmlns:peri="urn:nictiz-nl:v3/peri"
+             name="Completenessplacenta"
+             displayName="Completeness placenta"
+             effectiveDate="2012-03-17T00:00:00"
+             id="2.16.840.1.113883.2.4.11.160"
+             statusCode="final">
+      <sourceCodeSystem id="2.16.840.1.113883.6.96" identifierName="Snomed"/>
+      <sourceCodeSystem id="2.16.840.1.113883.2.4.4.13.44"
+                        identifierName="Completenessplacenta"/>
+      <sourceCodeSystem id="2.16.840.1.113883.5.1008" identifierName="NullFlavor"/>
+      <conceptList>
+                <concept code="249170006"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  displayName="compleet"
+                  level="0"
+                  type="L"/>
+                <concept code="268479002"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  displayName="niet compleet"
+                  level="0"
+                  type="L"/>
+                <concept code="pdubc"
+                  codeSystem="2.16.840.1.113883.2.4.4.13.44"
+                  displayName="dubieus compleet"
+                  level="0"
+                  type="L"/>
+                <exception code="UNK"
+                    codeSystem="2.16.840.1.113883.5.1008"
+                    displayName="onbekend"
+                    level="0"
+                    type="L"/>
+            </conceptList>
+   </valueSet>
+</valueSets>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<valueSets>
+   <valueSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:decor="http://art-decor.org/ns/decor"
+             xmlns:peri="urn:nictiz-nl:v3/peri"
+             name="Confidentiality"
+             displayName="Confidentiality"
+             effectiveDate="2011-01-28T00:00:00"
+             id="2.16.840.1.113883.2.4.11.140"
+             statusCode="final">
+      <sourceCodeSystem id="2.16.840.1.113883.5.25" identifierName="Confidentiality"/>
+      <conceptList>
+                <concept code="N"
+                  codeSystem="2.16.840.1.113883.5.25"
+                  displayName="Normal"
+                  level="0"
+                  type="L"/>
+                <concept code="R"
+                  codeSystem="2.16.840.1.113883.5.25"
+                  displayName="Restricted"
+                  level="0"
+                  type="L"/>
+                <concept code="V"
+                  codeSystem="2.16.840.1.113883.5.25"
+                  displayName="Very restricted"
+                  level="0"
+                  type="L"/>
+            </conceptList>
+   </valueSet>
+</valueSets>

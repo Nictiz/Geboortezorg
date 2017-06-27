@@ -1,0 +1,6 @@
+<!-- 
+    Datatype 1.0 RTO_QTY_QTY - Ratio of Quantity
+    Status: Draft
+--><rule xmlns="http://purl.oclc.org/dsdl/schematron" abstract="true" id="RTO_QTY_QTY"><assert role="error" test="@nullFlavor or ((hl7:numerator and not(hl7:numerator/@nullFlavor)) and (hl7:numerator and not(hl7:numerator/@nullFlavor)))">dtr1-1-RTO: numerator and denominator
+    required</assert><assert role="error" test="count(*[self::hl7:numerator or self::hl7:denominator][@updateMode])=0">dtr1-2-RTO: no updateMode on RTO Attributes</assert><assert role="error" test="not(uncertainty)">dtr1-3-RTO: no uncertainty</assert><assert role="error" test="(hl7:numerator/@nullFlavor or hl7:numerator/@value) and not(hl7:numerator/@nullFlavor and hl7:numerator/@value)">dtr1-4-RTO: null or value in numerator</assert><assert role="error" test="not(hl7:numerator/@nullFlavor) or (hl7:numerator/@nullFlavor and not(hl7:numerator/hl7:translation))">dtr1-5-RTO: no translation if null in numerator</assert><assert role="error" test="(hl7:denominator/@nullFlavor or hl7:denominator/@value) and not(hl7:denominator/@nullFlavor and hl7:denominator/@value)">dtr1-6-RTO: null or value in
+        denominator</assert><assert role="error" test="not(hl7:denominator/@nullFlavor) or (hl7:denominator/@nullFlavor and not(hl7:denominator/hl7:translation))">dtr1-7-RTO: no translation if null in denominator</assert></rule>

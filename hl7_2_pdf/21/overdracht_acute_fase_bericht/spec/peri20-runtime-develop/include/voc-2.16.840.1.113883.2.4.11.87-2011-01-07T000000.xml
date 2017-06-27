@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<valueSets>
+   <valueSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:decor="http://art-decor.org/ns/decor"
+             xmlns:peri="urn:nictiz-nl:v3/peri"
+             name="ImmunisatieProductGroep"
+             displayName="ImmunisatieProductGroep"
+             effectiveDate="2011-01-07T00:00:00"
+             id="2.16.840.1.113883.2.4.11.87"
+             statusCode="final">
+      <sourceCodeSystem id="2.16.840.1.113883.6.96" identifierName="Snomed"/>
+      <sourceCodeSystem id="2.16.840.1.113883.5.1008" identifierName="NullFlavor"/>
+      <conceptList>
+                <concept code="112162009"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  displayName="Blood group antibody D immunoglobulin"
+                  level="0"
+                  type="L"/>
+                <concept code="418747006"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  displayName="Hepatitis B surface antigen immunoglobulin"
+                  level="0"
+                  type="L"/>
+                <exception code="UNK"
+                    codeSystem="2.16.840.1.113883.5.1008"
+                    displayName="onbekend"
+                    level="0"
+                    type="L"/>
+            </conceptList>
+   </valueSet>
+</valueSets>

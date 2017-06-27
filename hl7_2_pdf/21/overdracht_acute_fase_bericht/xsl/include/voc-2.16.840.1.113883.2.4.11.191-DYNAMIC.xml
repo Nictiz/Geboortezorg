@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<valueSets>
+   <valueSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:decor="http://art-decor.org/ns/decor"
+             xmlns:peri="urn:nictiz-nl:v3/peri"
+             id="2.16.840.1.113883.2.4.11.191"
+             effectiveDate="2014-01-21T16:53:37"
+             statusCode="draft"
+             name="Vruchtwater"
+             displayName="Vruchtwater">
+      <desc language="nl-NL"/>
+      <sourceCodeSystem id="2.16.840.1.113883.6.96" identifierName="Snomed CT"/>
+      <conceptList>
+                <concept code="278092006"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="Snomed CT"
+                  displayName="Normal liquor volume (finding)"
+                  level="0"
+                  type="L"/>
+                <concept code="59566000"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="Snomed CT"
+                  displayName="Oligohydramnios (disorder)"
+                  level="0"
+                  type="L"/>
+                <concept code="86203003"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="Snomed CT"
+                  displayName="Polyhydramnios (disorder)"
+                  level="0"
+                  type="L"/>
+                <concept code="313017000"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="Snomed CT"
+                  displayName="Anhydramnios (disorder)"
+                  level="0"
+                  type="L"/>
+            </conceptList>
+   </valueSet>
+</valueSets>

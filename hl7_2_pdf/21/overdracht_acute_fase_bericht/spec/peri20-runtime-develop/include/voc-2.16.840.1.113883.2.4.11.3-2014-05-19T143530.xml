@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<valueSets>
+   <valueSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:decor="http://art-decor.org/ns/decor"
+             xmlns:peri="urn:nictiz-nl:v3/peri"
+             id="2.16.840.1.113883.2.4.11.3"
+             effectiveDate="2014-05-19T14:35:30"
+             statusCode="draft"
+             name="EthnicGroup"
+             displayName="EthnicGroup">
+      <sourceCodeSystem id="2.16.840.1.113883.2.4.4.13.28" identifierName="EthnicGroup"/>
+      <sourceCodeSystem id="2.16.840.1.113883.5.1008" identifierName="NullFlavor"/>
+      <conceptList>
+                <concept code="14"
+                  codeSystem="2.16.840.1.113883.2.4.4.13.28"
+                  displayName="Latijns Amerikaans"
+                  level="0"
+                  type="L"/>
+                <concept code="13"
+                  codeSystem="2.16.840.1.113883.2.4.4.13.28"
+                  displayName="Hindoestaans"
+                  level="0"
+                  type="L"/>
+                <concept code="12"
+                  codeSystem="2.16.840.1.113883.2.4.4.13.28"
+                  displayName="Kaukasisch"
+                  level="0"
+                  type="L"/>
+                <concept code="3"
+                  codeSystem="2.16.840.1.113883.2.4.4.13.28"
+                  displayName="Noord-Afrikaans"
+                  level="0"
+                  type="L"/>
+                <concept code="4"
+                  codeSystem="2.16.840.1.113883.2.4.4.13.28"
+                  displayName="Overig Afrikaans"
+                  level="0"
+                  type="L"/>
+                <concept code="5"
+                  codeSystem="2.16.840.1.113883.2.4.4.13.28"
+                  displayName="Turks"
+                  level="0"
+                  type="L"/>
+                <concept code="8"
+                  codeSystem="2.16.840.1.113883.2.4.4.13.28"
+                  displayName="Overig Aziatisch"
+                  level="0"
+                  type="L"/>
+                <concept code="11"
+                  codeSystem="2.16.840.1.113883.2.4.4.13.28"
+                  displayName="Meervoudige afkomst"
+                  level="0"
+                  type="L"/>
+                <exception code="UNK"
+                    codeSystem="2.16.840.1.113883.5.1008"
+                    displayName="onbekend"
+                    level="0"
+                    type="L"/>
+            </conceptList>
+   </valueSet>
+</valueSets>

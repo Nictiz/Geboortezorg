@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<valueSets>
+   <valueSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:decor="http://art-decor.org/ns/decor"
+             xmlns:peri="urn:nictiz-nl:v3/peri"
+             id="2.16.840.1.113883.2.4.11.192"
+             effectiveDate="2014-01-22T11:04:47"
+             statusCode="draft"
+             name="Conditieperineum22"
+             displayName="Conditie perineum (2.2)">
+      <desc language="nl-NL"/>
+      <sourceCodeSystem id="2.16.840.1.113883.6.96" identifierName="Snomed CT"/>
+      <sourceCodeSystem id="2.16.840.1.113883.5.1008" identifierName="NullFlavor"/>
+      <conceptList>
+                <concept code="289854007"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="Snomed CT"
+                  displayName="Perineum intact  (finding)"
+                  level="0"
+                  type="L"/>
+                <concept code="199916005"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="Snomed CT"
+                  displayName="First degree perineal tear during delivery - delivered (disorder)"
+                  level="0"
+                  type="L"/>
+                <concept code="199925004"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="Snomed CT"
+                  displayName="Second degree perineal tear during delivery - delivered  (disorder)"
+                  level="0"
+                  type="L"/>
+                <concept code="199930000"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="Snomed CT"
+                  displayName="Third degree perineal tear during delivery - delivered  (disorder)"
+                  level="0"
+                  type="L"/>
+                <concept code="449807005"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="Snomed CT"
+                  displayName="Type 3a third degree laceration of perineum  (disorder)"
+                  level="1"
+                  type="L"/>
+                <concept code="449808000"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="Snomed CT"
+                  displayName="Type 3b third degree laceration of perineum (disorder)"
+                  level="1"
+                  type="L"/>
+                <concept code="449809008"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="Snomed CT"
+                  displayName="Type 3c third degree laceration of perineum (disorder)"
+                  level="1"
+                  type="L"/>
+                <concept code="199934009"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="Snomed CT"
+                  displayName="Fourth degree perineal tear during delivery - delivered  (disorder)"
+                  level="0"
+                  type="L"/>
+                <concept code="609344008"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="Snomed CT"
+                  displayName="Episiotomy wound  (morphologic abnormality)"
+                  level="0"
+                  type="L"/>
+                <exception code="UNK"
+                    codeSystem="2.16.840.1.113883.5.1008"
+                    displayName="Onbekend"
+                    level="0"
+                    type="L"/>
+                <exception code="OTH"
+                    codeSystem="2.16.840.1.113883.5.1008"
+                    displayName="Anders"
+                    level="0"
+                    type="L"/>
+                <exception code="NI"
+                    codeSystem="2.16.840.1.113883.5.1008"
+                    displayName="Geen informatie"
+                    level="0"
+                    type="L"/>
+            </conceptList>
+   </valueSet>
+</valueSets>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<valueSets>
+   <valueSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:decor="http://art-decor.org/ns/decor"
+             xmlns:peri="urn:nictiz-nl:v3/peri"
+             name="RedenOverdrachtCategorie"
+             displayName="Categorie Reden overdracht"
+             effectiveDate="2012-01-07T00:00:00"
+             id="2.16.840.1.113883.2.4.11.153"
+             statusCode="deprecated">
+      <sourceCodeSystem id="2.16.840.1.113883.6.96" identifierName="Snomed"/>
+      <sourceCodeSystem id="2.16.840.1.113883.5.1008" identifierName="NullFlavor"/>
+      <conceptList>
+                <concept code="288250001"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  displayName="hypertensieve aandoeningen"
+                  level="0"
+                  type="L"/>
+                <concept code="106004004"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  displayName="bloeding"
+                  level="0"
+                  type="L"/>
+                <concept code="289261003"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  displayName="baringsproblemen"
+                  level="0"
+                  type="L"/>
+                <concept code="276601004"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  displayName="verdenking foetale nood"
+                  level="0"
+                  type="L"/>
+                <concept code="49333008"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  displayName="immaturiteit/prematuriteit"
+                  level="0"
+                  type="L"/>
+                <concept code="309737007"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  displayName="buikpijn"
+                  level="0"
+                  type="L"/>
+                <concept code="87383005"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  displayName="overige bedreigde maternale vitale functies"
+                  level="0"
+                  type="L"/>
+                <concept code="183695003"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  displayName="zelfverwijzing"
+                  level="0"
+                  type="L"/>
+                <exception code="UNK"
+                    codeSystem="2.16.840.1.113883.5.1008"
+                    displayName="onbekend"
+                    level="0"
+                    type="L"/>
+                <exception code="OTH"
+                    codeSystem="2.16.840.1.113883.5.1008"
+                    displayName="overig"
+                    level="0"
+                    type="L"/>
+            </conceptList>
+   </valueSet>
+</valueSets>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<valueSets>
+   <valueSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:decor="http://art-decor.org/ns/decor"
+             xmlns:peri="urn:nictiz-nl:v3/peri"
+             name="TypeBevalling"
+             displayName="TypeBevalling"
+             effectiveDate="2009-10-01T00:00:00"
+             id="2.16.840.1.113883.2.4.11.10"
+             statusCode="final">
+      <sourceCodeSystem id="2.16.840.1.113883.2.4.4.13.9" identifierName="TypeBevalling"/>
+      <conceptList>
+                <concept code="1"
+                  codeSystem="2.16.840.1.113883.2.4.4.13.9"
+                  displayName="partus"
+                  level="0"
+                  type="L"/>
+                <concept code="2"
+                  codeSystem="2.16.840.1.113883.2.4.4.13.9"
+                  displayName="spontane abortus"
+                  level="0"
+                  type="L"/>
+                <concept code="3"
+                  codeSystem="2.16.840.1.113883.2.4.4.13.9"
+                  displayName="APLA"
+                  level="0"
+                  type="L"/>
+                <concept code="4"
+                  codeSystem="2.16.840.1.113883.2.4.4.13.9"
+                  displayName="EUG"
+                  level="0"
+                  type="L"/>
+                <concept code="5"
+                  codeSystem="2.16.840.1.113883.2.4.4.13.9"
+                  displayName="mola"
+                  level="0"
+                  type="L"/>
+            </conceptList>
+   </valueSet>
+</valueSets>
