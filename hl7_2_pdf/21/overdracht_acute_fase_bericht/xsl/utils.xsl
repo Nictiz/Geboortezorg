@@ -64,7 +64,7 @@
             </xsl:when>
             <!-- Attachments. This will work for Acute Overdracht, no guarantees elsewhere. Saves base64 as-is. -->
             <xsl:when test="$type = 'ED'">
-                <xsl:variable name="href" select="concat('Groeicurve-', /*/hl7:id/@extension, '.b64')"/>
+                <xsl:variable name="href" select="concat(../hl7:code/@code, '-', /*/hl7:id/@extension, '.b64')"/>
                 <xsl:result-document href="{$href}" method="text">
                     <xsl:value-of select="text()"/>
                 </xsl:result-document>

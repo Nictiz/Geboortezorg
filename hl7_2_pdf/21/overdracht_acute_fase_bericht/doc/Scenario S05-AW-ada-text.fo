@@ -937,7 +937,7 @@
                      <fo:block>FL</fo:block>
                   </fo:table-cell>
                   <fo:table-cell border-style="solid">
-                     <fo:block>Groeicurve BPD, HC, AC, FL</fo:block>
+                     <fo:block>Echoparameters BPD, HC, AC, FL</fo:block>
                   </fo:table-cell>
                </fo:table-row>
             </fo:table-header>
