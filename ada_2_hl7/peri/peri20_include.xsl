@@ -78,7 +78,7 @@
         <observation classCode="OBS" moodCode="EVN">
             <code code="106190000" codeSystem="2.16.840.1.113883.6.96" displayName="Allergie"/>
             <xsl:call-template name="makeCEValue">
-                <xsl:with-param name="overig_toelichting" select="../allergie_overig_toelichting"/>
+                <xsl:with-param name="originalText" select="../allergie_overig_toelichting"/>
             </xsl:call-template>
         </observation>
     </xsl:template>
@@ -88,7 +88,7 @@
             <observation classCode="OBS" moodCode="EVN">
                 <code code="VERLIND" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Soort ziekten en bijzonderheden vrouw in de algemene anamnese"/>
                 <xsl:call-template name="makeCDValue">
-                    <xsl:with-param name="overig_toelichting" select="../overig_toelichting"/>
+                    <xsl:with-param name="originalText" select="../overig_toelichting"/>
                 </xsl:call-template>
             </observation>
         </inboundRelationship>
@@ -98,7 +98,7 @@
         <observation classCode="OBS" moodCode="EVN">
             <code code="OBSTANAM" codeSystem="2.16.840.1.113883.2.4.4.13"/>
             <xsl:call-template name="makeCDValue">
-                <xsl:with-param name="overig_toelichting" select="../overig_toelichting"/>
+                <xsl:with-param name="originalText" select="../overig_toelichting"/>
             </xsl:call-template>
         </observation>
     </xsl:template>
@@ -2966,7 +2966,7 @@
                 </xsl:for-each>
             </xsl:if>
             <xsl:call-template name="makeCEValue">
-                <xsl:with-param name="overig_toelichting" select="$observation_overig_toelichting"/>
+                <xsl:with-param name="originalText" select="$observation_overig_toelichting"/>
             </xsl:call-template>
         </observation>
     </xsl:template>
