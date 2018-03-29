@@ -278,7 +278,9 @@
         <!-- Tijdstip breken vliezen -->
         <observation classCode="OBS" moodCode="EVN">
             <code code="289251005" codeSystem="2.16.840.1.113883.6.96" displayName="Tijdstip breken vliezen"/>
-            <xsl:call-template name="makeTSValue"/>
+            <xsl:call-template name="makeTSValue">
+                <xsl:with-param name="xsiType">TS</xsl:with-param>
+            </xsl:call-template>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900199_20091001000000">
@@ -386,7 +388,6 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900236_20130320000000">
         <!-- Zwangerschapsduur op datum onderzoek -->
         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.6.10.90.900236"/>
             <code code="445872007" codeSystem="2.16.840.1.113883.6.96" displayName="Zwangerschapsduur"/>
             <value xsi:type="PQ" unit="d">
                 <xsl:attribute name="value" select="./@value"/>
@@ -453,10 +454,10 @@
         <procedure classCode="PROC" moodCode="EVN">
             <xsl:attribute name="negationInd" select="./episiotomieq/@value = 'false'"/>
             <id nullFlavor="NI"/>
-            <code code="PRN540701" codeSystem="2.16.840.1.113883.2.4.3.22.1.3"/>
+            <code code="PRN540701" codeSystem="2.16.840.1.113883.2.4.3.22.1.3" displayName="Episiotomie"/>
             <!-- Item: 30055 - Locatie episiotomie -->
             <xsl:for-each select="./locatie_episiotomie">
-                <targetSiteCode code="1" codeSystem="2.16.840.1.113883.2.4.3.22.1.3.60" displayName="mediolaterale episiotomie">
+                <targetSiteCode>
                     <xsl:call-template name="makeCodeAttribs"/>
                 </targetSiteCode>
             </xsl:for-each>
@@ -1408,7 +1409,9 @@
         <subject typeCode="SBJ">
             <patient classCode="PAT">
                 <xsl:for-each select="$vrouw/burgerservicenummer">
-                    <xsl:call-template name="makeIIValueBSN"/>
+                    <xsl:call-template name="makeIIValueBSN">
+                        <xsl:with-param name="elemName">id</xsl:with-param>
+                    </xsl:call-template>
                 </xsl:for-each>
                 <xsl:for-each select="$vrouw/lokale_persoonsidentificatie">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900029_20091001000000"/>
@@ -6748,6 +6751,7 @@
             <xsl:for-each select="geboortedatum_eiceldonatrice">
                 <xsl:call-template name="makeTSValue">
                     <xsl:with-param name="elemName">value</xsl:with-param>
+                    <xsl:with-param name="xsiType">TS</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
         </observation>
