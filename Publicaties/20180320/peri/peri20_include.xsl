@@ -1868,7 +1868,9 @@
         <!--A terme datum (definitive)-->
         <observation classCode="OBS" moodCode="EVN">
             <code code="EDDDef" codeSystem="2.16.840.1.113883.2.4.4.13"/>
-            <xsl:call-template name="makeTSValue"/>
+            <xsl:call-template name="makeTSValue">
+                <xsl:with-param name="xsiType" select="'TS'"/>
+            </xsl:call-template>
         </observation>
     </xsl:template>
     <!-- Reden Verzending Counseling Bericht -->
