@@ -1443,9 +1443,10 @@
                     <xsl:for-each select="$vrouw/geboortedatum">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
                     </xsl:for-each>
-                    <xsl:for-each select="$zwangerschap/maternale_sterfteq">
+                    <!--<xsl:for-each select="$zwangerschap/maternale_sterfteq">-->
+                    <!-- Altijd aanroepen, bij geen gegeven maternale_sterfte (0..1 R) in ADA deceasedInd='false' opnemen -->
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000"/>
-                    </xsl:for-each>
+                    <!--</xsl:for-each>-->
                     <xsl:for-each select="$vrouw/etniciteit">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900033_20091001000000"/>
                     </xsl:for-each>
