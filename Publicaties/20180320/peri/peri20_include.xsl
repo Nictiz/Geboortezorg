@@ -609,28 +609,36 @@
         <!-- Biparital Diameter Percentile -->
         <observation classCode="OBS" moodCode="EVN">
             <code code="X_BPD_PRCTL" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="BPD Percentiel"/>
-            <xsl:call-template name="makePQValue"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900510_20111206000000">
         <!-- Head Circumference Percentile  -->
         <observation classCode="OBS" moodCode="EVN">
             <code code="X_HC_PRCTL" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HC Percentiel"/>
-            <xsl:call-template name="makePQValue"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900513_20111206000000">
         <!--  Abdominal Circumference Percentile  -->
         <observation classCode="OBS" moodCode="EVN">
             <code code="X_AC_PRCTL" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Abdominal circumference^Fetus Percentile"/>
-            <xsl:call-template name="makePQValue"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900515_20111206000000">
         <!-- Femur Length Percentile -->
         <observation classCode="OBS" moodCode="EVN">
             <code code="X_FL_PRCTL" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Fetal Femur diaphysis [Length]^Fetus Percentile"/>
-            <xsl:call-template name="makePQValue"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900525_20121204000000">
@@ -665,35 +673,45 @@
         <!-- HC -->
         <observation classCode="OBS" moodCode="EVN">
             <code code="11984-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HC (Head circumference)"/>
-            <xsl:call-template name="makePQValue"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900535_20110128000000">
         <!-- Abdominal Circumference -->
         <observation classCode="OBS" moodCode="EVN">
             <code code="11979-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="AC (Abdominal circumference)"/>
-            <xsl:call-template name="makePQValue"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900536_20110128000000">
         <!-- Femur Length -->
         <observation classCode="OBS" moodCode="EVN">
             <code code="11963-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Fetal Femur diaphysis [Length] US"/>
-            <xsl:call-template name="makePQValue"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900570_20110128000000">
         <!--  Body Height -->
         <observation classCode="OBS" moodCode="EVN">
             <code code="3137-7" codeSystem="2.16.840.1.113883.6.1" displayName="Body height"/>
-            <xsl:call-template name="makePQValue"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900571_20110128000000">
         <!--  Body Weight  -->
         <observation classCode="OBS" moodCode="EVN">
             <code code="3141-9" codeSystem="2.16.840.1.113883.6.1" displayName="Gewicht (gemeten)"/>
-            <xsl:call-template name="makePQValue"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
         </observation>
     </xsl:template>
     <!-- Zorginstelling (AGB-id) -->
@@ -1299,7 +1317,9 @@
         <!-- BPD -->
         <observation classCode="OBS" moodCode="EVN">
             <code code="11820-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="BPD"/>
-            <xsl:call-template name="makePQValue"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
         </observation>
     </xsl:template>
     <!-- Trisomy in History (y/n) -->
@@ -1600,7 +1620,9 @@
         <!-- Hoeveelheid bloedverlies -->
         <observation classCode="OBS" moodCode="EVN">
             <code code="364332008" codeSystem="2.16.840.1.113883.6.96" displayName="Hoeveelheid bloedverlies"/>
-            <xsl:call-template name="makePQValue"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900901_20130320000000">
