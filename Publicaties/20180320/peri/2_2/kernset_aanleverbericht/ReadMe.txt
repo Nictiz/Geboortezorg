@@ -18,7 +18,6 @@ This xslt uses the "../../../peri20_include.xsl" and ../../../../hl7/hl7_include
 The folder 'ada_instance' contains two sample ada instance files. They are in no way functionally valid (i.e. the situation can probably not be validated in real life). The subfolder result contains the result of the conversion.
 
 The ADA user front-end for Kernset 2.2 can be found here: 
-https://decor.nictiz.nl/art-decor/ada-data/projects/kernset_22_2/views/kernset_aanleverbericht_index.xhtml
-
+https://decor.nictiz.nl/art-decor/ada-data/projects/kernset/views/kernset_aanleverbericht_index.xhtml
 
 
