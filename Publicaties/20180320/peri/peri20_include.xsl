@@ -20,10 +20,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Graviditeit -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900004_20161206105610">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900004"/>
+            <code code="Gravidity" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Graviditeit"/>
+            <!-- Item(s) :: graviditeit -->
+            <xsl:call-template name="makeINTValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Naam zorgverlener -->
     
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900009_20110128000000">
+        <!-- Actuele a terme datum indicator -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="ActualEDD" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Actuele à terme datum"/>
+            <xsl:call-template name="makeBLValue"/>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900024_20120902000000">
         <!-- Datum einde zorgverantwoordelijkheid -->
         <high>
@@ -31,7 +46,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </high>
     </xsl:template>
     <!-- Burgerservicenummer -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900028_20161219145253">
+        <!-- Item(s) :: burgerservicenummer -->
+        <xsl:for-each select="burgerservicenummer">
+            <xsl:call-template name="makeII.NL.BSNValue">
+                <xsl:with-param name="xsiType" select="''"/>
+                <xsl:with-param name="elemName">id</xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900029_20091001000000">
         <!-- Lokale persoonsidentificatie -->
         <xsl:param name="vrouw"/>
@@ -40,7 +63,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </id>
     </xsl:template>
     <!-- Lokale persoonsidentificatie -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900029_20150204151317">
+        <!-- Item(s) :: lokale_persoonsidentificatie -->
+        <xsl:for-each select="lokale_persoonsidentificatie">
+            <xsl:call-template name="makeIIValue">
+                <xsl:with-param name="xsiType" select="''"/>
+                <xsl:with-param name="elemName">id</xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000">
         <xsl:param name="inputValue" select="./@value"/>
         <!-- Geboortedatum  -->
@@ -56,7 +87,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeCodeAttribs"/>
         </ethnicGroupCode>
     </xsl:template>
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900037_20120315000000">
+        <conditionEvent classCode="COND" moodCode="EVN">
+            <id nullFlavor="NI"/>
+            <xsl:for-each select="./categorie_reden_acute_overdracht">
+                <xsl:call-template name="makeCode"/>
+            </xsl:for-each>
+            <xsl:for-each select="./toelichting_reden">
+                <text>
+                    <xsl:value-of select="./@value"/>
+                </text>
+            </xsl:for-each>
+        </conditionEvent>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900090_20091001000000">
         <!-- Pariteit  -->
         <observation classCode="OBS" moodCode="EVN">
@@ -78,11 +121,46 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Eindverantwoordelijk in periode -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900118_20161206113252">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900118"/>
+            <code code="Rpp" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+            <!-- Item(s) :: eindverantwoordelijk_in_welke_perinatale_periodeq-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
 
-    
-    
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900149_20130320000000">
+        <!-- Allergieen -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="106190000" codeSystem="2.16.840.1.113883.6.96" displayName="Allergie"/>
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="originalText" select="../allergie_overig_toelichting"/>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900152_20110128000000">
+        <!-- Soort ziekten en bijzonderheden vrouw in de algemene anamnese -->
+        <inboundRelationship typeCode="COMP">
+            <observation classCode="OBS" moodCode="EVN">
+                <code code="VERLIND" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Soort ziekten en bijzonderheden vrouw in de algemene anamnese"/>
+                <xsl:call-template name="makeCDValue">
+                    <xsl:with-param name="originalText" select="../overig_toelichting"/>
+                </xsl:call-template>
+            </observation>
+        </inboundRelationship>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900155_20110128000000">
+        <!--Soort bijzonderheden obstetrische anamnese-->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="OBSTANAM" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+            <xsl:call-template name="makeCDValue">
+                <xsl:with-param name="originalText" select="../overig_toelichting"/>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900156_20141107000000">
         <!-- 	Risicostatus vóór baring -->
         <observation classCode="OBS" moodCode="EVN">
@@ -90,7 +168,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900158_20111206000000">
+        <!-- Bloedtransfusie -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="161664006" codeSystem="2.16.840.1.113883.6.96" displayName="Bloedtransfusie"/>
+            <xsl:call-template name="makeBLValue"/>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900158_20150130125418">
         <!-- Bloedtransfusie -->
         <observation classCode="OBS" moodCode="EVN">
@@ -98,15 +182,42 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
-    
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900159_20111206000000">
+        <!-- BMI -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="39156-5" codeSystem="2.16.840.1.113883.6.1" displayName="BMI"/>
+            <value xsi:type="PQ">
+                <xsl:attribute name="value" select="./@value"/>
+                <xsl:attribute name="unit" select="'kg/m2'"/>
+            </value>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900171_20111206000000">
+        <!-- Irregulaire antistoffen -->
+        <xsl:call-template name="question_observation">
+            <xsl:with-param name="parent_element_name" select="'pertinentInformation3'"/>
+            <xsl:with-param name="contextConduction" select="'true'"/>
+            <xsl:with-param name="question" select="../irregulaire_antistoffen"/>
+            <xsl:with-param name="observation" select="../welke_irregulaire_antistoffen_vrouw_aanwezig"/>
+            <xsl:with-param name="observation_code" select="'312457003'"/>
+            <xsl:with-param name="observation_codeSystem" select="'2.16.840.1.113883.6.96'"/>
+            <xsl:with-param name="observation_displayName" select="'Irregulaire antistoffen'"/>
+            <xsl:with-param name="observation_overig_toelichting" select="../irregulaire_antistoffen_overig_toelichting"/>
+        </xsl:call-template>
+    </xsl:template>
     <!-- Prenatale screening aangekaart -->
     
 
     <!-- Prenatale screening aangekaart -->
     
 
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900186_20111206000000">
+        <!-- Infectieparameter HBsAg -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="165806002" codeSystem="2.16.840.1.113883.6.96" displayName="Afwijkende infectieparameters HBsAg"/>
+            <value xsi:type="BL" value="false"/>
+        </observation>
+    </xsl:template>
     <!-- Counseling prenatale gewenst -->
     
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900197_20091001000000">
@@ -118,8 +229,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </effectiveTime>
         </observation>
     </xsl:template>
-    
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900197_20130320000000">
+        <!-- Tijdstip begin actieve ontsluiting -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="249120008" codeSystem="2.16.840.1.113883.6.96" displayName="Tijdstip begin actieve ontsluiting"/>
+            <effectiveTime>
+                <xsl:call-template name="makeTSValueAttr"/>
+            </effectiveTime>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900198_20130320000000">
+        <!-- Tijdstip breken vliezen -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="289251005" codeSystem="2.16.840.1.113883.6.96"/>
+            <effectiveTime>
+                <xsl:call-template name="makeTSValueAttr"/>
+            </effectiveTime>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900198_20141104011243">
         <!-- Tijdstip breken vliezen -->
         <observation classCode="OBS" moodCode="EVN">
@@ -136,7 +263,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900200_20120808000000">
+        <!-- Zwangerschapsduur -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="412726003" codeSystem="2.16.840.1.113883.6.96"/>
+            <!-- moet in dagen in bericht -->
+            <value xsi:type="PQ" unit="d">
+                <xsl:attribute name="value" select="./@value"/>
+            </value>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900214_20091001000000">
         <!--Geboorte placenta -->
         <observation classCode="OBS" moodCode="EVN">
@@ -208,7 +344,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Zwangerschapsduur op datum onderzoek -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900236_20161206114409">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900236"/>
+            <code code="445872007" codeSystem="2.16.840.1.113883.6.96" displayName="Zwangerschapsduur"/>
+            <!-- Item(s) :: zwangerschapsduur zwangerschapsduur_op_datum_onderzoek-->
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+                <xsl:with-param name="unit">d</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Geslacht (medische observatie) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900255_20091001000000">
         <observation classCode="OBS" moodCode="EVN">
@@ -231,8 +377,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </observation>
     </xsl:template>
-    
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900261_20130320000000">
+        <!-- Tijdstip actief meepersen -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="249160009" codeSystem="2.16.840.1.113883.6.96" displayName="Tijdstip actief meepersen"/>
+            <effectiveTime>
+                <xsl:call-template name="makeTSValueAttr"/>
+            </effectiveTime>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900262_20130423000000">
+        <!-- 	Conditie perineum postpartum -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="PRN5704" codeSystem="2.16.840.1.113883.2.4.3.22.1.1" displayName="Conditie perineum postpartum"/>
+            <xsl:call-template name="makeCEValue"/>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900262_20141107181807">
         <!-- 	Conditie perineum postpartum -->
         <observation classCode="OBS" moodCode="EVN">
@@ -280,7 +440,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </procedure>
     </xsl:template>
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900278_20130320000000">
+        <!-- Beslismoment sectio caesarea -->
+        <procedure classCode="PROC" moodCode="INT">
+            <id nullFlavor="NI"/>
+            <code code="SectioCae" codeSystem="2.16.840.1.113883.2.4.3.22.1.3" displayName="Sectio Caesarea"/>
+            <methodCode>
+                <xsl:call-template name="makeCodeAttribs"/>
+            </methodCode>
+        </procedure>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900278_20141106000000">
         <!-- Beslismoment sectio caesarea -->
         <observation classCode="OBS" moodCode="EVN">
@@ -318,7 +487,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeINTValue"/>
         </observation>
     </xsl:template>
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900359_20091001000000">
+        <!-- Ligging bij geboorte -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="LigGbrt" codeSystem="2.16.840.1.113883.2.4.3.22.1.1" displayName="Ligging bij geboorte"/>
+            <xsl:call-template name="makeCEValue"/>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900359_20141106000000">
         <!-- Ligging bij geboorte -->
         <observation classCode="OBS" moodCode="EVN">
@@ -333,7 +508,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeINTValue"/>
         </observation>
     </xsl:template>
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900403_20111206000000">
+        <!--Placenta Compleet-->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="364343000" codeSystem="2.16.840.1.113883.6.96" displayName="Compleetheid placenta"/>
+            <xsl:call-template name="makeCEValue"/>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900425_20110128000000">
         <!-- Geboortegewicht -->
         <observation classCode="OBS" moodCode="EVN">
@@ -349,8 +530,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:attribute name="value" select="./@value"/>
         </deceasedInd>
     </xsl:template>
-    
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900432_20130320000000">
+        <!-- Perinatale sterfte -->
+        <deceasedInd>
+            <xsl:attribute name="value" select="./@value"/>
+        </deceasedInd>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900433_20091001000000">
+        <!-- Fase perinatale sterfte -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="PRN810201" codeSystem="2.16.840.1.113883.2.4.3.22.1.1" displayName="Fase perinatale sterfte"/>
+            <xsl:call-template name="makeCEValue"/>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900433_20141113163724">
         <!-- Fase perinatale sterfte -->
         <observation classCode="OBS" moodCode="EVN">
@@ -364,11 +556,56 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeTSValueAttr"/>
         </deceasedTime>
     </xsl:template>
-    
-    
-    
-    
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900506_20111206000000">
+        <!-- Biparital Diameter Percentile -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="X_BPD_PRCTL" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="BPD Percentiel"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900510_20111206000000">
+        <!-- Head Circumference Percentile  -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="X_HC_PRCTL" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HC Percentiel"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900513_20111206000000">
+        <!--  Abdominal Circumference Percentile  -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="X_AC_PRCTL" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Abdominal circumference^Fetus Percentile"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900515_20111206000000">
+        <!-- Femur Length Percentile -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="X_FL_PRCTL" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Fetal Femur diaphysis [Length]^Fetus Percentile"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900525_20121204000000">
+        <!-- Soort medicatie nageboortetijdperk 2.1-->
+        <substanceAdministration classCode="SBADM" moodCode="EVN">
+            <consumable typeCode="CSM">
+                <manufacturedProduct classCode="MANU">
+                    <manufacturedProduct classCode="MMAT" determinerCode="KIND">
+                        <code>
+                            <xsl:call-template name="makeCodeAttribs"/>
+                        </code>
+                    </manufacturedProduct>
+                </manufacturedProduct>
+            </consumable>
+        </substanceAdministration>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900525_20141107174304">
         <!-- Soort medicatie nageboortetijdperk -->
         <substanceAdministration classCode="SBADM" moodCode="EVN">
@@ -383,9 +620,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </consumable>
         </substanceAdministration>
     </xsl:template>
-    
-    
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900533_20110128000000">
+        <!-- HC -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="11984-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HC (Head circumference)"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900535_20110128000000">
+        <!-- Abdominal Circumference -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="11979-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="AC (Abdominal circumference)"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900536_20110128000000">
+        <!-- Femur Length -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="11963-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Fetal Femur diaphysis [Length] US"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900570_20110128000000">
         <!--  Body Height -->
         <observation classCode="OBS" moodCode="EVN">
@@ -405,8 +666,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Zorginstelling (AGB-id) -->
-    
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900610_20091001000000">
+        <!-- Item(s) :: zorginstelling_agbid zorgaanbieder_identificatie_nummer zorgaanbieder_agbid zorgaanbieder_identificatie_nummer zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorgaanbieder_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorgaanbieder_agbid-->
+        <xsl:for-each select="zorginstelling_agbid | zorgaanbieder_identificatie_nummer[@root = '2.16.840.1.113883.2.4.6.1'] | zorgaanbieder_agbid">
+            <xsl:call-template name="makeII.NL.AGBValue">
+                <xsl:with-param name="xsiType" select="''"/>
+                <xsl:with-param name="elemName">id</xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900612_20111206000000">
+        <!-- Actuele bloeddruk -->
+        <organizer classCode="CONTAINER" moodCode="EVN">
+            <code code="75367002" codeSystem="2.16.840.1.113883.6.96" displayName="Bloeddruk"/>
+            <component typeCode="COMP">
+                <xsl:for-each select="./actuele_bloeddruk_systolisch">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900661_20111206000000"/>
+                </xsl:for-each>
+            </component>
+            <component typeCode="COMP">
+                <xsl:for-each select="./actuele_bloeddruk_diastolisch">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900662_20111206000000"/>
+                </xsl:for-each>
+            </component>
+        </organizer>
+    </xsl:template>
     
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900620_20141024000000">
         <act classCode="PCPR" moodCode="RQO" negationInd="false">
@@ -455,17 +739,247 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </act>
     </xsl:template>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900624_20130320000000">
+        <procedure classCode="PROC" moodCode="EVN">
+            <id nullFlavor="NI"/>
+            <code code="Baring" codeSystem="2.16.840.1.113883.2.4.3.22.1.3"/>
+            <xsl:if test="./demografische_gegevens/*">
+                <subject typeCode="SBJ">
+                    <personalRelationship classCode="PRS">
+                        <code code="CHILD" codeSystem="2.16.840.1.113883.5.111"/>
+                        <xsl:for-each select="./demografische_gegevens">
+                            <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                                <!-- lokaal id -->
+                                <xsl:for-each select="./identificaties_kind">
+                                    <xsl:for-each select="./bsn_kind">
+                                        <xsl:call-template name="makeIIValueBSN"/>
+                                    </xsl:for-each>
+                                    <xsl:for-each select="./lokale_identificatie_kind">
+                                        <xsl:call-template name="makeIIValue">
+                                            <!-- TODO, goede OID invullen voor lokaal id -->
+                                            <xsl:with-param name="root" select="'1.2.3.4.5'"/>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                    <xsl:for-each select="./identificatie_kind_prn_formaat">
+                                        <xsl:call-template name="makeIIValue">
+                                            <xsl:with-param name="root" select="'2.16.840.1.113883.2.4.3.22.6.3'"/>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                                <!-- Geboortedatum -->
+                                <xsl:for-each select="./geboortedatum">
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900259_20091001000000"/>
+                                </xsl:for-each>
+                                <!-- Overleden? -->
+                                <xsl:for-each select="./perinatale_sterfte_groep/perinatale_sterfteq">
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900432_20130320000000"/>
+                                </xsl:for-each>
+                            </relationshipHolder>
+                        </xsl:for-each>
+                    </personalRelationship>
+                </subject>
+            </xsl:if>
+            <!-- Geslacht (medische observatie) -->
+            <xsl:for-each select="./demografische_gegevens/geslacht_medische_observatie">
+                <inboundRelationship typeCode="COMP">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900255_20091001000000"/>
+                </inboundRelationship>
+            </xsl:for-each>
+            <!-- Fase perinatale sterfte -->
+            <xsl:for-each select="./demografische_gegevens/perinatale_sterfte_groep/fase_perinatale_sterfte">
+                <inboundRelationship typeCode="COMP">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900433_20091001000000"/>
+                </inboundRelationship>
+            </xsl:for-each>
+            <!-- kindspecifieke maternale gegevens -->
+            <xsl:for-each select="./kindspecifieke_maternale_gegevens">
+                <!-- Tijdstip breken vliezen -->
+                <xsl:for-each select="./tijdstip_breken_vliezen">
+                    <inboundRelationship typeCode="COMP">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900198_20130320000000"/>
+                    </inboundRelationship>
+                </xsl:for-each>
+                <xsl:for-each select="./tijdstip_actief_meepersen">
+                    <!-- Tijdstip actief meepersen -->
+                    <inboundRelationship typeCode="COMP">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900261_20130320000000"/>
+                    </inboundRelationship>
+                </xsl:for-each>
+            </xsl:for-each>
+            <!-- kindspecifieke uitkomstgegevens -->
+            <xsl:for-each select="./kindspecifieke_uitkomstgegevens">
+                <xsl:for-each select="./type_partus">
+                    <!-- Type partus -->
+                    <inboundRelationship typeCode="COMP">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900861_20130314000000"/>
+                    </inboundRelationship>
+                </xsl:for-each>
+                <!-- Geboortegewicht -->
+                <xsl:for-each select="./geboortegewicht">
+                    <inboundRelationship typeCode="COMP">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900425_20110128000000"/>
+                    </inboundRelationship>
+                </xsl:for-each>
+                <!-- Percentiel van het geboortegewicht -->
+                <xsl:for-each select="./percentiel_van_het_geboortewicht">
+                    <inboundRelationship typeCode="COMP">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900902_20131108000000"/>
+                    </inboundRelationship>
+                </xsl:for-each>
+                <!-- Apgarscore na 5 min. -->
+                <xsl:for-each select="./apgarscore_na_5_min">
+                    <inboundRelationship typeCode="COMP">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900294_20091001000000"/>
+                    </inboundRelationship>
+                </xsl:for-each>
+                <!-- Congenitale afwijkingen -->
+                <xsl:for-each select="./congenitale_afwijkingenq">
+                    <inboundRelationship typeCode="COMP">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900909_20130320000000"/>
+                    </inboundRelationship>
+                </xsl:for-each>
+                <!-- Ligging bij geboorte -->
+                <xsl:for-each select="./ligging_bij_geboorte">
+                    <inboundRelationship typeCode="COMP">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900359_20091001000000"/>
+                    </inboundRelationship>
+                </xsl:for-each>
+                <!-- Overige interventies -->
+                <xsl:for-each select="./overige_interventies">
+                    <inboundRelationship typeCode="COMP">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900893_20091001000000"/>
+                    </inboundRelationship>
+                </xsl:for-each>
+            </xsl:for-each>
+        </procedure>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900654_20120503000000">
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="129019007" codeSystem="2.16.840.1.113883.6.96" displayName="Actuele medicatie"/>
+            <xsl:for-each select="./actueel_medicatiegebruikq">
+                <xsl:call-template name="makeBLValue"/>
+            </xsl:for-each>
+            <xsl:for-each select="./soort_actuele_medicatie">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900655_20120422000000"/>
+            </xsl:for-each>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900655_20120422000000">
+        <!-- Soort actuele Medicatie -->
+        <inboundRelationship typeCode="COMP">
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+                <consumable typeCode="CSM">
+                    <manufacturedProduct classCode="MANU">
+                        <manufacturedProduct classCode="MMAT" determinerCode="KIND">
+                            <name>
+                                <xsl:value-of select="./@value"/>
+                            </name>
+                        </manufacturedProduct>
+                    </manufacturedProduct>
+                </consumable>
+            </substanceAdministration>
+        </inboundRelationship>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900656_20111206000000">
+        <!-- Negatieve seksuele ervaringen -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="NEGSE" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+            <xsl:call-template name="makeBLValue"/>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900657_20111206000000">
+        <!-- MRSA besmetting aangetoond? -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="266096002" codeSystem="2.16.840.1.113883.6.96" displayName="MRSA besmetting"/>
+            <xsl:call-template name="makeBLValue"/>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900661_20111206000000">
+        <!-- Actuele bloeddruk systolisch -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="271649006" codeSystem="2.16.840.1.113883.6.96" displayName="Bloeddruk systolisch"/>
+            <value xsi:type="PQ">
+                <xsl:attribute name="value" select="./@value"/>
+                <xsl:attribute name="unit" select="'mm[Hg]'"/>
+            </value>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900662_20111206000000">
+        <!-- Actuele bloeddruk diastolisch -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="271650006" codeSystem="2.16.840.1.113883.6.96" displayName="Bloeddruk diastolisch"/>
+            <value xsi:type="PQ">
+                <xsl:attribute name="value" select="./@value"/>
+                <xsl:attribute name="unit" select="'mm[Hg]'"/>
+            </value>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900663_20111206000000">
+        <!-- Bloedgroep -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="883-9" codeSystem="2.16.840.1.113883.6.1" displayName="Bloedgroep"/>
+            <xsl:call-template name="makeCEValue"/>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900668_20120317000000">
+        <!--  Zorgverlener en -instelling (kort) -->
+        <author typeCode="AUT">
+            <time nullFlavor="NI"/>
+            <modeCode nullFlavor="NA"/>
+            <signatureCode nullFlavor="NA"/>
+            <xsl:if test="./zorgverlener or ./zorginstelling">
+                <responsibleParty classCode="ASSIGNED">
+                    <xsl:for-each select="./zorgverlener">
+                        <xsl:for-each select="./telefoon_waar_zorgverlener_is_te_bereiken">
+                            <telecom value="tel:+317025463726">
+                                <xsl:attribute name="value" select="concat('tel:', ./@value)"/>
+                            </telecom>
+                        </xsl:for-each>
+                        <xsl:for-each select="./naam_zorgverlener">
+                            <agentPerson classCode="PSN" determinerCode="INSTANCE">
+                                <name use="L">
+                                    <xsl:value-of select="./@value"/>
+                                </name>
+                            </agentPerson>
+                        </xsl:for-each>
+                    </xsl:for-each>
+                    <xsl:for-each select="./zorginstelling">
+                        <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                            <!-- Verplicht in template om één van URA/AGB/LVR mee te geven-->
+                            <!-- TODO: vullen met eigen / juiste ID -->
+                            <id root="2.16.528.1.1007.3.3" extension="00023444"/>
+                            <xsl:for-each select="./zorginstelling_oid">
+                                <!-- TODO: juiste root aanvullen -->
+                                <id root="1.2.3.4.5">
+                                    <xsl:attribute name="extension" select="./@value"/>
+                                </id>
+                            </xsl:for-each>
+                            <xsl:for-each select="./naam_zorginstelling">
+                                <name>
+                                    <xsl:value-of select="./@value"/>
+                                </name>
+                            </xsl:for-each>
+                        </representedOrganization>
+                    </xsl:for-each>
+                </responsibleParty>
+            </xsl:if>
+        </author>
+
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900669_20130314000000">
+        <!-- Rhesus D Factor -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="978-7" codeSystem="2.16.840.1.113883.6.1" displayName="Rhesus D Factor"/>
+            <xsl:call-template name="makeCEValue"/>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900683_20130314000000">
+        <!-- Rhesus c Factor -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="948-0" codeSystem="2.16.840.1.113883.6.1" displayName="C Ag [Presence] on Red Blood Cells"/>
+            <xsl:call-template name="makeCEValue"/>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900705_20141107000000">
         <!-- Indicatie interventie begin baring -->
         <observation classCode="OBS" moodCode="EVN">
@@ -473,7 +987,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900711_20120503000000">
+        <actList classCode="LIST" moodCode="EVN">
+            <code code="OBSTANAM" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+            <component typeCode="COMP">
+                <observation classCode="OBS" moodCode="EVN">
+                    <code code="OBSTANAM" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                    <xsl:for-each select="./bijzonderheden_obstetrische_anamneseq">
+                        <xsl:call-template name="makeBLValue"/>
+                    </xsl:for-each>
+                    <xsl:for-each select="./soort_bijzonderheden_obstetrische_anamnese">
+                        <inboundRelationship typeCode="COMP">
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900155_20110128000000"/>
+                        </inboundRelationship>
+                    </xsl:for-each>
+                </observation>
+            </component>
+        </actList>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900715_20141107000000">
         <!-- 	Wijze waarop de baring begon -->
         <observation classCode="OBS" moodCode="EVN">
@@ -487,7 +1018,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </observation>
     </xsl:template>
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900716_20120422000000">
+        <!--Medicatie nageboortetijdperk (2.0)-->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="Medic3stage" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+            <xsl:for-each select="./medicatie_nageboortetijdperkq">
+                <xsl:call-template name="makeBLValue"/>
+            </xsl:for-each>
+            <xsl:for-each select="./soort_medicatie_nageboortetijdperk">
+                <inboundRelationship typeCode="COMP">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900525_20121204000000"/>
+                </inboundRelationship>
+            </xsl:for-each>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900716_20150217112242">
         <!--Medicatie nageboortetijdperk (2.0)-->
         <observation classCode="OBS" moodCode="EVN">
@@ -524,7 +1068,72 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </supply>
     </xsl:template>
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900725_20131108000000">
+        <!-- Obstetrische anamnese voorgaande zwangerschap -->
+        <organizer classCode="CONTAINER" moodCode="EVN">
+            <!-- 
+                             obstetrische anamnese van deze voorgaande zwangerschap
+                         -->
+            <code code="248983002" codeSystem="2.16.840.1.113883.6.96" displayName="Obstetrische anamnese voorgaande zwangerschap"/>
+            <!-- Identificatie (nummer) van deze voorgaande zwangerschap -->
+            <xsl:for-each select="./identificatie_van_de_zwangerschap">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900728_20111206000000"/>
+                </component>
+            </xsl:for-each>
+            <!-- Wijze einde zwangerschap -->
+            <xsl:for-each select="./wijze_einde_zwangerschap">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900876_20130320000000"/>
+                </component>
+            </xsl:for-each>
+            <!-- deze voorgaande zwangerschap: zwangerschapsduur bij einde zwangerschap -->
+            <xsl:for-each select="./zwangerschapsduur">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900200_20120808000000"/>
+                </component>
+            </xsl:for-each>
+            <!-- deze voorgaande zwangerschap: Eerdere bevalling (partus) -->
+            <xsl:for-each select="./eerdere_bevalling">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <procedure classCode="PROC" moodCode="EVN">
+                        <id nullFlavor="NI"/>
+                        <code code="236973005" codeSystem="2.16.840.1.113883.6.96" displayName="Bevalling"/>
+                        <!-- deze voorgaande partus: Hoeveelheid bloedverlies -->
+                        <xsl:for-each select="./hoeveelheid_bloedverlies">
+                            <inboundRelationship typeCode="COMP">
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900900_20130320000000"/>
+                            </inboundRelationship>
+                        </xsl:for-each>
+                        <!-- deze voorgaande partus: Ontsluitingsduur -->
+                        <xsl:for-each select="./duur_actieve_ontsluitingsfase_ontsluitingsduur">
+                            <inboundRelationship typeCode="COMP">
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900898_20130320000000"/>
+                            </inboundRelationship>
+                        </xsl:for-each>
+                        <!-- deze voorgaande partus: Uitdrijvingsduur -->
+                        <xsl:for-each select="./duur_uitdrijving_vanaf_actief_meepersen">
+                            <inboundRelationship typeCode="COMP">
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900899_20130320000000"/>
+                            </inboundRelationship>
+                        </xsl:for-each>
+                        <!-- deze voorgaande partus: Conditie perineum postpartum -->
+                        <xsl:for-each select="./conditie_perineum_postpartum">
+                            <inboundRelationship typeCode="COMP">
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900262_20130423000000"/>
+                            </inboundRelationship>
+                        </xsl:for-each>
+                        <!-- uitkomst per kind voor deze voorgaande zwangerschap -->
+                        <xsl:for-each select="./vorige_uitkomst_per_kind/kindspecifieke_gegevens_vorige_uitkomsten">
+                            <inboundRelationship typeCode="COMP">
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900901_20130320000000"/>
+                            </inboundRelationship>
+                        </xsl:for-each>
+                    </procedure>
+                </component>
+            </xsl:for-each>
+        </organizer>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900726_20141107000000">
         <!-- Interventie begin baring -->
         <procedure classCode="PROC" moodCode="EVN">
@@ -543,14 +1152,91 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </procedure>
     </xsl:template>
-    
-    
-    
-    
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900727_20120503000000">
+        <!-- Taalvaardigheid Nederlandse taal -->
+        <languageCommunication>
+            <languageCode code="nl-NL" codeSystem="2.16.840.1.113883.6.121"/>
+            <proficiencyLevelCode>
+                <xsl:call-template name="makeCodeAttribs"/>
+            </proficiencyLevelCode>
+        </languageCommunication>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900728_20111206000000">
+        <!-- Identificatie van de zwangerschap -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="X_PREGNBR" codeSystem="2.16.840.1.113883.6.1" displayName="Identificatie van de zwangerschap"/>
+            <xsl:call-template name="makeINTValue"/>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900729_20130314000000">
+        <!--Vrouw (acute situatie)-->
+        <xsl:param name="vrouw"/>
+        <xsl:param name="zwangerschap"/>
+        <subject typeCode="SBJ">
+            <patient classCode="PAT">
+                <xsl:for-each select="$vrouw/burgerservicenummer">
+                    <xsl:call-template name="makeIIValueBSN"/>
+                </xsl:for-each>
+                <statusCode code="active"/>
+                <patientPerson classCode="PSN" determinerCode="INSTANCE">
+                    <xsl:for-each select="$vrouw/naam_vrouw">
+                        <name use="OR">
+                            <xsl:for-each select="./voornamen">
+                                <given>
+                                    <xsl:value-of select="./@value"/>
+                                </given>
+                            </xsl:for-each>
+                            <xsl:for-each select="./achternamen">
+                                <family>
+                                    <xsl:value-of select="./@value"/>
+                                </family>
+                            </xsl:for-each>
+                        </name>
+                    </xsl:for-each>
+                    <xsl:for-each select="$vrouw/geboortedatum">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
+                    </xsl:for-each>
+                    <xsl:for-each select="$vrouw/taalvaardigheid_vrouw_nederlandse_taal">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900727_20120503000000"/>
+                    </xsl:for-each>
+                </patientPerson>
+            </patient>
+        </subject>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900730_20130314000000">
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="EDD" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="A terme datum"/>
+            <xsl:for-each select="./a_terme_datum">
+                <xsl:call-template name="makeTSValue">
+                    <xsl:with-param name="xsiType">TS</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="./actuele_a_terme_datumq">
+                <inboundRelationship typeCode="PERT">
+                    <!-- Aanduiding dat dit de actuele à terme datum is -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900009_20110128000000"/>
+                </inboundRelationship>
+            </xsl:for-each>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900821_20110128000000">
+        <!-- BPD -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="11820-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="BPD"/>
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="unit" select="@unit"/>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Trisomy in History (y/n) -->
     
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900861_20130314000000">
+        <!-- Type partus -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="289258004" codeSystem="2.16.840.1.113883.6.96" displayName="Type partus"/>
+            <xsl:call-template name="makeCEValue"/>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900861_20141029000000">
         <!-- Type partus -->
         <observation classCode="OBS" moodCode="EVN">
@@ -558,7 +1244,79 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900862_20130314000000">
+        <organizer classCode="CONTAINER" moodCode="EVN">
+            <code code="12130-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Study observation.general^Fetus"/>
+            <!-- Datum van onderzoek = datum van bepaling zwangerschapsduur -->
+            <xsl:for-each select="../datum_onderzoek">
+                <effectiveTime>
+                    <xsl:call-template name="makeTSValueAttr"/>
+                </effectiveTime>
+            </xsl:for-each>
+            <subject typeCode="SBJ">
+                <personalRelationship classCode="PRS">
+                    <code code="CHILD" codeSystem="2.16.840.1.113883.5.111"/>
+                    <relationshipHolder classCode="PSN" determinerCode="INSTANCE"/>
+                </personalRelationship>
+            </subject>
+            <xsl:for-each select="../zwangerschapsduur_op_datum_onderzoek">
+                <!-- Zwangerschapsduur op datum onderzoek -->
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900236_20130320000000"/>
+                </component>
+            </xsl:for-each>
+            <!-- BPD -->
+            <xsl:for-each select="./bpd">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900821_20110128000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="./bpd_percentiel">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900506_20111206000000"/>
+                </component>
+            </xsl:for-each>
+            <!-- HCs -->
+            <xsl:for-each select="./hc">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900533_20110128000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="./hc_percentiel">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900510_20111206000000"/>
+                </component>
+            </xsl:for-each>
+            <!-- AC -->
+            <xsl:for-each select="./ac">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900535_20110128000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="./ac_percentiel">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900513_20111206000000"/>
+                </component>
+            </xsl:for-each>
+            <!-- FLs -->
+            <xsl:for-each select="./fl">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900536_20110128000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="./fl_percentiel">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900515_20111206000000"/>
+                </component>
+            </xsl:for-each>
+            <!-- Echoparameters -->
+            <xsl:for-each select="echoparameters_bpd_hc_ac_fl">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900910_20130320000000"/>
+                </component>
+            </xsl:for-each>
+        </organizer>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900872_20141024000000">
         <!--  Vrouw (PRN versie)  -->
         <xsl:param name="vrouw"/>
@@ -593,7 +1351,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <!-- Vrouw (Kernset versie) -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900872_20161216103854">
+        <xsl:param name="vrouw"/>
+        <xsl:param name="zwangerschap"/>
+        <subject typeCode="SBJ">
+            <patient classCode="PAT">
+                <xsl:for-each select="$vrouw">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900028_20161219145253"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900029_20150204151317"/>
+                </xsl:for-each>
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900875_20121207000000">
+                    <xsl:with-param name="inputValue" select="$vrouw/adres/postcode/@value"/>
+                </xsl:call-template>
+                <patientPerson classCode="PSN" determinerCode="INSTANCE">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000">
+                        <xsl:with-param name="inputValue" select="$vrouw/geboortedatum/@value"/>
+                    </xsl:call-template>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000">
+                        <xsl:with-param name="inputValue" select="$zwangerschap/maternale_sterfteq/@value"/>
+                    </xsl:call-template>
+                    <xsl:for-each select="$vrouw/etniciteit">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900033_20091001000000"/>
+                    </xsl:for-each>
+                </patientPerson>
+            </patient>
+        </subject>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900873_20141024000000">
         <!-- Zorgverzoek details -->
         <act classCode="PCPR" moodCode="RQO">
@@ -645,8 +1428,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Wijze einde zwangerschap -->
-    
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900876_20161206094326">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900876"/>
+            <code code="EindeZw" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Wijze einde zwangerschap"/>
+            <!-- Item(s) :: wijze_einde_zwangerschap-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900893_20091001000000">
+        <!-- Overige interventies -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="Interv" codeSystem="2.16.840.1.113883.2.4.3.22.1.1" displayName="Overige interventies"/>
+            <xsl:call-template name="makeCEValue"/>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900893_20141106000000">
         <!--Overige interventies-->
         <observation classCode="OBS" moodCode="EVN">
@@ -654,9 +1452,40 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
-    
-    
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900897_20130101000000">
+        <actList classCode="LIST" moodCode="EVN">
+            <code code="VERLIND" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+            <component typeCode="COMP">
+                <observation classCode="OBS" moodCode="EVN">
+                    <code code="VERLIND" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                    <xsl:for-each select="./ziekten_en_bijzonderheden_vrouw_in_de_algemene_anamneseq">
+                        <xsl:call-template name="makeBLValue"/>
+                    </xsl:for-each>
+                    <xsl:for-each select="./soort_ziekten_en_bijzonderheden_vrouw_in_de_algemene_anamnese">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900152_20110128000000"/>
+                    </xsl:for-each>
+                </observation>
+            </component>
+        </actList>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900898_20130320000000">
+        <!-- Ontsluitingsduur -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="169821004" codeSystem="2.16.840.1.113883.6.96" displayName="Ontsluitingsduur"/>
+            <value xsi:type="PQ" unit="h">
+                <xsl:attribute name="value" select="./@value"/>
+            </value>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900899_20130320000000">
+        <!-- Uitdrijvingsduur -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="169822006" codeSystem="2.16.840.1.113883.6.96" displayName="Uitdrijvingsduur"/>
+            <value xsi:type="PQ" unit="min">
+                <xsl:attribute name="value" select="./@value"/>
+            </value>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900900_20130320000000">
         <!-- Hoeveelheid bloedverlies -->
         <observation classCode="OBS" moodCode="EVN">
@@ -666,7 +1495,56 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </observation>
     </xsl:template>
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900901_20130320000000">
+        <!-- Vorige uitkomst per kind (kort) -->
+        <procedure classCode="PROC" moodCode="EVN">
+            <id nullFlavor="NI"/>
+            <code code="Baring" codeSystem="2.16.840.1.113883.2.4.3.22.1.3"/>
+            <subject typeCode="SBJ">
+                <personalRelationship classCode="PRS">
+                    <code code="CHILD" codeSystem="2.16.840.1.113883.5.111"/>
+                    <relationshipHolder classCode="PSN" determinerCode="INSTANCE"/>
+                </personalRelationship>
+            </subject>
+            <!-- Kindspecifieke gegevens vorige uitkomsten -->
+            <!-- Type partus -->
+            <xsl:for-each select="./type_partus">
+                <inboundRelationship typeCode="COMP">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900861_20130314000000"/>
+                </inboundRelationship>
+            </xsl:for-each>
+            <!-- Geboortegewicht -->
+            <xsl:for-each select="./geboortegewicht">
+                <inboundRelationship typeCode="COMP">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900425_20110128000000"/>
+                </inboundRelationship>
+            </xsl:for-each>
+            <!-- Percentiel van het geboortegewicht -->
+            <xsl:for-each select="./percentiel_van_het_geboortegewicht">
+                <inboundRelationship typeCode="COMP">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900902_20131108000000"/>
+                </inboundRelationship>
+            </xsl:for-each>
+            <!-- Apgarscorena5min -->
+            <xsl:for-each select="./apgarscore_na_5_min">
+                <inboundRelationship typeCode="COMP">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900294_20091001000000"/>
+                </inboundRelationship>
+            </xsl:for-each>
+            <!-- Vaginale kunstverlossing procedure -->
+            <xsl:for-each select="./vaginale_kunstverlossing">
+                <inboundRelationship typeCode="COMP">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900903_20130320000000"/>
+                </inboundRelationship>
+            </xsl:for-each>
+            <!-- Beslismoment sectio caesarea -->
+            <xsl:for-each select="./beslismoment_sectio_caesarea">
+                <inboundRelationship typeCode="COMP">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900278_20130320000000"/>
+                </inboundRelationship>
+            </xsl:for-each>
+        </procedure>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900902_20131108000000">
         <!--Percentiel geboortegewicht-->
         <observation classCode="OBS" moodCode="EVN">
@@ -674,17 +1552,210 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900903_20130320000000">
+        <!-- Vaginale kunstverlossing procedure -->
+        <procedure classCode="PROC" moodCode="EVN" negationInd="false">
+            <id nullFlavor="NI"/>
+            <code code="KuVerl" codeSystem="2.16.840.1.113883.2.4.4.14" displayName="Vaginale kunstverlossing"/>
+            <methodCode>
+                <xsl:call-template name="makeCodeAttribs"/>
+            </methodCode>
+        </procedure>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900907_20130320000000">
+        <!-- Aantal levende kinderen -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="AantalLevendeKinderen" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Aantal levende kinderen"/>
+            <xsl:call-template name="makeINTValue"/>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900908_20130320000000">
+        <!-- Wijze waarop de baring begon (acuut)  -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="BeginDeliv" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Wijze waarop de baring begon"/>
+            <xsl:call-template name="makeCEValue"/>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900909_20130320000000">
+        <!-- Congenitale afwijkingen (JN) -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="66091009" codeSystem="2.16.840.1.113883.6.96" displayName="Congenital disease (disorder)"/>
+            <xsl:call-template name="makeBLValue"/>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900910_20130320000000">
+        <!-- Echoparameters  -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="Echoparameters" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+            <value xsi:type="ED" representation="B64" mediaType="application/pdf">
+                <xsl:value-of select="./@value"/>
+            </value>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900917_20130320000000">
+        <!--Bevalplan-->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="Bevalplan" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Bevalplan"/>
+            <value xsi:type="ED" representation="B64" mediaType="application/pdf">
+                <xsl:value-of select="./@value"/>
+            </value>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900918_20130320000000">
+        <!--Intra-uteriene vruchtdood-->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="59291004" codeSystem="2.16.840.1.113883.6.96" displayName="Intra-uteriene vruchtdood"/>
+            <xsl:if test="./intrauteriene_vruchtdoodq/@value = 'true'">
+                <xsl:for-each select="waarschijnlijkheid_intrauteriene_vruchtdood">
+                    <uncertaintyCode>
+                        <xsl:call-template name="makeCodeAttribs"/>
+                    </uncertaintyCode>
+                </xsl:for-each>
+            </xsl:if>
+            <xsl:for-each select="./intrauteriene_vruchtdoodq">
+                <xsl:call-template name="makeBLValue"/>
+            </xsl:for-each>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900919_20130729000000">
+        <xsl:param name="maternale_onderzoeken"/>
+        <!-- Maternaal onderzoek -->
+        <organizer classCode="CONTAINER" moodCode="EVN">
+            <code code="12131-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Patiënt onderzoek"/>
+            <!-- Hb zwangere - alleen de meest actuele, dus mag maximaal één keer voorkomen -->
+            <xsl:for-each select="$maternale_onderzoeken/hb">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900920_20130729000000"/>
+                </component>
+            </xsl:for-each>
+            <!-- Rhesus D factor foetus gevonden in bloed zwangere - maximaal één keer -->
+            <xsl:for-each select="$maternale_onderzoeken/rhesus_d_factor_foetus">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900921_20130729000000"/>
+                </component>
+            </xsl:for-each>
+            <!-- Vaginaal toucher - De beschikbare uitkomsten van uitgevoerde VTs. Kan meerdere keren voorkomen -->
+            <xsl:for-each select="$maternale_onderzoeken/vaginaal_toucher">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900922_20130729000000"/>
+            </xsl:for-each>
+        </organizer>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900920_20130729000000">
+        <!-- MtrnlHb  -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="59260-0" codeSystem="2.16.840.1.113883.6.1" displayName="Hb"/>
+            <!-- Datum van onderzoek = datum van bepaling zwangerschapsduur -->
+            <xsl:for-each select="../../datum_onderzoek">
+                <effectiveTime>
+                    <xsl:call-template name="makeTSValueAttr"/>
+                </effectiveTime>
+            </xsl:for-each>
+            <value xsi:type="PQ" unit="mmol/L">
+                <xsl:attribute name="value" select="./@value"/>
+            </value>
+            <xsl:for-each select="../../zwangerschapsduur_op_datum_onderzoek">
+                <inboundRelationship typeCode="PERT" contextConductionInd="true">
+                    <!-- Zwangerschapsduur op datum onderzoek -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900236_20130320000000"/>
+                </inboundRelationship>
+            </xsl:for-each>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900921_20130729000000">
+        <!-- MtrnlRhDFoetus -->
+        <observation classCode="OBS" moodCode="EVN">
+            <code code="X_RHFETBM" codeSystem="2.16.840.1.113883.6.1"/>
+            <!-- Datum van onderzoek = datum van bepaling zwangerschapsduur -->
+            <xsl:for-each select="../../datum_onderzoek">
+                <effectiveTime>
+                    <xsl:call-template name="makeTSValueAttr"/>
+                </effectiveTime>
+            </xsl:for-each>
+            <xsl:call-template name="makeCEValue"/>
+            <xsl:for-each select="../../zwangerschapsduur_op_datum_onderzoek">
+                <inboundRelationship typeCode="PERT" contextConductionInd="true">
+                    <!-- Zwangerschapsduur op datum onderzoek -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900236_20130320000000"/>
+                </inboundRelationship>
+            </xsl:for-each>
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900922_20130729000000">
+        <!-- Vaginaal toucher (procedure)  -->
+        <component typeCode="COMP" contextConductionInd="true">
+            <procedure classCode="PROC" moodCode="EVN" negationInd="false">
+                <id nullFlavor="NI"/>
+                <code code="51597003" codeSystem="2.16.840.1.113883.6.96" displayName="Manual palpation of vagina (procedure)"/>
+                <!-- Datum van onderzoek = datum van bepaling zwangerschapsduur -->
+                <xsl:for-each select="../../datum_onderzoek">
+                    <effectiveTime>
+                        <xsl:call-template name="makeTSValueAttr"/>
+                    </effectiveTime>
+                </xsl:for-each>
+                <!-- Zwangerschapsduur op datum onderzoek -->
+                <xsl:for-each select="../../zwangerschapsduur_op_datum_onderzoek">
+                    <inboundRelationship typeCode="PERT" contextConductionInd="true">
+                        <!-- Zwangerschapsduur op datum onderzoek -->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900236_20130320000000"/>
+                    </inboundRelationship>
+                </xsl:for-each>
+                <!-- Portio -->
+                <xsl:for-each select="./portio">
+                    <inboundRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN">
+                            <code code="249021005" codeSystem="2.16.840.1.113883.6.96" displayName="Portio"/>
+                            <xsl:call-template name="makeCEValue"/>
+                        </observation>
+                    </inboundRelationship>
+                </xsl:for-each>
+                <!-- Ontsluiting -->
+                <xsl:for-each select="./ontsluiting">
+                    <inboundRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN">
+                            <code code="289761004" codeSystem="2.16.840.1.113883.6.96" displayName="Ontsluiting"/>
+                            <xsl:call-template name="makeCEValue"/>
+                        </observation>
+                    </inboundRelationship>
+                </xsl:for-each>
+                <!-- Vliezen -->
+                <xsl:for-each select="./vliezen">
+                    <inboundRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN">
+                            <code code="112074005" codeSystem="2.16.840.1.113883.6.96" displayName="Vliezen"/>
+                            <xsl:call-template name="makeCEValue"/>
+                        </observation>
+                    </inboundRelationship>
+                </xsl:for-each>
+                <!-- Indaling -->
+                <xsl:for-each select="./indaling_hodge">
+                    <inboundRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN">
+                            <code code="364611006" codeSystem="2.16.840.1.113883.6.96" displayName="Indaling"/>
+                            <xsl:call-template name="makeCEValue"/>
+                        </observation>
+                    </inboundRelationship>
+                </xsl:for-each>
+                <!-- Aard van het voorliggend deel -->
+                <xsl:for-each select="./aard_van_het_voorliggend_deel">
+                    <inboundRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN">
+                            <code code="364612004" codeSystem="2.16.840.1.113883.6.96" displayName="Aard van het voorliggend deel"/>
+                            <xsl:call-template name="makeCEValue"/>
+                        </observation>
+                    </inboundRelationship>
+                </xsl:for-each>
+                <!-- Stand -->
+                <xsl:for-each select="./stand">
+                    <inboundRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN">
+                            <code code="163520002" codeSystem="2.16.840.1.113883.6.96" displayName="Stand"/>
+                            <xsl:call-template name="makeCEValue"/>
+                        </observation>
+                    </inboundRelationship>
+                </xsl:for-each>
+            </procedure>
+        </component>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900928_20141118000000">
         <!--A terme datum (definitive)-->
         <observation classCode="OBS" moodCode="EVN">
@@ -711,7 +1782,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Conclusie risicostatus na intake -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900938_20161206113444">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900938"/>
+            <code code="RiskStat" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+            <!-- Item(s) :: conclusie_risicostatus_na_intake-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900939_20141022000000">
         <!--Rookgedrag-->
         <observation classCode="OBS" moodCode="EVN">
@@ -837,7 +1917,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
     <!-- Gynaecologische aandoening -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900954_20161202125822">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900954"/>
+            <code code="310789003" codeSystem="2.16.840.1.113883.6.96" displayName="Gynaecologische aandoening"/>
+            <!-- Item(s) :: gynaecologische_aandoening-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900955_20141024000000">
         <!--Orthopedische afwijking-->
         <xsl:call-template name="question_observation">
@@ -1082,7 +2171,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Bloedverlies? -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900967_20161202142446">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900967"/>
+            <code code="131148009" codeSystem="2.16.840.1.113883.6.96" displayName="Bloedverlies"/>
+            <!-- Item(s) :: bloedverliesq -->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900968_20141028000000">
         <!-- Cervixinsufficiëntie -->
         <observation classCode="OBS" moodCode="EVN">
@@ -1091,7 +2189,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Cervixinsufficiëntie? -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900968_20161202144215">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900968"/>
+            <code code="17382005" codeSystem="2.16.840.1.113883.6.96" displayName="Cervixinsufficiëntie"/>
+            <!-- Item(s) ::  cervixinsufficientieq-->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900969_20141028000000">
         <!-- Hyperemesis gravidarum -->
         <observation classCode="OBS" moodCode="EVN">
@@ -1100,7 +2207,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Hyperemesis gravidarum? -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900969_20161202144436">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900969"/>
+            <code code="14094001" codeSystem="2.16.840.1.113883.6.96" displayName="Hyperemesis gravidarum"/>
+            <!-- Item(s) :: hyperemesis_gravidarumq -->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900971_20141028000000">
         <!-- Zwangerschapscholestase -->
         <observation classCode="OBS" moodCode="EVN">
@@ -1109,7 +2225,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Zwangerschapscholestase? -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900971_20161202144715">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900971"/>
+            <code code="235888006" codeSystem="2.16.840.1.113883.6.96" displayName="Zwangerschapscholestase"/>
+            <!-- Item(s) :: zwangerschapscholestaseq -->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900972_20141028000000">
         <!-- Dreigende partus immaturus -->
         <observation classCode="OBS" moodCode="EVN">
@@ -1118,7 +2243,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Dreigende partus immaturus? -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900972_20161202144955">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900972"/>
+            <code code="PartusImmaturusDreig" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Dreigende partus immaturus"/>
+            <!-- Item(s) :: dreigende_partus_immaturusq -->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900973_20141028000000">
         <!-- Dreigende partus prematurus -->
         <observation classCode="OBS" moodCode="EVN">
@@ -1127,7 +2261,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Dreigende partus prematurus? -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900973_20161202145105">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900973"/>
+            <code code="PartusPrematurusDreig" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Dreigende partus prematurus"/>
+            <!-- Item(s) :: dreigende_partus_prematurusq-->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900974_20141028000000">
         <!-- Abruptio placentae -->
         <observation classCode="OBS" moodCode="EVN">
@@ -1136,7 +2279,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Abruptio placentae? -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900974_20161202145207">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900974"/>
+            <code code="415105001" codeSystem="2.16.840.1.113883.6.96" displayName="Abruptio placentae"/>
+            <!-- Item(s) :: abruptio_placentaeq -->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900975_20141028000000">
         <!-- Infectie -->
         <xsl:call-template name="question_observation">
@@ -1148,7 +2300,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
     <!-- Infectie -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900975_20161202144326">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900975"/>
+            <code code="40733004" codeSystem="2.16.840.1.113883.6.96"/>
+            <!-- Item(s) :: infectie -->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900976_20141028000000">
         <xsl:param name="contextConduction" select="'false'"/>
         <!-- Afwijkende groei foetus -->
@@ -1163,7 +2324,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
     <!-- Afwijkende groei foetus -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900976_20161202144857">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900976"/>
+            <code code="276604007" codeSystem="2.16.840.1.113883.6.96" displayName="Afwijkende groei foetus"/>
+            <!-- Item(s) :: afwijkende_groei_foetus -->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900977_20141028000000">
         <!-- Hypertensieve aandoening -->
         <xsl:call-template name="question_observation">
@@ -1177,7 +2347,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Hypertensieve aandoening -->
     
     <!-- Hypertensieve aandoening -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900977_20161202145706">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900977"/>
+            <code code="38341003" codeSystem="2.16.840.1.113883.6.96" displayName="Hypertensieve aandoening"/>
+            <!-- Item(s) :: hypertensieve_aandoening -->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900978_20141028000000">
         <!-- Diabetes gravidarum met insuline -->
         <observation classCode="OBS" moodCode="EVN">
@@ -1186,7 +2365,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Diabetes gravidarum met insuline? -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900978_20161202144812">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900978"/>
+            <code code="46894009" codeSystem="2.16.840.1.113883.6.96" displayName="Diabetes gravidarum met insuline"/>
+            <!-- Item(s) :: diabetes_gravidarum_met_insulineq -->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900980_20141029000000">
         <!--Vorige uitkomst per kind Kernset PRN-->
         <procedure classCode="PROC" moodCode="EVN">
@@ -1791,7 +2979,55 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </procedure>
     </xsl:template>
     <!-- Prenatale controle -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901003_20161206110335">
+        <procedure classCode="PROC" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901003"/>
+            <id nullFlavor="NI"/>
+            <code code="18114009" codeSystem="2.16.840.1.113883.6.96" displayName="Prenatale controle"/>
+            <!-- Item(s) :: datum_controle-->
+            <xsl:for-each select="datum_controle">
+                <effectiveTime>
+                    <xsl:call-template name="makeTSValueAttr"/>
+                </effectiveTime>
+            </xsl:for-each>
+            <xsl:for-each select="./zwangerschapsduur">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Zwangerschapsduur op datum onderzoek -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900236_20161206114409"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./leven_voelen">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Leven voelen -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901023_20161206114616"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./rookgedrag">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Rookgedrag -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900939_20161206114703"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./alcoholgebruik">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Alcoholgebruik -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901001_20161206114803"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./drugsgebruikq">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Drugsgebruik? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901002_20161206114851"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./gewicht_gemeten">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Body Weight -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900571_20161206115006"/>
+                </outboundRelationship>
+            </xsl:for-each>
+        </procedure>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901004_20141106000000">
         <!-- Diagnose deze zwangerschap -->
         <organizer classCode="CONTAINER" moodCode="EVN">
@@ -1881,7 +3117,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Partiële mola? -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901005_20161202142628">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901005"/>
+            <code code="MolaPartieelIntacteZw" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Partiële mola"/>
+            <!-- Item(s) :: partiele_molaq -->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901006_20141106000000">
         <!--  Intra-uteriene behandeling -->
         <observation classCode="OBS" moodCode="EVN">
@@ -1890,7 +3135,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Intra-uteriene behandeling -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901006_20161206110631">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901006"/>
+            <code code="265631002" codeSystem="2.16.840.1.113883.6.96" displayName="Intra-uteriene behandeling"/>
+            <!-- Item(s) :: intrauteriene_behandeling -->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Intra-uteriene behandeling -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901007_20141107000000">
         <!--PPROM?-->
@@ -2088,16 +3342,163 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
 
     <!-- assignedEntity -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901045_20161201143523">
+        <xsl:for-each select="zorginstelling">
+            <assignedEntity classCode="ASSIGNED">
+                <!-- Item(s) :: specialisme specialisme-->
+                <xsl:for-each select="specialisme">
+                    <xsl:call-template name="makeCEValue">
+                        <xsl:with-param name="xsiType" select="''"/>
+                        <xsl:with-param name="elemName">code</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901047_20161202101906"/>
+                </representedOrganization>
+            </assignedEntity>
+        </xsl:for-each>
+    </xsl:template>
 
     <!-- Verwijsdetails 2.3.2 -->
     
     <!-- Zorginstelling Identificatie (Perined) -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901047_20161202101906">
+        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901018_20141107145228"/>
+        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900022_20161202102921"/>
+        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900021_20091001000000"/>
+        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900610_20091001000000"/>
+    </xsl:template>
     <!-- Zorginstelling (URA) -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900021_20091001000000">
+        <!-- Item(s) :: zorginstelling_ura zorgaanbieder_identificatie_nummer zorgaanbieder_ura zorgaanbieder_identificatie_nummer zorginstelling_ura zorgaanbieder_ura zorginstelling_ura zorgaanbieder_ura-->
+        <xsl:for-each select="zorginstelling_ura | zorgaanbieder_identificatie_nummer[@root = '2.16.528.1.1007.3.3'] | zorgaanbieder_ura">
+            <xsl:call-template name="makeII.NL.URAValue">
+                <xsl:with-param name="xsiType" select="''"/>
+                <xsl:with-param name="elemName">id</xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:template>
     <!-- Reden Verwijzing (Algemene anamnese) -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901048_20161202111820">
+        <organizer classCode="CONTAINER" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901048"/>
+            <code code="312850006" codeSystem="2.16.840.1.113883.6.96" displayName="Algemene anamnese"/>
+            <xsl:for-each select="autoimmuun_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Auto-immuun aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900944_20161202113937"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="cardiovasculaire_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Cardiovasculaire aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900945_20161202114347"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="urogenitale_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Urogenitale aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900946_20161202114612"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="oncologische_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Oncologische aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900948_20161202114951"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="schildklier_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Schildklier aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900947_20161202115136"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="diabetes_mellitusq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Diabetes Mellitus (y/n) -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900936_20161202132728"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="neurologische_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Neurologische aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900949_20161202115419"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="infectieziekte">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Infectieziekte -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900950_20161202115613"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="mdl_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: MDL aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900951_20161202115814"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="anemie">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Anemie -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900952_20161202115941"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="longaandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Longaandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900953_20161202120109"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="gynaecologische_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Gynaecologische aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900954_20161202125822"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="orthopedische_afwijking">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Orthopedische afwijking -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900955_20161202123811"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="bloedtransfusieq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Bloedtransfusie -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900158_20161202132925"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="transfusiereactieq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Transfusiereactie -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901024_20161202133114"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="type_operatie">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Type operatie -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900956_20161202124735"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="type_stollingsprobleem">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Type stollingsprobleem -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900957_20161202124918"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="psychiatrieq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: PsychiatriePRN -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901026_20161202133709"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="overige_aandoeningq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Overige aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900960_20161202134046"/>
+                </component>
+            </xsl:for-each>
+        </organizer>
+    </xsl:template>
 
     <!-- Reden verwijzing (obstetrische anamnese) 2.3.2-->
     
@@ -2107,15 +3508,117 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Reden verwijzing (deze zwangerschap) 2.3.3 -->
     
     <!-- Navelstrengprolaps -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901052_20161202154625">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901052"/>
+            <code code="270500004" codeSystem="2.16.840.1.113883.6.96" displayName="Navelstrengprolaps"/>
+            <!-- Item(s) :: navelstrengprolapsq-->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Liggingsafwijking -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901053_20161202154917">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901053"/>
+            <code code="80002007" codeSystem="2.16.840.1.113883.6.96" displayName="Liggingsafwijking"/>
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+                <xsl:with-param name="xsiType">CE</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Fluxus Postpartum -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901054_20161202165703">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901054"/>
+            <code code="47821001" codeSystem="2.16.840.1.113883.6.96" displayName="Fluxus Postpartum"/>
+            <!-- Item(s) :: fluxus_postpartumq -->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Einde zwangerschap (verwijsreden) -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901055_20161202170207">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901055"/>
+            <code code="EindeZw" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Einde zwangerschap"/>
+            <!-- Item(s) :: einde_zwangerschap-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="xsiType" select="'CE'"/>
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Reden verwijzing (bevalling) 2.3.2 -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901099_20180223113239">
+        <organizer classCode="CONTAINER" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901099"/>
+            <code code="236973005" codeSystem="2.16.840.1.113883.6.96" displayName="Bevalling"/>
+            <xsl:for-each select="ppromq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: PPROM? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901007_20161202173503"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="promq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: PROM? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901008_20161202173654"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="koortsq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Koorts? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901009_20161202173856"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="niet_vorderende_ontsluitingq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Niet vorderende ontsluiting? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901010_20161202174017"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="niet_vorderende_uitdrijvingq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Niet vorderende uitdrijving? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901011_20161202174122"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="verdenking_foetale_noodq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Verdenking foetale nood? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901012_20161202174235"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="intrauteriene_vruchtdood/vermoeden_intrauteriene_vruchtdoodq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Intra-uteriene vruchtdood -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900918_20161202160924"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="vastzittende_placentaq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Vastzittende placenta -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901013_20161202174410"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="conditie_perineum_postpartum">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Conditie Perineum Postpartum (verwijsreden) -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901104_20180228111743"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="fluxus_postpartumq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Fluxus Postpartum -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901054_20161202165703"/>
+                </component>
+            </xsl:for-each>
+        </organizer>
+    </xsl:template>
 
     <!-- Reden verwijzing (bevalling) 2.3.3 -->
     
@@ -2123,35 +3626,404 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Conditie Perineum Postpartum (verwijsreden) 2.3.2 -->
     
     <!-- Bevalling Kernset -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901101_20180226150516">
+        <organizer classCode="CONTAINER" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901101"/>
+            <code code="236973005" codeSystem="2.16.840.1.113883.6.96" displayName="Bevalling"/>
+            <xsl:for-each select="partusnummer">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Partusnummer -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900357_20161206125654"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="diagnose_bevalling">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Diagnose bevalling Kernsetbericht PRN -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901014_20161206125851"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="aantal_geboren_kinderen">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Aantal geboren kinderen -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900358_20161206130005"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="risicostatus_voor_baring">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Risicostatus vóór baring -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900156_20161206130057"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="interventies_begin_baring[interventie_begin_baring]">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Interventie begin baring -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900726_20161215133633"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="wijze_waarop_de_baring_begon">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Wijze waarop de baring begon -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901103_20180227180051"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="tijdstip_begin_actieve_ontsluiting">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Tijdstip begin actieve ontsluiting -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900197_20161206130607"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="medicatie_nageboortetijdperk_groep[medicatie_nageboortetijdperkq]">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Medicatie nageboortetijdperk -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900716_20161206130815"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="placenta/geboorte_placenta">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Geboorte placenta -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900214_20161206101905"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="hoeveelheid_bloedverlies">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Hoeveelheid bloedverlies 2 -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900900_20161206102207"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="conditie_perineum_postpartum">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Conditie perineum postpartum -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900262_20161206131005"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="../uitkomst_per_kind/baring">
+                <component typeCode="COMP" contextConductionInd="false">
+                    <!-- Template :: Baring Kernset -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901102_20180226151440"/>
+                </component>
+            </xsl:for-each>
+        </organizer>
+    </xsl:template>
 
     <!-- Baring Kernset -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901102_20180226151440">
+        <procedure classCode="PROC" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901102"/>
+            <id nullFlavor="NI"/>
+            <code code="Baring" codeSystem="2.16.840.1.113883.2.4.3.22.1.3"/>
+            <xsl:for-each select="./demografische_gegevens">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900987_20141103214710"/>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_uitkomstgegevens/supervisor_groep/rol_supervisor">
+                <responsibleParty typeCode="RESP">
+                    <assignedEntity classCode="ASSIGNED">
+                        <!-- Item(s) :: rol_supervisor rol_supervisor-->
+                        <xsl:call-template name="makeCEValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">code</xsl:with-param>
+                        </xsl:call-template>
+                    </assignedEntity>
+                </responsibleParty>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_uitkomstgegevens/aanpakker_kind_groep/rol_aanpakker_kind">
+                <performer typeCode="PRF">
+                    <responsibleParty classCode="ASSIGNED">
+                        <!-- Item(s) :: rol_aanpakker_kind -->
+                        <xsl:call-template name="makeCEValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">code</xsl:with-param>
+                        </xsl:call-template>
+                        <agentPerson nullFlavor="NI"/>
+                    </responsibleParty>
+                </performer>
+            </xsl:for-each>
+            <xsl:if test="ziekenhuis_baring | werkelijke_plaats_baring_type_locatie">
+                <location typeCode="ELOC">
+                    <healthCareFacility classCode="DSDLOC">
+                        <!-- Item(s) :: ziekenhuisnummer_lvrid -->
+                        <xsl:for-each select="./ziekenhuis_baring/ziekenhuisnummer_lvrid">
+                            <xsl:call-template name="makeIIValue">
+                                <xsl:with-param name="xsiType" select="''"/>
+                                <xsl:with-param name="elemName">id</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        <!-- Item(s) :: werkelijke_plaats_baring_type_locatie werkelijke_plaats_baring_type_locatie-->
+                        <xsl:for-each select="./werkelijke_plaats_baring_type_locatie">
+                            <xsl:call-template name="makeCEValue">
+                                <xsl:with-param name="xsiType" select="''"/>
+                                <xsl:with-param name="elemName">code</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </healthCareFacility>
+                </location>
+            </xsl:if>
+            <xsl:for-each select="./demografische_gegevens/geslacht_medische_observatie">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Geslacht (medische observatie) -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900255_20161206133653"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./demografische_gegevens/rangnummer_kind">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Rangnummer kind -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900400_20161206133754"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_maternale_gegevens/bijstimulatie_toegediendq">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Bijstimulatie toegediend -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900217_20161206130714"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_maternale_gegevens/tijdstip_breken_vliezen">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Tijdstip breken vliezen -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900198_20161206133840"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_maternale_gegevens/kleur_en_consistentie_vruchtwater">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Kleur vruchtwater -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900199_20161206133935"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_maternale_gegevens/tijdstip_actief_meepersen">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Tijdstip actief meepersen -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900261_20161206133947"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_maternale_gegevens/episiotomieq">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Episiotomie (incl. indicatie) -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901063_20161206000000"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_maternale_gegevens/ruggeprik_gewenst_niet_gekregenq">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Ruggeprik gewenst, niet gekregen -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900992_20161206134140"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_maternale_gegevens/pijnbestrijdingq">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: PijnbestrijdingPRNKernset -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900995_20161206134416"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_maternale_gegevens/sedatieq">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Sedatie Ja/Nee -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900996_20161206134556"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_uitkomstgegevens/type_partus">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Type partus -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901107_20180228162810"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_uitkomstgegevens/lichamelijk_onderzoek_kind/apgarscore_na_5_min">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Apgarscore na 5 min. -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900294_20161206103247"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_uitkomstgegevens/ligging_bij_geboorte">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Ligging bij geboorte -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900359_20161206134724"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_uitkomstgegevens/vaginale_kunstverlossing_groep[vaginale_kunstverlossing]">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Vaginale kunstverlossing PRN Kernset -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900999_20161206134830"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_uitkomstgegevens/sectio_caesarea_group">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Section caesarea -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901106_20180228150344"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_uitkomstgegevens/overige_interventies">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Overige interventies -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900893_20161206135049"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_uitkomstgegevens/lichamelijk_onderzoek_kind/geboortegewicht">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Geboortegewicht -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900425_20161206135217"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_uitkomstgegevens/congenitale_afwijkingenq">
+                <xsl:variable name="cong_afw_question" select="."/>
+                <xsl:for-each select="../congenitale_afwijkingen_groep/specificatie_congenitale_afwijking_groep/specificatie_congenitale_afwijking">
+                    <outboundRelationship typeCode="COMP">
+                        <!-- Template :: Congenitale afwijkingen NoUnc -->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901017_20161206135251">
+                            <xsl:with-param name="cong_afw_question" select="$cong_afw_question"/>
+                            <xsl:with-param name="cong_afw_observation" select="."/>
+                        </xsl:call-template>
+                    </outboundRelationship>
+                </xsl:for-each>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_uitkomstgegevens/congenitale_afwijkingen_groep/chromosomale_afwijkingenq">
+                <xsl:variable name="chr_afw_question" select="."/>
+                <xsl:for-each select="../specificatie_chromosomale_afwijking_groep/specificatie_chromosomale_afwijking">
+                    <outboundRelationship typeCode="COMP">
+                        <!-- Template :: Chromosomale afwijkingen NoUnc -->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901016_20161206135419">
+                            <xsl:with-param name="chr_afw_question" select="$chr_afw_question"/>
+                            <xsl:with-param name="chr_afw_observation" select="."/>
+                        </xsl:call-template>
+                    </outboundRelationship>
+                </xsl:for-each>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_uitkomstgegevens/problematiek_kindq">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Problematiek kind -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901019_20161206135430"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="./kindspecifieke_uitkomstgegevens/kinderarts_betrokkenq">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Betrokkenheid kinderarts -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901020_20161206135638"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="../../postnatale_fase/kindspecifieke_gegevens/voeding_kind_groep[voeding_kind_datum | substantie_voeding_kind]">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Voeding kind -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900724_20161206135654"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="demografische_gegevens/perinatale_sterfte_groep/fase_perinatale_sterfte">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Fase perinatale sterfte -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900433_20161206135827"/>
+                </outboundRelationship>
+            </xsl:for-each>
+        </procedure>
+    </xsl:template>
 
     <!-- Wijze waarop de baring begon -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901103_20180227180051">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901103"/>
+            <code code="BeginDeliv" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Wijze waarop de baring begon"/>
+            <!-- Item(s) :: wijze_waarop_de_baring_begon -->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Conditie Perineum Postpartum (verwijsreden) 2.3.3 -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901104_20180228111743">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901104"/>
+            <code code="364297003" codeSystem="2.16.840.1.113883.6.96" displayName="Conditie Perineum Postpartum"/>
+            <!-- Item(s) :: conditie_perineum_postpartum-->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
 
     <!-- Overige verwijsreden -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901058_20161202183205">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901058"/>
+            <code code="9999" codeSystem="2.16.840.1.113883.2.4.3.22.1.2.1" displayName="Overige verwijsreden"/>
+            <xsl:call-template name="makeText"/>
+        </observation>
+    </xsl:template>
 
     <!-- Consult of overname -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901059_20161203164103">
+        <act classCode="ACT" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901059"/>
+            <!-- Item(s) :: type_verwijzing-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="xsiType" select="''"/>
+                <xsl:with-param name="elemName">code</xsl:with-param>
+            </xsl:call-template>
+        </act>
+    </xsl:template>
 
     <!-- Reden verwijzing (2e naar 3e lijn) -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901060_20161203172345">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901060"/>
+            <code code="2" codeSystem="2.16.840.1.113883.2.4.4.13.10" displayName="Reden verwijzing (2e naar 3e lijn)"/>
+            <xsl:call-template name="makeText"/>
+        </observation>
+    </xsl:template>
 
     <!-- Reden verwijzing (2e naar 1e lijn) -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901061_20161205165345">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901061"/>
+            <code code="3" codeSystem="2.16.840.1.113883.2.4.4.13.10" displayName="Reden verwijzing (2e naar 1e lijn)"/>
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+                <xsl:with-param name="xsiType">CE</xsl:with-param>
+                <!-- TEDOEN originalText nullFlavor OTH -->
+                <xsl:with-param name="originalText"/>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
 
     <!-- Reden verwijzing (3e naar 2e lijn) -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901062_20161205165345">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901062"/>
+            <code code="4" codeSystem="2.16.840.1.113883.2.4.4.13.10" displayName="Reden verwijzing (3e naar 2e lijn)"/>
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+                <xsl:with-param name="xsiType">CE</xsl:with-param>
+                <!-- TEDOEN originalText nullFlavor OTH -->
+                <xsl:with-param name="originalText"/>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
 
     <!-- Episiotomie (incl. indicatie) -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901063_20161206000000">
+        <procedure classCode="PROC" moodCode="EVN">
+            <xsl:call-template name="makeNegationAttr"/>
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901063"/>
+            <id nullFlavor="NI"/>
+            <code code="PRN540701" codeSystem="2.16.840.1.113883.2.4.3.22.1.3" displayName="Episiotomie"/>
+            <!-- Item(s) :: locatie_episiotomie -->
+            <xsl:for-each select="../locatie_episiotomie">
+                <xsl:call-template name="makeCEValue">
+                    <xsl:with-param name="xsiType" select="''"/>
+                    <xsl:with-param name="elemName">targetSiteCode</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="../indicatie_episiotomie">
+                <outboundRelationship typeCode="RSON">
+                    <!-- Template :: Indicatie episiotomie -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901064_20161206000000"/>
+                </outboundRelationship>
+            </xsl:for-each>
+        </procedure>
+    </xsl:template>
     <!-- Indicatie episiotomie -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901064_20161206000000">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901064"/>
+            <code code="61" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Indicatie episiotomie"/>
+            <!-- Item(s) :: indicatie_episiotomie-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
 
     <!-- Zorginstelling Identificatie -->
     
@@ -2178,18 +4050,74 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
 
     <!-- Indicatie secundaire Sectio Caesarea -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901090_20161220000000">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901090"/>
+            <code code="SectioCaeInd" codeSystem="2.16.840.1.113883.2.4.3.22.1.1" displayName="Indicatie sectio"/>
+            <!-- Item(s) :: indicatie_secundaire_sectio-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
 
     <!-- Zorginstelling (OID) -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900022_20161202102921">
+        <!-- Item(s) :: zorgaanbieder_identificatie_nummer zorginstelling_oid-->
+        <xsl:for-each select="zorgaanbieder_identificatie_nummer[not(@root = '2.16.840.1.113883.2.4.6.1' or @root = '2.16.840.1.113883.2.4.3.22.96.6' or @root = '2.16.528.1.1007.3.3')] | zorginstelling_oid">
+            <xsl:call-template name="makeIIValue">
+                <xsl:with-param name="xsiType" select="''"/>
+                <xsl:with-param name="elemName">id</xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:template>
     <!-- Pariteit -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900090_20161206105825">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900090"/>
+            <code code="Parturit" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Pariteit"/>
+            <!-- Item(s) :: pariteit_voor_deze_zwangerschap-->
+            <xsl:call-template name="makeINTValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Risicostatus vóór baring -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900156_20161206130057">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900156"/>
+            <code code="PRN5102" codeSystem="2.16.840.1.113883.2.4.3.22.1.1" displayName="Risicostatus vóór baring"/>
+            <!-- Item(s) :: risicostatus_voor_baring-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Bloedtransfusie -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900158_20161202132925">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900158"/>
+            <code code="116859006" codeSystem="2.16.840.1.113883.6.96" displayName="Bloedtransfusie"/>
+            <!-- Item(s) ::  bloedtransfusieq-->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Irregulaire antistoffen -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900171_20161215113718">
+        <observation classCode="OBS" moodCode="EVN">
+            <xsl:call-template name="makeNegationAttr"/>
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900171"/>
+            <code code="312457003" codeSystem="2.16.840.1.113883.6.96" displayName="Irregulaire antistoffen"/>
+            <!-- Item(s) :: welke_irregulaire_antistoffen_vrouw_aanwezig-->
+            <xsl:for-each select="welke_irregulaire_antistoffen_vrouw_aanwezig">
+                <xsl:call-template name="makeCEValue">
+                    <xsl:with-param name="elemName">value</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+        </observation>
+    </xsl:template>
     <!-- Subfertiliteitsbehandeling -->
     
     <!-- Subfertiliteitsbehandeling -->
@@ -2214,23 +4142,97 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Fase amniotomie -->
     <!-- Gewicht vóór de zwangerschap -->
     <!-- Tijdstip begin actieve ontsluiting -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900197_20161206130607">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900197"/>
+            <code code="249120008" codeSystem="2.16.840.1.113883.6.96" displayName="Tijdstip begin actieve ontsluiting"/>
+            <!-- Item(s) :: tijdstip_begin_actieve_ontsluiting tijdstip_begin_actieve_ontsluiting-->
+            <xsl:call-template name="makeTS.DATE.MINValue">
+                <xsl:with-param name="xsiType" select="''"/>
+                <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Tijdstip begin actieve ontsluiting -->
     <!-- Tijdstip begin actieve ontsluiting -->
     <!-- Tijdstip breken vliezen -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900198_20161206133840">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900198"/>
+            <code code="289251005" codeSystem="2.16.840.1.113883.6.96" displayName="Tijdstip breken vliezen"/>
+            <!-- Item(s) :: tijdstip_breken_vliezen-->
+            <xsl:call-template name="makeTS.DATE.MINValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Kleur vruchtwater -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900199_20161206133935">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900199"/>
+            <code code="38386-9" codeSystem="2.16.840.1.113883.6.1" displayName="Kleur en consistentie vruchtwater"/>
+            <!-- Item(s) :: kleur_en_consistentie_vruchtwater-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Geboorte placenta -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900214_20161206101905">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900214"/>
+            <code code="AfterBirthMethod" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Geboorte placenta"/>
+            <!-- Item(s) :: geboorte_placenta geboorte_placenta-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Bijstimulatie toegediend -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900217_20161206130714">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900217"/>
+            <code code="PRN540201" codeSystem="2.16.840.1.113883.2.4.3.22.1.3" displayName="Bijstimulatie toegediend"/>
+            <!-- Item(s) :: bijstimulatie_toegediendq-->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Geslacht (medische observatie) -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900255_20161206133653">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900255"/>
+            <code code="46098-0" codeSystem="2.16.840.1.113883.6.1" displayName="Geslacht"/>
+            <!-- Item(s) :: geslacht_medische_observatie-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Tijdstip actief meepersen -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900261_20161206133947">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900261"/>
+            <code code="PRN530401" codeSystem="2.16.840.1.113883.2.4.3.22.1.1" displayName="Tijdstip actief meepersen"/>
+            <!-- Item(s) :: tijdstip_actief_meepersen-->
+            <xsl:call-template name="makeTS.DATE.MINValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            <xsl:with-param name="xsiType">TS</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Conditie perineum postpartum -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900262_20161206131005">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900262"/>
+            <code code="364297003" codeSystem="2.16.840.1.113883.6.96" displayName="Conditie perineum postpartum"/>
+            <!-- Item(s) :: conditie_perineum_postpartum-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Episiotomie -->
     
     <!-- Episiotomie -->
@@ -2238,7 +4240,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Pijnbestrijding -->
     <!-- Vaginale kunstverlossing -->
     <!-- Succes vaginale kunstverlossing -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900275_20161215134619">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900275"/>
+            <code code="KuVerlSucces" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Succes vaginale kunstverlossing"/>
+            <!-- Item(s) :: succes_vaginale_kunstverlossingq-->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Succes vaginale kunstverlossing -->
     <!-- Succes vaginale kunstverlossing -->
     <!-- Indicatie vaginale kunstverlossing -->
@@ -2247,27 +4258,121 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Section caesarea -->
     <!-- Section caesarea -->
     <!-- Beslismoment sectio caesarea -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900278_20161215134825">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900278"/>
+            <code code="SectioBeslisMoment" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Beslismoment sectio caesarea"/>
+            <!-- Item(s) :: beslismoment_sectio_caesarea beslismoment_sectio_caesarea-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Indicatiesectiocaesarea -->
     
     <!-- Apgarscore na 5 min. -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900294_20161206103247">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900294"/>
+            <code code="9274-2" codeSystem="2.16.840.1.113883.6.1" displayName="Apgarscore na 5 min."/>
+            <!-- Item(s) :: apgarscore_na_5_min -->
+            <xsl:call-template name="makeINTValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Partusnummer -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900357_20161206125654">
+        <act classCode="COND" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900357"/>
+            <!-- Item(s) :: zorgverlening partusnummer-->
+            <xsl:call-template name="makeIIValue">
+                <xsl:with-param name="xsiType" select="''"/>
+                <xsl:with-param name="elemName">id</xsl:with-param>
+            </xsl:call-template>
+            <code code="PartusNr" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Partusnummer"/>
+        </act>
+    </xsl:template>
     <!-- Aantal geboren kinderen -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900358_20161206130005">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900358"/>
+            <code code="NBorn16" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Aantal geboren kinderen"/>
+            <!-- Item(s) :: aantal_geboren_kinderen-->
+            <xsl:call-template name="makeINTValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Ligging bij geboorte -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900359_20161206134724">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900359"/>
+            <code code="LigGbrt" codeSystem="2.16.840.1.113883.2.4.3.22.1.1"/>
+            <!-- Item(s) :: ligging_bij_geboorte-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Rangnummer kind -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900400_20161206133754">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900400"/>
+            <code code="BirthOrderNumber" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Rangnummer kind"/>
+            <!-- Item(s) :: rangnummer_kind-->
+            <xsl:call-template name="makeINTValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Geboortegewicht -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900425_20161206135217">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900425"/>
+            <code code="8339-4" codeSystem="2.16.840.1.113883.6.1" displayName="Geboortegewicht"/>
+            <!-- Item(s) :: geboortegewicht -->
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+                <xsl:with-param name="unit">g</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Fase perinatale sterfte -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900433_20161206135827">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900433"/>
+            <code code="FasePerinataleSterfte" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Fase perinatale sterfte"/>
+            <!-- Item(s) :: fase_perinatale_sterfte fase_perinatale_sterfte-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Body Height -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900570_20161205183214">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900570"/>
+            <code code="3137-7" codeSystem="2.16.840.1.113883.6.1"/>
+            <!-- Item(s) :: lengte_gemeten-->
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+                <xsl:with-param name="unit">cm</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Body Weight -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900571_20161206115006">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900571"/>
+            <code code="3141-9" codeSystem="2.16.840.1.113883.6.1" displayName="Gewicht"/>
+            <!-- Item(s) :: gewicht_gemeten-->
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+                <xsl:with-param name="unit">kg</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Body Weight -->
     <!-- Waarschijnlijkheid `sonomarker -->
     <!-- Overname -->
@@ -2310,7 +4415,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Zorgverlener (AGB-ID) -->
     <!-- Zorgverlener (LVR1-ID) -->
     <!-- Indicatie interventie begin baring -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900705_20161215162545">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900705"/>
+            <code code="PRN520103" codeSystem="2.16.840.1.113883.2.4.3.22.1.1"/>
+            <!-- Item(s) :: indicatie_interventie_begin_baring indicatie_interventie_begin_baring indicatie_interventie_begin_baring indicatie_interventie_begin_baring-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Indicatie interventie begin baring -->
     <!-- Indicatie interventie begin baring -->
     <!-- Datum betrokkenheid andere zorgverlener -->
@@ -2327,39 +4441,155 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Wijze waarop de baring begon -->
     
     <!-- Medicatie nageboortetijdperk -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900716_20161206130815">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900716"/>
+            <code code="Medic3stage" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Medicatie nageboortetijdperk"/>
+            <!-- Item(s) :: medicatie_nageboortetijdperkq-->
+            <xsl:for-each select="medicatie_nageboortetijdperkq">
+                <xsl:call-template name="makeBLValue">
+                    <xsl:with-param name="elemName">value</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="soort_medicatie_nageboortetijdperk">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Soort medicatie nageboortetijdperk -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900525_20141107174304"/>
+                </outboundRelationship>
+            </xsl:for-each>
+        </observation>
+    </xsl:template>
     <!-- Voeding kind -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900724_20161206135654">
+        <supply classCode="DIET" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900724"/>
+            <id nullFlavor="NI"/>
+            <code code="230126006" codeSystem="2.16.840.1.113883.6.96"/>
+            <xsl:for-each select="voeding_kind_datum">
+                <xsl:call-template name="makeTSValue">
+                    <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="substantie_voeding_kind">
+                <product typeCode="PRD">
+                    <product classCode="ACCESS">
+                        <playingMaterial classCode="MAT" determinerCode="KIND">
+                            <!-- Item(s) :: substantie_voeding_kind substantie_voeding_kind-->
+                            <xsl:call-template name="makeCEValue">
+                                <xsl:with-param name="xsiType" select="''"/>
+                                <xsl:with-param name="elemName">code</xsl:with-param>
+                            </xsl:call-template>
+                        </playingMaterial>
+                    </product>
+                </product>
+            </xsl:for-each>
+        </supply>
+    </xsl:template>
     <!-- Interventie begin baring -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900726_20161215133633">
+        <procedure classCode="PROC" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900726"/>
+            <id nullFlavor="NI"/>
+            <code code="PRN520102" codeSystem="2.16.840.1.113883.2.4.3.22.1.3" displayName="Interventie begin baring"/>
+            <xsl:for-each select="interventie_begin_baring">
+                <!-- Item(s) :: interventie_begin_baring -->
+                <xsl:call-template name="makeCEValue">
+                    <xsl:with-param name="xsiType" select="''"/>
+                    <xsl:with-param name="elemName">methodCode</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="indicatie_interventie_begin_baring">
+                <outboundRelationship typeCode="RSON">
+                    <!-- Template :: Indicatie interventie begin baring -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900705_20161215162545"/>
+                </outboundRelationship>
+            </xsl:for-each>
+        </procedure>
+    </xsl:template>
     <!-- Type partus -->
     
     <!-- Type partus 2.3.2 -->
     
     <!-- Overige interventies -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900893_20161206135049">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900893"/>
+            <code code="Interv" codeSystem="2.16.840.1.113883.2.4.3.22.1.1" displayName="Overige interventies"/>
+            <!-- Item(s) :: overige_interventies-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Overige interventies -->
     <!-- Overige interventies -->
     <!-- Uitkomst per kind (subject) PRN  -->
     <!-- Perinatale periode van verwijzing -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900895_20161203165258">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900895"/>
+            <code code="PRN210603" codeSystem="2.16.840.1.113883.2.4.3.22.1.1" displayName="Perinatale periode van verwijzing"/>
+            <!-- Item(s) :: perinatale_periode-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Perinatale periode van overdracht -->
     <!-- Perinatale periode van consult -->
     <!-- Ziekten en bijzonderheden vrouw in de algemene anamnese (2.1) -->
     <!-- Ontsluitingsduur -->
     <!-- Uitdrijvingsduur -->
     <!-- Hoeveelheid bloedverlies 2 -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900900_20161206102207">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900900"/>
+            <code code="364332008" codeSystem="2.16.840.1.113883.6.96" displayName="Hoeveelheid bloedverlies"/>
+            <!-- Item(s) ::  hoeveelheid_bloedverlies hoeveelheid_bloedverlies_tot_acute_overdracht-->
+            <xsl:call-template name="makePQValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+                <xsl:with-param name="unit">ml</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Hoeveelheid bloedverlies 2 -->
     <!-- Vorige uitkomst per kind (kort) -->
     <!-- Percentiel geboortegewicht -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900902_20161206103023">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900902"/>
+            <code code="301334000" codeSystem="2.16.840.1.113883.6.96" displayName="Percentiel geboortegewicht"/>
+            <!-- Item(s) :: percentiel_van_het_geboortegewicht-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Intra-uteriene vruchtdood -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900918_20161202160924">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900918"/>
+            <code code="59291004" codeSystem="2.16.840.1.113883.6.96" displayName="Intra-uteriene vruchtdood"/>
+            <uncertaintyCode code="U" codeSystem="2.16.840.1.113883.5.1053"/>
+            <!-- Item(s) :: vermoeden_intrauteriene_vruchtdoodq -->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Zorgverlener en instelling (zonder type) -->
     
     <!-- A terme datum (definitive) -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900928_20161206110006">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900928"/>
+            <code code="EDDDef" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="A terme datum (definitive)"/>
+            <!-- Item(s) :: definitieve_a_terme_datum-->
+            <xsl:call-template name="makeTS.DATE.MINValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Geboortedatum eiceldonatrice -->
     
     <!-- Geboortedatum eiceldonatrice observed -->
@@ -2370,58 +4600,620 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Counseling prenatale screening SEO -->
     
     <!-- Diabetes Mellitus (y/n) -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900936_20161202132728">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900936"/>
+            <code code="73211009" codeSystem="2.16.840.1.113883.6.96" displayName="Diabetes Mellitus (y/n)"/>
+            <!-- Item(s) :: diabetes_mellitusq-->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Rookgedrag -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900939_20161206114703">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900939"/>
+            <code code="Rookgedrag" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Rookgedrag"/>
+            <!-- Item(s) :: rookgedrag-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Auto-immuun aandoening -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900944_20161202113937">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900944"/>
+            <code code="85828009" codeSystem="2.16.840.1.113883.6.96" displayName="Auto-immuun aandoening"/>
+            <!-- Item(s) :: autoimmuun_aandoening -->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Cardiovasculaire aandoening -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900945_20161202114347">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900945"/>
+            <code code="49601007" codeSystem="2.16.840.1.113883.6.96" displayName="Cardiovasculaire aandoening"/>
+            <!-- Item(s) :: cardiovasculaire_aandoening -->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Urogenitale aandoening -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900946_20161202114612">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900946"/>
+            <code code="42030000" codeSystem="2.16.840.1.113883.6.96" displayName="Urogenitale aandoening"/>
+            <!-- Item(s) :: urogenitale_aandoening-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Schildklier aandoening -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900947_20161202115136">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900947"/>
+            <code code="14304000" codeSystem="2.16.840.1.113883.6.96" displayName="Schildklier aandoening"/>
+            <!-- Item(s) :: schildklier_aandoening-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Oncologische aandoening -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900948_20161202114951">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900948"/>
+            <code code="363346000" codeSystem="2.16.840.1.113883.6.96" displayName="Oncologische aandoening"/>
+            <!-- Item(s) :: oncologische_aandoening-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Neurologische aandoening -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900949_20161202115419">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900949"/>
+            <code code="118940003" codeSystem="2.16.840.1.113883.6.96" displayName="Neurologische aandoening"/>
+            <!-- Item(s) :: neurologische_aandoening-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Infectieziekte -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900950_20161202115613">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900950"/>
+            <code code="40733004" codeSystem="2.16.840.1.113883.6.96" displayName="Infectieziekte"/>
+            <!-- Item(s) :: infectieziekte -->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Infectieziekte -->
     <!-- MDL aandoening -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900951_20161202115814">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900951"/>
+            <code code="53619000" codeSystem="2.16.840.1.113883.6.96" displayName="MDL aandoening"/>
+            <!-- Item(s) ::  mdl_aandoening-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Anemie -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900952_20161202115941">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900952"/>
+            <code code="271737000" codeSystem="2.16.840.1.113883.6.96" displayName="Anemie"/>
+            <!-- Item(s) :: anemie-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Longaandoening -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900953_20161202120109">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900953"/>
+            <code code="50043002" codeSystem="2.16.840.1.113883.6.96" displayName="Longaandoening"/>
+            <!-- Item(s) ::  longaandoening-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Longaandoening -->
 
     <!-- Orthopedische afwijking -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900955_20161202123811">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900955"/>
+            <code code="928000" codeSystem="2.16.840.1.113883.6.96" displayName="Orthopedische afwijking"/>
+            <!-- Item(s) ::  orthopedische_afwijking-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Type operatie -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900956_20161202124735">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900956"/>
+            <code code="387713003" codeSystem="2.16.840.1.113883.6.96" displayName="Type operatie"/>
+            <!-- Item(s) :: type_operatie -->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Type stollingsprobleem -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900957_20161202124918">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900957"/>
+            <code code="64779008" codeSystem="2.16.840.1.113883.6.96" displayName="Type stollingsprobleem"/>
+            <!-- Item(s) :: type_stollingsprobleem -->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Onder behandeling (geweest)? -->
     
     <!-- Algemene anamnese Kernset -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900959_20161205180704">
+        <organizer classCode="CONTAINER" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900959"/>
+            <code code="312850006" codeSystem="2.16.840.1.113883.6.96" displayName="Algemene anamnese"/>
+            <xsl:for-each select="autoimmuun_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Auto-immuun aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900944_20161202113937"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="cardiovasculaire_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Cardiovasculaire aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900945_20161202114347"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="urogenitale_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Urogenitale aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900946_20161202114612"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="oncologische_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Oncologische aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900948_20161202114951"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="schildklier_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Schildklier aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900947_20161202115136"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="diabetes_mellitusq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Diabetes Mellitus (y/n) -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900936_20161202132728"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="neurologische_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Neurologische aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900949_20161202115419"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="infectieziekte">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Infectieziekte -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900950_20161202115613"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="mdl_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: MDL aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900951_20161202115814"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="anemie">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Anemie -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900952_20161202115941"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="longaandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Longaandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900953_20161202120109"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="gynaecologische_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Gynaecologische aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900954_20161202125822"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="orthopedische_afwijking">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Orthopedische afwijking -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900955_20161202123811"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="bloedtransfusieq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Bloedtransfusie -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900158_20161202132925"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="transfusiereactieq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Transfusiereactie -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901024_20161202133114"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="type_operatie">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Type operatie -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900956_20161202124735"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="type_stollingsprobleem">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Type stollingsprobleem -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900957_20161202124918"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="psychiatrieq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: PsychiatriePRN -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901026_20161202133709"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="overige_aandoeningq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Overige aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900960_20161202134046"/>
+                </component>
+            </xsl:for-each>
+        </organizer>
+    </xsl:template>
     <!-- Overige aandoening -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900960_20161202134046">
+        <xsl:call-template name="observationQ">
+            <xsl:with-param name="observation_templateId" select="'2.16.840.1.113883.2.4.6.10.90.900960'"/>
+            <xsl:with-param name="observation_code" select="'OverigeAandoeningenAnamnese'"/>
+            <xsl:with-param name="observation_codeSystem" select="'2.16.840.1.113883.2.4.4.13'"/>
+            <xsl:with-param name="observation_displayName" select="'Overige aandoeningen algemene anamnese'"/>
+            <xsl:with-param name="observation_text" select="../overige_aandoening"/>
+        </xsl:call-template>
+    </xsl:template>
     <!-- Anamnese Kernset -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900963_20161205180216">
+        <organizer classCode="CONTAINER" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900963"/>
+            <code code="417662000" codeSystem="2.16.840.1.113883.6.96" displayName="Anamnese"/>
+            <xsl:for-each select="./onder_behandeling_geweestq">
+                <component typeCode="COMP">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900958_20141027000000"/>
+                </component>
+            </xsl:for-each>
+            <!-- Aannemen dat als er een algemene anamnese item met 'true' is, of met een echte code, dat er dan ook sprake was van behandeling.
+                 Output letterlijk fragment, want er is geen input node. -->
+            <xsl:if test="not(./onder_behandeling_geweestq) and (algemene_anamnese/*[@value='true'] or algemene_anamnese/*[@code][@codeSystem])">
+                <component typeCode="COMP">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <code code="OnderBehandeling" displayName="Onder behandeling (geweest)?" codeSystem="PerinatologyObservations"/>
+                        <value xsi:type="BL" value="true"/>
+                    </observation>
+                </component>
+            </xsl:if>
+            <component typeCode="COMP">
+                <xsl:for-each select="algemene_anamnese">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900959_20161205180704"/>
+                </xsl:for-each>
+            </component>
+        </organizer>
+    </xsl:template>
     <!-- Anamnese PRN -->
     <!-- Type vrouwelijke genitale verminking -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900964_20161205183736">
+        <xsl:call-template name="question_observation">
+            <xsl:with-param name="parent_element_name">pertinentInformation3</xsl:with-param>
+            <xsl:with-param name="question" select="./vrouwelijke_genitale_verminkingq"/>
+            <xsl:with-param name="observation" select="./type_vrouwelijke_genitale_verminking"/>
+            <xsl:with-param name="templateId">2.16.840.1.113883.2.4.6.10.90.900964</xsl:with-param>
+            <xsl:with-param name="observation_code">95041000119101</xsl:with-param>
+            <xsl:with-param name="observation_codeSystem">2.16.840.1.113883.6.96</xsl:with-param>
+            <xsl:with-param name="observation_displayName">Vrouwelijke genitale verminking</xsl:with-param>
+        </xsl:call-template>
+    </xsl:template>
     <!-- Obstetrische anamnese Kernset 2.3.2 -->
     
     <!-- Intra-uteriene vruchtdood en methode -->
     <!-- TODO -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901091_20180220155029">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901091"/>
+            <code code="59291004" codeSystem="2.16.840.1.113883.6.96" displayName="Intrauteriene vruchtdood"/>
+            <uncertaintyCode code="U" codeSystem="2.16.840.1.113883.5.1053"/>
+            <!-- Item(s) :: vermoeden_intrauteriene_vruchtdoodq-->
+            <xsl:for-each select="./vermoeden_intrauteriene_vruchtdoodq">
+                <xsl:call-template name="makeBLValue">
+                    <xsl:with-param name="elemName">value</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="./vermoeden_iuvd_op_basis_van">
+                <outboundRelationship typeCode="PERT">
+                    <procedure classCode="PROC" moodCode="EVN">
+                        <id nullFlavor="NI"/>
+                        <xsl:call-template name="makeCEValue">
+                            <xsl:with-param name="elemName">code</xsl:with-param>
+                        </xsl:call-template>
+                    </procedure>
+                </outboundRelationship>
+            </xsl:for-each>
+        </observation>
+    </xsl:template>
     <!-- Diagnose deze zwangerschap Kernset 2.3.3 -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901092_20180220162421">
+        <organizer classCode="CONTAINER" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901092"/>
+            <code code="439401001" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+            <xsl:for-each select="./datum">
+                <effectiveTime>
+                    <xsl:call-template name="makeTSValueAttr"/>
+                </effectiveTime>
+            </xsl:for-each>
+            <!-- Zwangerschapsduur -->
+            <xsl:for-each select="./zwangerschapsduur">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900236_20161206114409"/>
+                </component>
+            </xsl:for-each>
+            <!-- Gynaecologische aandoening -->
+            <xsl:for-each select="gynaecologische_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900954_20161202125822"/>
+                </component>
+            </xsl:for-each>
+            <!-- Bloedverlies? -->
+            <xsl:for-each select="./bloedverliesq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900967_20161202142446"/>
+                </component>
+            </xsl:for-each>
+            <!-- Partiële mola -->
+            <xsl:for-each select="./partiele_molaq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901005_20161202142628"/>
+                </component>
+            </xsl:for-each>
+            <!-- Cervixinsufficiëntie -->
+            <xsl:for-each select="./cervixinsufficientieq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900968_20161202144215"/>
+                </component>
+            </xsl:for-each>
+            <!-- Infectie -->
+            <xsl:for-each select="./infectie">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900975_20161202144326"/>
+                </component>
+            </xsl:for-each>
+            <!-- Hyperemesis gravidarum?  -->
+            <xsl:for-each select="./hyperemesis_gravidarumq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900969_20161202144436"/>
+                </component>
+            </xsl:for-each>
+            <!-- Hypertensieve aandoening -->
+            <xsl:for-each select="hypertensieve_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900977_20161202145706"/>
+                </component>
+            </xsl:for-each>
+            <!-- Zwangerschapscholestase? -->
+            <xsl:for-each select="./zwangerschapscholestaseq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900971_20161202144715"/>
+                </component>
+            </xsl:for-each>
+            <!-- Diabetes gravidarum met insuline? -->
+            <xsl:for-each select="./diabetes_gravidarum_met_insulineq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900978_20161202144812"/>
+                </component>
+            </xsl:for-each>
+            <!-- afwijkende_groei_foetus -->
+            <xsl:for-each select="afwijkende_groei_foetus">
+                <component typeCode="COMP" contextConductionInd="false">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900976_20161202144857"/>
+                </component>
+            </xsl:for-each>
+            <!-- Dreigende partus immaturus? -->
+            <xsl:for-each select="./dreigende_partus_immaturusq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900972_20161202144955"/>
+                </component>
+            </xsl:for-each>
+            <!-- Dreigende partus prematurus? -->
+            <xsl:for-each select="./dreigende_partus_prematurusq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900973_20161202145105"/>
+                </component>
+            </xsl:for-each>
+            <!-- Abruptio placentae?  -->
+            <xsl:for-each select="./abruptio_placentaeq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900974_20161202145207"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="navelstrengprolapsq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Navelstrengprolaps -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901052_20161202154625"/>
+                </component>
+            </xsl:for-each>
+            <!-- TODO Liggingsafwijking -->
+            <xsl:for-each select="liggingsafwijking">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Liggingsafwijking -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901053_20161202154917"/>
+                </component>
+            </xsl:for-each>
+            <!-- Intra-uteriene vruchtdood en methode -->
+            <xsl:for-each select="intrauteriene_vruchtdood[vermoeden_intrauteriene_vruchtdoodq]">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Intra-uteriene vruchtdood en methode -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901091_20180220155029"/>
+                </component>
+            </xsl:for-each>
+
+        </organizer>
+    </xsl:template>
     <!-- Obstetrische anamnese Kernset 2.3.3 -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901095_20180221112313">
+        <organizer classCode="CONTAINER" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901095"/>
+            <code code="248983002" codeSystem="2.16.840.1.113883.6.96" displayName="Obstetrische anamnese"/>
+            <xsl:for-each select="wijze_einde_zwangerschap">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Wijze einde zwangerschap -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900876_20161206094326"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="definitieve_a_terme_datum">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: A terme datum (definitive) -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900928_20161206110006"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="diagnose">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <organizer classCode="CONTAINER" moodCode="EVN">
+                        <code code="439401001" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnose"/>
+                        <xsl:for-each select="gynaecologische_aandoening">
+                            <component typeCode="COMP" contextConductionInd="true">
+                                <!-- Template :: Gynaecologische aandoening -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900954_20161202125822"/>
+                            </component>
+                        </xsl:for-each>
+                        <xsl:for-each select="bloedverliesq">
+                            <component typeCode="COMP" contextConductionInd="true">
+                                <!-- Template :: Bloedverlies? -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900967_20161202142446"/>
+                            </component>
+                        </xsl:for-each>
+                        <xsl:for-each select="cervixinsufficientieq">
+                            <component typeCode="COMP" contextConductionInd="true">
+                                <!-- Template :: Cervixinsufficiëntie? -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900968_20161202144215"/>
+                            </component>
+                        </xsl:for-each>
+                        <xsl:for-each select="infectie">
+                            <component typeCode="COMP" contextConductionInd="true">
+                                <!-- Template :: Infectie -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900975_20161202144326"/>
+                            </component>
+                        </xsl:for-each>
+                        <xsl:for-each select="hyperemesis_gravidarumq">
+                            <component typeCode="COMP" contextConductionInd="true">
+                                <!-- Template :: Hyperemesis gravidarum? -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900969_20161202144436"/>
+                            </component>
+                        </xsl:for-each>
+                        <xsl:for-each select="hypertensieve_aandoening">
+                            <component typeCode="COMP" contextConductionInd="true">
+                                <!-- Template :: Hypertensieve aandoening -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900977_20161202145706"/>
+                            </component>
+                        </xsl:for-each>
+                        <xsl:for-each select="zwangerschapscholestaseq">
+                            <component typeCode="COMP" contextConductionInd="true">
+                                <!-- Template :: Zwangerschapscholestase? -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900971_20161202144715"/>
+                            </component>
+                        </xsl:for-each>
+                        <xsl:for-each select="diabetes_gravidarum_met_insulineq">
+                            <component typeCode="COMP" contextConductionInd="true">
+                                <!-- Template :: Diabetes gravidarum met insuline? -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900978_20161202144812"/>
+                            </component>
+                        </xsl:for-each>
+                        <xsl:for-each select="afwijkende_groei_foetus">
+                            <component typeCode="COMP" contextConductionInd="false">
+                                <!-- Template :: Afwijkende groei foetus -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900976_20161202144857"/>
+                            </component>
+                        </xsl:for-each>
+                        <xsl:for-each select="dreigende_partus_immaturusq">
+                            <component typeCode="COMP" contextConductionInd="true">
+                                <!-- Template :: Dreigende partus immaturus? -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900972_20161202144955"/>
+                            </component>
+                        </xsl:for-each>
+                        <xsl:for-each select="dreigende_partus_prematurusq">
+                            <component typeCode="COMP" contextConductionInd="true">
+                                <!-- Template :: Dreigende partus prematurus? -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900973_20161202145105"/>
+                            </component>
+                        </xsl:for-each>
+                        <xsl:for-each select="abruptio_placentaeq">
+                            <component typeCode="COMP" contextConductionInd="true">
+                                <!-- Template :: Abruptio placentae? -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900974_20161202145207"/>
+                            </component>
+                        </xsl:for-each>
+                    </organizer>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select=".[irregulaire_antistoffenq]">
+                <!-- Template :: Irregulaire antistoffen ja/nee -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900993_20161206101240">
+                    <xsl:with-param name="parentElementName">component</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="eerdere_bevalling">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <procedure classCode="PROC" moodCode="EVN">
+                        <id nullFlavor="NI"/>
+                        <code code="236973005" codeSystem="2.16.840.1.113883.6.96" displayName="Bevalling"/>
+                        <xsl:for-each select="placenta/geboorte_placenta">
+                            <outboundRelationship typeCode="COMP">
+                                <!-- Template :: Geboorte placenta -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900214_20161206101905"/>
+                            </outboundRelationship>
+                        </xsl:for-each>
+                        <xsl:for-each select="hoeveelheid_bloedverlies">
+                            <outboundRelationship typeCode="COMP">
+                                <!-- Template :: Hoeveelheid bloedverlies 2 -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900900_20161206102207"/>
+                            </outboundRelationship>
+                        </xsl:for-each>
+                        <xsl:for-each select="vorige_uitkomst_per_kind/vorige_baring">
+                            <outboundRelationship typeCode="COMP">
+                                <!-- Template :: Vorige uitkomst per kind Kernset PRN -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901108_20180228174957"/>
+                            </outboundRelationship>
+                        </xsl:for-each>
+                    </procedure>
+                </component>
+            </xsl:for-each>
+        </organizer>
+    </xsl:template>
 
     <!-- Bloedverlies? -->
 
@@ -2429,20 +5221,143 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Vorige uitkomst per kind Kernset PRN 2.3.2  -->
     
     <!-- Type partus 2.3.3 -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901107_20180228162810">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901107"/>
+            <code code="364336006" codeSystem="2.16.840.1.113883.6.96" displayName="Type partus"/>
+            <!-- Item(s) :: type_partus -->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Vorige uitkomst per kind Kernset PRN 2.3.3 -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901108_20180228174957">
+        <procedure classCode="PROC" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901108"/>
+            <id nullFlavor="NI"/>
+            <code code="Baring" codeSystem="2.16.840.1.113883.2.4.3.22.1.3" displayName="Baring"/>
+            <xsl:for-each select="demografische_gegevens">
+                <subject typeCode="SBJ">
+                    <personalRelationship classCode="PRS">
+                        <code code="CHILD" codeSystem="2.16.840.1.113883.5.111"/>
+                        <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                            <!-- Item(s) :: geboortedatum -->
+                            <xsl:for-each select="geboortedatum">
+                                <xsl:call-template name="makeTS.DATE.MINValue">
+                                    <xsl:with-param name="xsiType" select="''"/>
+                                    <xsl:with-param name="elemName">birthTime</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </relationshipHolder>
+                    </personalRelationship>
+                </subject>
+            </xsl:for-each>
+            <xsl:for-each select="kindspecifieke_gegevens_vorige_uitkomsten">
+                <xsl:for-each select="type_partus">
+                    <outboundRelationship typeCode="COMP">
+                        <!-- Template :: Type partus -->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901107_20180228162810"/>
+                    </outboundRelationship>
+                </xsl:for-each>
+                <xsl:for-each select="percentiel_van_het_geboortegewicht">
+                    <outboundRelationship typeCode="COMP">
+                        <!-- Template :: Percentiel geboortegewicht -->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900902_20161206103023"/>
+                    </outboundRelationship>
+                </xsl:for-each>
+                <xsl:for-each select="apgarscore_na_5_min">
+                    <outboundRelationship typeCode="COMP">
+                        <!-- Template :: Apgarscore na 5 min. -->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900294_20161206103247"/>
+                    </outboundRelationship>
+                </xsl:for-each>
+                <xsl:for-each select="congenitale_afwijkingenq">
+                    <outboundRelationship typeCode="COMP">
+                        <!-- Template :: Congenitale afwijkingen (ja nee) -->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901015_20161206103349"/>
+                    </outboundRelationship>
+                </xsl:for-each>
+                <xsl:for-each select=".//chromosomale_afwijkingenq">
+                    <outboundRelationship typeCode="COMP">
+                        <!-- Template :: Chromosomale afwijkingen (ja nee) -->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900981_20161206103540"/>
+                    </outboundRelationship>
+                </xsl:for-each>
+            </xsl:for-each>
+        </procedure>
+    </xsl:template>
     <!-- Chromosomale afwijkingen (ja nee) -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900981_20161206103540">
+        <observation classCode="OBS" moodCode="EVN">
+            <xsl:call-template name="makeNegationAttr"/>
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900981"/>
+            <code code="74345006" codeSystem="2.16.840.1.113883.6.96" displayName="Chromosomale afwijking"/>
+        </observation>
+    </xsl:template>
     <!-- Chromosomale afwijkingen (ja nee) -->
     <!-- Postnatale fase -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900983_20161202180940">
+        <organizer classCode="CONTAINER" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900983"/>
+            <code code="133906008" codeSystem="2.16.840.1.113883.6.96" displayName="Postnatale fase"/>
+            <!-- item diagnoseinterventie_postpartum of postnatale_fase (van reden verwijzing) -->
+            <xsl:for-each select="diagnoseinterventie_postpartum[pathologie_vrouw]">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Pathologie vrouw -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900984_20161202194808"/>
+                </component>
+            </xsl:for-each>
+        </organizer>
+    </xsl:template>
     <!-- Pathologie vrouw -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900984_20161202194808">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900984"/>
+            <code code="362973001" codeSystem="2.16.840.1.113883.6.96" displayName="Pathologie vrouw"/>
+            <!-- Item(s) :: datum-->
+            <xsl:for-each select="datum">
+                <xsl:call-template name="makeTS.DATE.MINValue">
+                    <xsl:with-param name="xsiType" select="''"/>
+                    <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <!-- Item(s) :: pathologie_vrouw w-->
+            <xsl:for-each select="pathologie_vrouw">
+                <xsl:call-template name="makeCEValue">
+                    <xsl:with-param name="elemName">value</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+        </observation>
+    </xsl:template>
     <!-- Maternaal onderzoek PRN -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900985_20161206111047">
+        <xsl:for-each select="maternale_onderzoeksgegevens">
+            <organizer classCode="CONTAINER" moodCode="EVN">
+                <templateId root="2.16.840.1.113883.2.4.6.10.90.900985"/>
+                <code code="12131-9" codeSystem="2.16.840.1.113883.6.1" displayName="Medisch onderzoek"/>
+                <xsl:for-each select="urine_bloed_en_aanvullende_onderzoeken/psie">
+                    <component typeCode="COMP" contextConductionInd="true">
+                        <!-- Template :: PsiePRN -->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900986_20161215113108"/>
+                    </component>
+                </xsl:for-each>
+            </organizer>
+        </xsl:for-each>
+    </xsl:template>
     <!-- PsiePRN -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900986_20161215113108">
+        <organizer classCode="CONTAINER" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900986"/>
+            <code code="PSIE" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="PSIE"/>
+            <xsl:for-each select="irregulaire_antistoffenq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Irregulaire antistoffen -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900171_20161215113718"/>
+                </component>
+            </xsl:for-each>
+        </organizer>
+    </xsl:template>
     <!-- PsiePRN -->
     <!-- Uitkomst per kind (subject) PRN Kernset -->
     <!-- Bevalling Kernset -->
@@ -2453,28 +5368,165 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Rol supervisor -->
     <!-- Rol aanpakker kind PRN Kernset -->
     <!-- Ruggeprik gewenst, niet gekregen -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900992_20161206134140">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900992"/>
+            <code code="RuggeprikGewNGekr" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Ruggeprik gewenst, niet gekregen"/>
+            <!-- Item(s) :: ruggeprik_gewenst_niet_gekregenq-->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Irregulaire antistoffen ja/nee -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900993_20161206101240">
+        <xsl:param name="parentElementName">pertinentInformation3</xsl:param>
+        <xsl:call-template name="question_observation">
+            <xsl:with-param name="parent_element_name" select="$parentElementName"/>
+            <xsl:with-param name="question" select="./irregulaire_antistoffenq"/>
+            <xsl:with-param name="observation" select="./irregulaire_antistoffen"/>
+            <xsl:with-param name="templateId">2.16.840.1.113883.2.4.6.10.90.900993</xsl:with-param>
+            <xsl:with-param name="observation_code" select="'312457003'"/>
+            <xsl:with-param name="observation_codeSystem" select="'2.16.840.1.113883.6.96'"/>
+            <xsl:with-param name="observation_displayName" select="'Irregulaire antistoffen'"/>
+        </xsl:call-template>
+    </xsl:template>
     <!-- PijnbestrijdingPRNKernset -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900995_20161206134416">
+        <procedure classCode="PROC" moodCode="EVN">
+            <!-- Item(s) :: pijnbestrijdingq -->
+            <xsl:call-template name="makeNegationAttr">
+                <xsl:with-param name="inputValue" select="./@value"/>
+            </xsl:call-template>
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900995"/>
+            <id nullFlavor="NI"/>
+            <code code="278414003" codeSystem="2.16.840.1.113883.6.96" displayName="Pijnbestrijding"/>
+            <!-- Item(s) :: methode-->
+            <xsl:for-each select="../pijnbestrijding/methode/methode">
+                <xsl:call-template name="makeCEValue">
+                    <xsl:with-param name="xsiType" select="''"/>
+                    <xsl:with-param name="elemName">methodCode</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="../pijnbestrijding/periode">
+                <outboundRelationship typeCode="COMP">
+                    <!-- Template :: Pijnbestrijding periode -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901022_20161206145212"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="../pijnbestrijding/methode/overig_middel">
+                <outboundRelationship typeCode="COMP">
+                    <procedure classCode="PROC" moodCode="EVN">
+                        <id nullFlavor="NI"/>
+                        <code code="PijnbestrOverig" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Pijnbestrijding met overig middel"/>
+                        <!-- Item(s) :: middel-->
+                        <xsl:for-each select="./middel">
+                            <xsl:call-template name="makeCEValue">
+                                <xsl:with-param name="xsiType" select="''"/>
+                                <xsl:with-param name="elemName">methodCode</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        <xsl:for-each select="./toediening">
+                            <outboundRelationship typeCode="COMP">
+                                <procedure classCode="PROC" moodCode="EVN">
+                                    <id nullFlavor="NI"/>
+                                    <code code="416118004" codeSystem="2.16.840.1.113883.6.96" displayName="Toediening"/>
+                                    <!-- Item(s) :: toediening-->
+                                    <xsl:call-template name="makeCEValue">
+                                        <xsl:with-param name="xsiType" select="''"/>
+                                        <xsl:with-param name="elemName">methodCode</xsl:with-param>
+                                    </xsl:call-template>
+                                </procedure>
+                            </outboundRelationship>
+                        </xsl:for-each>
+                    </procedure>
+                </outboundRelationship>
+            </xsl:for-each>
+        </procedure>
+    </xsl:template>
     <!-- PijnbestrijdingPRNKernset -->
     <!-- Sedatie Ja/Nee -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900996_20161206134556">
+        <procedure classCode="PROC" moodCode="EVN">
+            <xsl:call-template name="makeNegationAttr">
+                <xsl:with-param name="inputValue" select="@value"/>
+            </xsl:call-template>
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900996"/>
+            <id nullFlavor="NI"/>
+            <code code="72641008" codeSystem="2.16.840.1.113883.6.96" displayName="Sedatie"/>
+        </procedure>
+    </xsl:template>
     <!-- Sedatie Ja/Nee -->
     <!-- Herleidbare gegevens in onderzoeksdatabank? -->
     <!-- Voorgenomen plaats baring tijdens zwangerschap (type locatie) -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900998_20161215133052">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900998"/>
+            <code code="PRN4209" codeSystem="2.16.840.1.113883.2.4.3.22.1.3" displayName="Voorgenomen plaats baring"/>
+            <!-- Item(s) :: voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Vaginale kunstverlossing PRN Kernset -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900999_20161206134830">
+        <procedure classCode="PROC" moodCode="EVN" negationInd="false">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900999"/>
+            <id nullFlavor="NI"/>
+            <code code="3311000146109" codeSystem="2.16.840.1.113883.6.96" displayName="Vaginale kunstverlossing"/>
+            <!-- Item(s) :: vaginale_kunstverlossing-->
+            <xsl:for-each select="vaginale_kunstverlossing">
+                <xsl:call-template name="makeCEValue">
+                    <xsl:with-param name="xsiType" select="''"/>
+                    <xsl:with-param name="elemName">methodCode</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="succes_vaginale_kunstverlossingq">
+                <outboundRelationship typeCode="OUTC">
+                    <!-- Template :: Succes vaginale kunstverlossing -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900275_20161215134619"/>
+                </outboundRelationship>
+            </xsl:for-each>
+        </procedure>
+    </xsl:template>
     <!-- Voornemens -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901000_20161206110206">
+        <organizer classCode="CONTAINER" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901000"/>
+            <code code="Voornemen" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Voornemen"/>
+            <xsl:for-each select="voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Voorgenomen plaats baring tijdens zwangerschap (type locatie) -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900998_20161215133052"/>
+                </component>
+            </xsl:for-each>
+        </organizer>
+    </xsl:template>
     <!-- Voornemens -->
     <!-- Alcoholgebruik -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901001_20161206114803">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901001"/>
+            <code code="228309001" codeSystem="2.16.840.1.113883.6.96" displayName="Alcoholgebruik"/>
+            <!-- Item(s) :: alcoholgebruik-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Alcoholgebruik -->
     <!-- Drugsgebruik? -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901002_20161206114851">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901002"/>
+            <code code="Drugsgebruik" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Drugsgebruik"/>
+            <!-- Item(s) :: drugsgebruikq-->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Drugsgebruik? -->
     <!-- Prenatale controle -->
     <!-- Diagnose deze zwangerschap Kernset -->
@@ -2482,57 +5534,592 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Diagnose deze zwangerschap Kernsetbericht PRN -->
 
     <!-- PPROM? -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901007_20161202173503">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901007"/>
+            <code code="312974005" codeSystem="2.16.840.1.113883.6.96" displayName="PPROM"/>
+            <!-- Item(s) :: ppromq-->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- PROM? -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901008_20161202173654">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901008"/>
+            <code code="44223004" codeSystem="2.16.840.1.113883.6.96" displayName="PROM"/>
+            <!-- Item(s) :: promq promq-->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Koorts? -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901009_20161202173856">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901009"/>
+            <code code="386661006" codeSystem="2.16.840.1.113883.6.96" displayName="Koorts"/>
+            <!-- Item(s) :: koortsq -->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Koorts? -->
     <!-- Niet vorderende ontsluiting? -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901010_20161202174017">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901010"/>
+            <code code="237320005" codeSystem="2.16.840.1.113883.6.96" displayName="Niet vorderende ontsluiting"/>
+            <!-- Item(s) :: niet_vorderende_ontsluitingq niet_vorderende_ontsluitingq-->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Niet vorderende uitdrijving? -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901011_20161202174122">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901011"/>
+            <code code="249166003" codeSystem="2.16.840.1.113883.6.96" displayName="Niet vorderende uitdrijving"/>
+            <!-- Item(s) :: niet_vorderende_uitdrijvingq niet_vorderende_uitdrijvingq-->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Verdenking foetale nood? -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901012_20161202174235">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901012"/>
+            <code code="609415007:246090004=12867002" codeSystem="2.16.840.1.113883.6.96" displayName="Verdenking foetale nood"/>
+            <!-- Item(s) :: verdenking_foetale_noodq -->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Verdenking foetale nood? -->
     <!-- Vastzittende placenta -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901013_20161202174410">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901013"/>
+            <code code="109894007" codeSystem="2.16.840.1.113883.6.96" displayName="Vastzittende placenta"/>
+            <!-- Item(s) :: vastzittende_placentaq vastzittende_placentaq-->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Diagnose bevalling Kernsetbericht PRN -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901014_20161206125851">
+        <organizer classCode="CONTAINER" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901014"/>
+            <id nullFlavor="NI"/>
+            <code code="439401001" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnose"/>
+            <xsl:for-each select="./ppromq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: PPROM? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901007_20161202173503"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="./promq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: PROM? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901008_20161202173654"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="koortsq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Koorts? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901009_20161202173856"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="./niet_vorderende_ontsluitingq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Niet vorderende ontsluiting? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901010_20161202174017"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="niet_vorderende_uitdrijvingq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Niet vorderende uitdrijving? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901011_20161202174122"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="verdenking_foetale_noodq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Verdenking foetale nood? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901012_20161202174235"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="intrauteriene_vruchtdood[vermoeden_intrauteriene_vruchtdoodq]">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901091_20180220155029"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="vastzittende_placentaq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Vastzittende placenta -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901013_20161202174410"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="fluxus_postpartum">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Fluxus Postpartum -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901054_20161202165703"/>
+                </component>
+            </xsl:for-each>
+        </organizer>
+    </xsl:template>
     <!-- Diagnose bevalling Kernsetbericht PRN -->
     <!-- Congenitale afwijkingen (ja nee) -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901015_20161206103349">
+        <observation classCode="OBS" moodCode="EVN">
+            <xsl:call-template name="makeNegationAttr"/>
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901015"/>
+            <code code="443341004" codeSystem="2.16.840.1.113883.6.96" displayName="Congenitale afwijking"/>
+        </observation>
+    </xsl:template>
     <!-- Chromosomale afwijkingen NoUnc -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901016_20161206135419">
+        <xsl:param name="chr_afw_question"/>
+        <xsl:param name="chr_afw_observation"/>
+        <observation classCode="OBS" moodCode="EVN">
+            <xsl:call-template name="makeNegationAttr">
+                <xsl:with-param name="inputValue" select="$chr_afw_question/@value"/>
+            </xsl:call-template>
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901016"/>
+            <code code="74345006" codeSystem="2.16.840.1.113883.6.96" displayName="Chromosomale afwijking"/>
+            <!-- Item(s) :: specificatie_chromosomale_afwijking-->
+            <xsl:for-each select="$chr_afw_observation">
+                <xsl:call-template name="makeCEValue">
+                    <xsl:with-param name="elemName">value</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+        </observation>
+    </xsl:template>
     <!-- Congenitale afwijkingen NoUnc -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901017_20161206135251">
+        <xsl:param name="cong_afw_question"/>
+        <xsl:param name="cong_afw_observation"/>
+        <observation classCode="OBS" moodCode="EVN">
+            <xsl:call-template name="makeNegationAttr">
+                <xsl:with-param name="inputValue" select="$cong_afw_question/@value"/>
+            </xsl:call-template>
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901017"/>
+            <code code="443341004" codeSystem="2.16.840.1.113883.6.96" displayName="Congenitale afwijking"/>
+            <!-- Item(s) :: specificatie_congenitale_afwijking-->
+            <xsl:for-each select="$cong_afw_observation">
+                <xsl:call-template name="makeCEValue">
+                    <xsl:with-param name="elemName">value</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+        </observation>
+    </xsl:template>
     <!-- Problematiek kind -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901019_20161206135430">
+        <observation classCode="OBS" moodCode="EVN">
+            <xsl:call-template name="makeNegationAttr"/>
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901019"/>
+            <code code="ProblematiekKind" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Problematiek kind"/>
+            <!-- Item(s) :: problematiek_kind-->
+            <xsl:for-each select="../problematiek_kind">
+                <xsl:call-template name="makeCEValue">
+                    <xsl:with-param name="elemName">value</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+        </observation>
+    </xsl:template>
     <!-- Problematiek kind -->
     <!-- Betrokkenheid kinderarts -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901020_20161206135638">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901020"/>
+            <code code="KinderartsBetrokken" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+            <!-- Item(s) :: type_betrokkenheid-->
+            <xsl:for-each select="../betrokkenheid_kinderarts/type_betrokkenheid">
+                <xsl:call-template name="makeCEValue">
+                    <xsl:with-param name="elemName">value</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <performer typeCode="SPRF">
+                <!-- Item(s) :: datum_betrokkenheid-->
+                <xsl:for-each select="../betrokkenheid_kinderarts/datum_betrokkenheid">
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="xsiType" select="''"/>
+                        <xsl:with-param name="elemName">time</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <assignedEntity classCode="ASSIGNED">
+                    <code code="01.019" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Kinderarts"/>
+                    <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                        <!-- Item(s) :: zorginstelling_lvrid -->
+                        <xsl:for-each select="../betrokkenheid_kinderarts[zorginstelling_lvrid]">
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901018_20141107145228"/>
+                        </xsl:for-each>
+                    </representedOrganization>
+                </assignedEntity>
+            </performer>
+        </observation>
+    </xsl:template>
     <!-- Betrokkenheid kinderarts Reden -->
     
     <!-- Pijnbestrijding periode -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901022_20161206145212">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901022"/>
+            <code code="PijnbestrPeriode" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Pijnbestrijding periode"/>
+            <!-- Item(s) :: periode-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Leven voelen -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901023_20161206114616">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901023"/>
+            <code code="364618000" codeSystem="2.16.840.1.113883.6.96" displayName="Leven voelen"/>
+            <!-- Item(s) :: leven_voelen-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Transfusiereactie -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901024_20161202133114">
+        <observation classCode="OBS" moodCode="EVN" negationInd="false">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901024"/>
+            <code code="82545002" codeSystem="2.16.840.1.113883.6.96" displayName="Transfusiereactie"/>
+            <!-- Item(s) :: transfusiereactieq -->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- PsychiatriePRN -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901026_20161202133709">
+        <xsl:call-template name="observationQ">
+            <xsl:with-param name="observation_templateId" select="'2.16.840.1.113883.2.4.6.10.90.901026'"/>
+            <xsl:with-param name="observation_code" select="'74732009'"/>
+            <xsl:with-param name="observation_codeSystem" select="'2.16.840.1.113883.6.96'"/>
+            <xsl:with-param name="observation_displayName" select="'Psychiatrie'"/>
+        </xsl:call-template>
+    </xsl:template>
     <!-- Reden verwijzing (obstetrische anamnese) 2.3.3-->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901096_20180221152713">
+        <organizer classCode="CONTAINER" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901096"/>
+            <code code="248983002" codeSystem="2.16.840.1.113883.6.96" displayName="Obstetrische anamnese"/>
+            <xsl:for-each select="gynaecologische_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Gynaecologische aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900954_20161202125822"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="bloedverliesq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Bloedverlies? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900967_20161202142446"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="partiele_molaq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Partiële mola? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901005_20161202142628"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="cervixinsufficientieq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Cervixinsufficiëntie? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900968_20161202144215"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="infectie">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Infectieziekte -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900975_20161202144326"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="hyperemesis_gravidarumq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Hyperemesis gravidarum? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900969_20161202144436"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="hypertensieve_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Hypertensieve aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900977_20161202145706"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="zwangerschapscholestaseq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Zwangerschapscholestase? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900971_20161202144715"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="diabetes_gravidarum_met_insulineq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Diabetes gravidarum met insuline? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900978_20161202144812"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="afwijkende_groei_foetus">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Afwijkende groei foetus -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900976_20161202144857"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="dreigende_partus_immaturusq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Dreigende partus immaturus? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900972_20161202144955"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="dreigende_partus_prematurusq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Dreigende partus prematurus? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900973_20161202145105"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="abruptio_placentaeq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Abruptio placentae? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900974_20161202145207"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="fluxus_postpartumq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Fluxus Postpartum -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901054_20161202165703"/>
+                </component>
+            </xsl:for-each>
+        </organizer>
+    </xsl:template>
     <!-- Reden Verwijzing 2.3.3 -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901097_20180221154011">
+        <xsl:if test="name(.) = 'algemene_anamnese'">
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901048_20161202111820"/>
+        </xsl:if>
+        <xsl:if test="name(.) = 'obstetrische_anamnese'">
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901096_20180221152713"/>
+        </xsl:if>
+        <xsl:if test="name(.) = 'zwangerschap'">
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901100_20180223140936"/>
+        </xsl:if>
+        <xsl:if test="name(.) = 'einde_zwangerschap'">
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901055_20161202170207"/>
+        </xsl:if>
+        <xsl:if test="name(.) = 'bevalling'">
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901099_20180223113239"/>
+        </xsl:if>
+        <xsl:if test="name(.) = 'postnatale_fase'">
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900983_20161202180940"/>
+        </xsl:if>
+        <xsl:if test="name(.) = 'overig'">
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901058_20161202183205"/>
+        </xsl:if>
+        <xsl:if test="name(.) = 'van_2e_naar_3e_lijn'">
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901060_20161203172345"/>
+        </xsl:if>
+        <xsl:if test="name(.) = 'van_2e_naar_1e_lijn'">
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901061_20161205165345"/>
+        </xsl:if>
+        <xsl:if test="name(.) = 'van_3e_naar_2e_lijn'">
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901062_20161205165345"/>
+        </xsl:if>
+    </xsl:template>
     <!-- Verwijsdetails 2.3.3-->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901098_20180221154619">
+        <act classCode="ACT" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901098"/>
+            <code code="3457005" codeSystem="2.16.840.1.113883.6.96" displayName="Verwijsdetails"/>
+            <!-- Item(s) :: datum_verwijzing-->
+            <xsl:for-each select="datum_verwijzing">
+                <xsl:call-template name="makeTSValue">
+                    <xsl:with-param name="xsiType" select="''"/>
+                    <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="verwijzing_naar">
+                <performer typeCode="PRF">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901045_20161201143523"/>
+                </performer>
+            </xsl:for-each>
+            <xsl:for-each select="verwijzing_van">
+                <author typeCode="AUT">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901045_20161201143523"/>
+                </author>
+            </xsl:for-each>
+            <xsl:for-each select="redenen_van_verwijzing">
+                <xsl:for-each select="van_1e_naar_2e_lijn">
+                    <xsl:for-each select="./algemene_anamnese | ./obstetrische_anamnese | ./zwangerschap | ./einde_zwangerschap | ./bevalling | ./postnatale_fase | ./overig">
+                        <outboundRelationship typeCode="RSON">
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901097_20180221154011"/>
+                        </outboundRelationship>
+                    </xsl:for-each>
+                </xsl:for-each>
+                <xsl:for-each select="van_2e_naar_3e_lijn | van_2e_naar_1e_lijn | van_3e_naar_2e_lijn">
+                    <outboundRelationship typeCode="RSON">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901097_20180221154011"/>
+                    </outboundRelationship>
+                </xsl:for-each>
+            </xsl:for-each>
+            <xsl:for-each select="perinatale_periode">
+                <outboundRelationship typeCode="PERT">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900895_20161203165258"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="verwijzing_naar/type_verwijzing">
+                <outboundRelationship typeCode="GEN" inversionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901059_20161203164103"/>
+                </outboundRelationship>
+            </xsl:for-each>
+        </act>
+    </xsl:template>
     <!-- Reden verwijzing (deze zwangerschap) -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901100_20180223140936">
+        <organizer classCode="CONTAINER" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901100"/>
+            <code code="364320009" codeSystem="2.16.840.1.113883.6.96" displayName="Zwangerschap"/>
+            <xsl:for-each select="gynaecologische_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Gynaecologische aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900954_20161202125822"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="bloedverliesq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Bloedverlies? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900967_20161202142446"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="partiele_mola">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Partiële mola? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901005_20161202142628"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="cervixinsufficientie">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Cervixinsufficiëntie? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900968_20161202144215"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="infectieziekte">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Infectieziekte -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900950_20161202115613"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="hyperemesis_gravidarumq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Hyperemesis gravidarum? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900969_20161202144436"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="hypertensieve_aandoening">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Hypertensieve aandoening -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900977_20161202145706"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="zwangerschapscholestaseq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Zwangerschapscholestase? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900971_20161202144715"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="diabetes_gravidarum_met_insulineq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Diabetes gravidarum met insuline? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900978_20161202144812"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="afwijkende_groei_foetus">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Afwijkende groei foetus -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900976_20161202144857"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="dreigende_partus_immaturusq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Dreigende partus immaturus? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900972_20161202144955"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="dreigende_partus_prematurusq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Dreigende partus prematurus? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900973_20161202145105"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="abruptio_placentaeq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Abruptio placentae? -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900974_20161202145207"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="navelstrengprolapsq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Navelstrengprolaps -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901052_20161202154625"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="liggingsafwijking">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Liggingsafwijking -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901053_20161202154917"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="intrauteriene_vruchtdood/vermoeden_intrauteriene_vruchtdoodq">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <!-- Template :: Intra-uteriene vruchtdood -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900918_20161202160924"/>
+                </component>
+            </xsl:for-each>
+        </organizer>
+    </xsl:template>
     <!-- Indicatie primaire sectio -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901105_20180228121453">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901105"/>
+            <code code="SectioCaeInd" codeSystem="2.16.840.1.113883.2.4.3.22.1.1" displayName="Indicatie sectio"/>
+            <!-- Item(s) :: indicatie_primaire_sectio-->
+            <xsl:call-template name="makeCEValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <!-- Section caesarea -->
-    
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901106_20180228150344">
+        <procedure classCode="PROC" moodCode="EVN" negationInd="false">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901106"/>
+            <id nullFlavor="NI"/>
+            <code code="11466000" codeSystem="2.16.840.1.113883.6.96" displayName="Sectio caesarea"/>
+            <xsl:for-each select="./beslismoment_sectio_caesarea">
+                <outboundRelationship typeCode="FLFS">
+                    <!-- Template :: Beslismoment sectio caesarea -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900278_20161215134825"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="indicatie_primaire_sectio">
+                <outboundRelationship typeCode="RSON">
+                    <!-- Template :: Indicatie primaire sectio -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901105_20180228121453"/>
+                </outboundRelationship>
+            </xsl:for-each>
+            <xsl:for-each select="indicatie_secundaire_sectio">
+                <outboundRelationship typeCode="RSON">
+                    <!-- Template :: Indicatie secundaire Sectio Caesarea -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901090_20161220000000"/>
+                </outboundRelationship>
+            </xsl:for-each>
+        </procedure>
+    </xsl:template>
 
     <!-- Assigned Person [peri] -->
     <xsl:template name="observation">
