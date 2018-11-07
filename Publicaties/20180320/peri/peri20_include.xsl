@@ -3256,10 +3256,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901019_20141107151406">
+        <!-- MdG: null bij geen data -->
+        <xsl:if test="not(./kindspecifieke_uitkomstgegevens/problematiek_kindq) and not(./kindspecifieke_uitkomstgegevens/problematiek_kind)">
+            <outboundRelationship typeCode="COMP">
+                <observation classCode="OBS" moodCode="EVN" nullFlavor="NI">
+                    <code code="ProblematiekKind" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Problematiek kind"/>
+                </observation>
+            </outboundRelationship>
+        </xsl:if>
+        <!-- MdG: bij wel problemen is vraag 'ja' -->
+        <xsl:variable name="kindprobq" select="if (not(./kindspecifieke_uitkomstgegevens/problematiek_kindq) and ./kindspecifieke_uitkomstgegevens/problematiek_kind) then 'true' else ./kindspecifieke_uitkomstgegevens/problematiek_kindq"/>
         <!--Problematiek kind-->
         <xsl:call-template name="question_observation">
             <xsl:with-param name="parent_element_name" select="'outboundRelationship'"/>
-            <xsl:with-param name="question" select="./kindspecifieke_uitkomstgegevens/problematiek_kindq"/>
+            <xsl:with-param name="question" select="$kindprobq"/>
             <xsl:with-param name="observation" select="./kindspecifieke_uitkomstgegevens/problematiek_kind"/>
             <xsl:with-param name="observation_code" select="'ProblematiekKind'"/>
             <xsl:with-param name="observation_codeSystem" select="'2.16.840.1.113883.2.4.4.13'"/>
