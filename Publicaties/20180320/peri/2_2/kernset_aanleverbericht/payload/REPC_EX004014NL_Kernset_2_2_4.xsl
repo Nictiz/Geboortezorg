@@ -59,7 +59,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <subject2 typeCode="SUBJ" contextConductionInd="false">
             <CareProvisionEvent classCode="PCPR" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.6.10.90.73"/>
-                <id root="1.2.3.4.5" extension="15951"/>
+                <!-- MdG: Uniek dossiernummer. Root is generieke root+lvrid, binnen lvrid moet dossiernummer uniek zijn. -->
+                <id root="2.16.840.1.113883.2.4.3.46.10.5.1.{$zorgverlenerzorginstelling/zorginstelling/zorginstelling_lvrid/@value}" extension="{$zwangerschap/dossiernummer/@value}"/>
                 <effectiveTime>
                     <xsl:for-each select="$zorgverlening/datum_start_zorgverantwoordelijkheid">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900115_20120902000000"/>
