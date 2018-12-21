@@ -2466,15 +2466,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900984_20141028000000">
         <!-- Pathologie vrouw -->
-        <xsl:call-template name="question_observation">
-            <xsl:with-param name="parent_element_name" select="'component'"/>
-            <xsl:with-param name="question" select="./pathologie_vrouwq"/>
-            <xsl:with-param name="observation" select="./pathologie_vrouw"/>
-            <xsl:with-param name="observation_code" select="'362973001'"/>
-            <xsl:with-param name="observation_effectiveTime" select="./datum"/>
-            <xsl:with-param name="observation_codeSystem" select="'2.16.840.1.113883.6.96'"/>
-            <xsl:with-param name="observation_displayName" select="'Diagnose postpartum'"/>
-        </xsl:call-template>
+        <xsl:choose>
+            <xsl:when test="./pathologie_vrouwq/@value='true' and not(./pathologie_vrouw)">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                        <code code="362973001"
+                            codeSystem="2.16.840.1.113883.6.96"
+                            displayName="Diagnose postpartum"/>
+                        <value xsi:type="CE" nullFlavor="NI"/>
+                    </observation>
+                </component>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="question_observation">
+                    <xsl:with-param name="parent_element_name" select="'component'"/>
+                    <xsl:with-param name="question" select="./pathologie_vrouwq"/>
+                    <xsl:with-param name="observation" select="./pathologie_vrouw"/>
+                    <xsl:with-param name="observation_code" select="'362973001'"/>
+                    <xsl:with-param name="observation_effectiveTime" select="./datum"/>
+                    <xsl:with-param name="observation_codeSystem" select="'2.16.840.1.113883.6.96'"/>
+                    <xsl:with-param name="observation_displayName" select="'Diagnose postpartum'"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900985_20141103113239">
         <!-- Maternaal onderzoek PRN -->
