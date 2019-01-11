@@ -1,0 +1,12 @@
+{
+  "name": "@nictiz/Geboortezorg",
+  "description": "Geboortezorg informatiestandaard",
+  "version": "1.0.0",
+  "license": "",
+  "author": "NICTIZ",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nictiz/Geboortezorg.git"
+  },
+  "homepage": "http://decor.nictiz.nl/perinatologie/"
+}
