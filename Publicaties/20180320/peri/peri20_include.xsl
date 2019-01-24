@@ -2787,6 +2787,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900425_20110128000000"/>
                 </outboundRelationship>
             </xsl:for-each>
+            <!-- MdG: null bij geen data -->
+            <xsl:if test="not(./kindspecifieke_uitkomstgegevens/lichamelijk_onderzoek_kind/geboortegewicht)">
+                <outboundRelationship typeCode="COMP">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <code code="8339-4" codeSystem="2.16.840.1.113883.6.1"/>
+                        <value xsi:type="PQ" nullFlavor="NI"/>
+                    </observation>
+                </outboundRelationship>
+            </xsl:if>
             <!-- Item: 40080 - Congenitale afwijkingen -->
             <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901017_20141107134642"/>
             <!-- Item: 40080 - Chromosomale afwijkingen -->
