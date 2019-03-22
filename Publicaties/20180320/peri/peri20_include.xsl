@@ -1984,6 +1984,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
+    <!-- Onder behandeling (geweest)? -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900958_20161215115649">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900958"/>
+            <code code="OnderBehandeling" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Onder behandeling (geweest)?"/>
+            <!-- Item(s) :: onder_behandeling_geweestq -->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900959_20141027000000">
         <!--Algemene anamnese PRN-->
         <organizer classCode="CONTAINER" moodCode="EVN">
@@ -4961,26 +4972,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <organizer classCode="CONTAINER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900963"/>
             <code code="417662000" codeSystem="2.16.840.1.113883.6.96" displayName="Anamnese"/>
-            <xsl:for-each select="./onder_behandeling_geweestq">
+            <xsl:for-each select="./onder_behandeling_geweestq[@value='false']">
                 <component typeCode="COMP">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900958_20141027000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900958_20161215115649"/>
                 </component>
             </xsl:for-each>
-            <!-- Aannemen dat als er een algemene anamnese item met 'true' is, of met een echte code, dat er dan ook sprake was van behandeling.
-                 Output letterlijk fragment, want er is geen input node. -->
-            <xsl:if test="not(./onder_behandeling_geweestq) and (algemene_anamnese/*[@value='true'] or algemene_anamnese/*[@code][@codeSystem])">
+            <!-- Bij een algemene anamnese met gegevens erin, 'Onder behandeling geweest?' op ja zetten, anders komt er een HL7 fout op de anamnese,
+            en de anamnese opnemen -->
+            <xsl:if test="algemene_anamnese/*[@value|@code|@nullFlavor]">
                 <component typeCode="COMP">
                     <observation classCode="OBS" moodCode="EVN">
-                        <code code="OnderBehandeling" displayName="Onder behandeling (geweest)?" codeSystem="PerinatologyObservations"/>
+                        <templateId root="2.16.840.1.113883.2.4.6.10.90.900958"/>
+                        <code code="OnderBehandeling" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Onder behandeling (geweest)?"/>
                         <value xsi:type="BL" value="true"/>
                     </observation>
                 </component>
-            </xsl:if>
-            <component typeCode="COMP">
-                <xsl:for-each select="algemene_anamnese">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900959_20161205180704"/>
+                <xsl:for-each select="./algemene_anamnese[.//(@value|@code|@nullFlavor)]">
+                    <component typeCode="COMP">
+                        <!-- algemene_anamnese -->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900959_20161205180704"/>
+                    </component>
                 </xsl:for-each>
-            </component>
+            </xsl:if>
         </organizer>
     </xsl:template>
     <!-- Anamnese PRN -->
