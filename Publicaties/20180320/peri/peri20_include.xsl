@@ -5734,7 +5734,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901013_20161202174410"/>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="fluxus_postpartum">
+            <xsl:for-each select="fluxus_postpartumq">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: Fluxus Postpartum -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901054_20161202165703"/>
