@@ -3928,16 +3928,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <xsl:for-each select="./kindspecifieke_uitkomstgegevens/congenitale_afwijkingenq">
                 <xsl:variable name="cong_afw_question" select="."/>
-                <xsl:for-each select="../congenitale_afwijkingen_groep/specificatie_congenitale_afwijking_groep/specificatie_congenitale_afwijking">
-                    <outboundRelationship typeCode="COMP">
+                <xsl:choose>
+                    <xsl:when test="../congenitale_afwijkingen_groep/specificatie_congenitale_afwijking_groep/specificatie_congenitale_afwijking[.//(@value|@code|@nullFlavor)]">
+                        <xsl:for-each select="../congenitale_afwijkingen_groep/specificatie_congenitale_afwijking_groep/specificatie_congenitale_afwijking">
+                            <!-- Template :: Congenitale afwijkingen NoUnc -->
+                            <outboundRelationship typeCode="COMP">
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901017_20161206135251">
+                                    <xsl:with-param name="cong_afw_question" select="$cong_afw_question"/>
+                                    <xsl:with-param name="cong_afw_observation" select="."/>
+                                </xsl:call-template>
+                            </outboundRelationship>
+                        </xsl:for-each>
+                    </xsl:when>
+                    <xsl:otherwise>
                         <!-- Template :: Congenitale afwijkingen NoUnc -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901017_20161206135251">
-                            <xsl:with-param name="cong_afw_question" select="$cong_afw_question"/>
-                            <xsl:with-param name="cong_afw_observation" select="."/>
-                        </xsl:call-template>
-                    </outboundRelationship>
-                </xsl:for-each>
-            </xsl:for-each>
+                        <outboundRelationship typeCode="COMP">
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901017_20161206135251">
+                                <xsl:with-param name="cong_afw_question" select="$cong_afw_question"/>
+                            </xsl:call-template>
+                        </outboundRelationship>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>            
             <xsl:for-each select="./kindspecifieke_uitkomstgegevens/congenitale_afwijkingen_groep/chromosomale_afwijkingenq">
                 <xsl:variable name="chr_afw_question" select="."/>
                 <xsl:for-each select="../specificatie_chromosomale_afwijking_groep/specificatie_chromosomale_afwijking">
