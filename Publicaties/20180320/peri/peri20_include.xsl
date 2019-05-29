@@ -2062,14 +2062,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900964_20141027000000">
         <!-- Type vrouwelijke genitale verminking -->
-        <xsl:call-template name="question_observation">
-            <xsl:with-param name="parent_element_name" select="'pertinentInformation3'"/>
-            <xsl:with-param name="question" select="./vrouwelijke_genitale_verminkingq"/>
-            <xsl:with-param name="observation" select="./type_vrouwelijke_genitale_verminking"/>
-            <xsl:with-param name="observation_code" select="'95041000119101'"/>
-            <xsl:with-param name="observation_codeSystem" select="'2.16.840.1.113883.6.96'"/>
-            <xsl:with-param name="observation_displayName" select="'Vrouwelijke genitale verminking'"/>
-        </xsl:call-template>
+        <xsl:choose>
+            <xsl:when test="./vrouwelijke_genitale_verminkingq/@value='true' and not(./type_vrouwelijke_genitale_verminking)">
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                        <code code="95041000119101"
+                            codeSystem="2.16.840.1.113883.6.96"
+                            displayName="Vrouwelijke genitale verminking"/>
+                        <value xsi:type="CE" nullFlavor="NI"/>
+                    </observation>
+                </pertinentInformation3>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="question_observation">
+                    <xsl:with-param name="parent_element_name" select="'pertinentInformation3'"/>
+                    <xsl:with-param name="question" select="./vrouwelijke_genitale_verminkingq"/>
+                    <xsl:with-param name="observation" select="./type_vrouwelijke_genitale_verminking"/>
+                    <xsl:with-param name="observation_code" select="'95041000119101'"/>
+                    <xsl:with-param name="observation_codeSystem" select="'2.16.840.1.113883.6.96'"/>
+                    <xsl:with-param name="observation_displayName" select="'Vrouwelijke genitale verminking'"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900966_20141028000000">
         <!--Obstetrische anamnese voorgaande zwangerschap Kernsetbericht PRN-->
