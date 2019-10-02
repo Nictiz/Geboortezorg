@@ -32,7 +32,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:template match="/">
         <xsl:call-template name="Wrappers">
-            <xsl:with-param name="transmission_wrapper" select="//transmission_wrapper"/>
+            <xsl:with-param name="transmission_wrapper" select="$input_xml_wrapper_doc//transmission_wrapper"/>
             <xsl:with-param name="payload_xml" select="$input_xml_payload_doc"/>
         </xsl:call-template>
     </xsl:template>
