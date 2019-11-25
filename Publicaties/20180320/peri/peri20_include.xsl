@@ -2756,13 +2756,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </outboundRelationship>
             </xsl:for-each>
             <!-- Item 82091 - Pijnbestrijding -->
-            <xsl:if test="./kindspecifieke_maternale_gegevens/pijnbestrijdingq or ./kindspecifieke_maternale_gegevens/pijnbestrijding">
-                <xsl:for-each select="./kindspecifieke_maternale_gegevens">
-                    <outboundRelationship typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900995_20141104155625"/>
-                    </outboundRelationship>
-                </xsl:for-each>
+            <xsl:if test="./kindspecifieke_maternale_gegevens/pijnbestrijdingq/@value='false'">
+                <outboundRelationship typeCode="COMP">
+                    <procedure classCode="PROC" moodCode="EVN" negationInd="true">
+                        <id nullFlavor="NI"/>
+                        <code code="278414003" codeSystem="2.16.840.1.113883.6.96" displayName="Pijnbestrijding"/>
+                    </procedure>
+                </outboundRelationship>
             </xsl:if>
+            <xsl:for-each select="./kindspecifieke_maternale_gegevens/pijnbestrijding">
+                <outboundRelationship typeCode="COMP">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900995_20141104155625"/>
+                </outboundRelationship>
+            </xsl:for-each>
             <!-- Sedatie? -->
             <xsl:for-each select="./kindspecifieke_maternale_gegevens/sedatieq">
                 <outboundRelationship typeCode="COMP">
@@ -2897,22 +2903,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900995_20141104155625">
         <!-- Pijnbestrijding -->
-        <procedure classCode="PROC" moodCode="EVN">
-            <xsl:attribute name="negationInd" select="./pijnbestrijdingq/@value = 'false'"/>
+        <procedure classCode="PROC" moodCode="EVN" negationInd="false">
             <id nullFlavor="NI"/>
             <code code="278414003" codeSystem="2.16.840.1.113883.6.96" displayName="Pijnbestrijding"/>
-            <xsl:for-each select="./pijnbestrijding/methode/methode">
+            <xsl:for-each select="./methode/methode">
                 <methodCode>
                     <xsl:call-template name="makeCodeAttribs"/>
                 </methodCode>
             </xsl:for-each>
-            <xsl:for-each select="./pijnbestrijding/periode">
+            <xsl:for-each select="./periode">
                 <outboundRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901022_20141113000000"/>
                 </outboundRelationship>
             </xsl:for-each>
-            <xsl:if test="./pijnbestrijding/methode/overig_middel/middel or ./pijnbestrijding/methode/overig_middel/toediening">
-                <xsl:for-each select="./pijnbestrijding/methode/overig_middel">
+            <xsl:if test="./methode/overig_middel/middel or ./methode/overig_middel/toediening">
+                <xsl:for-each select="./methode/overig_middel">
                     <outboundRelationship typeCode="COMP">
                         <procedure classCode="PROC" moodCode="EVN">
                             <id nullFlavor="NI"/>
