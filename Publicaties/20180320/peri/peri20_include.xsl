@@ -1430,7 +1430,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <postalCode>
                 <xsl:choose>
                     <xsl:when test="string-length($inputValue) &gt; 0">
-                        <xsl:value-of select="./@value"/>
+                        <xsl:value-of select="$inputValue"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:attribute name="nullFlavor">NI</xsl:attribute>
