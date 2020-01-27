@@ -91,7 +91,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900118_20161206113252"/>
                     </pertinentInformation3>
                 </xsl:for-each>
-                <!-- Conclusie risicostatus na intake -->
+                <!-- MdG NI bij geen informatie -->
+                <xsl:if test="not($zorgverlening/eindverantwoordelijk_in_welke_perinatale_periodeq)">
+                    <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                        <observation classCode="OBS" moodCode="EVN">
+                            <code code="Rpp" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                            <value xsi:type="CE" nullFlavor="NI"/>
+                        </observation>
+                    </pertinentInformation3>
+                </xsl:if>                <!-- Conclusie risicostatus na intake -->
                 <xsl:for-each select="$param_zorgverlening/conclusie_risicostatus_na_intake">
                     <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
                         <!-- Template :: Conclusie risicostatus na intake -->

@@ -3849,7 +3849,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900255_20161206133653"/>
                 </outboundRelationship>
             </xsl:for-each>
-            <xsl:for-each select="./demografische_gegevens/rangnummer_kind">
+            <xsl:for-each select="$var_rangnummer_kind">
                 <outboundRelationship typeCode="COMP">
                     <!-- Template :: Rangnummer kind -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900400_20161206133754"/>
@@ -3945,6 +3945,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900425_20161206135217"/>
                 </outboundRelationship>
             </xsl:for-each>
+            <!-- MdG: null bij geen data -->
+            <xsl:if test="not(./kindspecifieke_uitkomstgegevens/lichamelijk_onderzoek_kind/geboortegewicht)">
+                <outboundRelationship typeCode="COMP">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <code code="8339-4" codeSystem="2.16.840.1.113883.6.1"/>
+                        <value xsi:type="PQ" nullFlavor="NI"/>
+                    </observation>
+                </outboundRelationship>
+            </xsl:if>
             <xsl:for-each select="./kindspecifieke_uitkomstgegevens/congenitale_afwijkingenq">
                 <xsl:variable name="cong_afw_question" select="."/>
                 <xsl:choose>
@@ -4568,6 +4577,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
+            <!-- MdG: NI als geen datum -->
+            <xsl:if test="not(./voeding_kind_datum)">
+                <effectiveTime nullFlavor="NI"/>
+            </xsl:if>
             <xsl:for-each select="substantie_voeding_kind">
                 <product typeCode="PRD">
                     <product classCode="ACCESS">
@@ -5030,15 +5043,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Anamnese PRN -->
     <!-- Type vrouwelijke genitale verminking -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900964_20161205183736">
-        <xsl:call-template name="question_observation">
-            <xsl:with-param name="parent_element_name">pertinentInformation3</xsl:with-param>
-            <xsl:with-param name="question" select="./vrouwelijke_genitale_verminkingq"/>
-            <xsl:with-param name="observation" select="./type_vrouwelijke_genitale_verminking"/>
-            <xsl:with-param name="templateId">2.16.840.1.113883.2.4.6.10.90.900964</xsl:with-param>
-            <xsl:with-param name="observation_code">95041000119101</xsl:with-param>
-            <xsl:with-param name="observation_codeSystem">2.16.840.1.113883.6.96</xsl:with-param>
-            <xsl:with-param name="observation_displayName">Vrouwelijke genitale verminking</xsl:with-param>
-        </xsl:call-template>
+        <!-- Type vrouwelijke genitale verminking -->
+        <xsl:choose>
+            <xsl:when test="./vrouwelijke_genitale_verminkingq/@value='true' and not(./type_vrouwelijke_genitale_verminking)">
+                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                    <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                        <code code="95041000119101"
+                            codeSystem="2.16.840.1.113883.6.96"
+                            displayName="Vrouwelijke genitale verminking"/>
+                        <value xsi:type="CE" nullFlavor="NI"/>
+                    </observation>
+                </pertinentInformation3>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="question_observation">
+                    <xsl:with-param name="parent_element_name">pertinentInformation3</xsl:with-param>
+                    <xsl:with-param name="question" select="./vrouwelijke_genitale_verminkingq"/>
+                    <xsl:with-param name="observation" select="./type_vrouwelijke_genitale_verminking"/>
+                    <xsl:with-param name="templateId">2.16.840.1.113883.2.4.6.10.90.900964</xsl:with-param>
+                    <xsl:with-param name="observation_code">95041000119101</xsl:with-param>
+                    <xsl:with-param name="observation_codeSystem">2.16.840.1.113883.6.96</xsl:with-param>
+                    <xsl:with-param name="observation_displayName">Vrouwelijke genitale verminking</xsl:with-param>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     <!-- Obstetrische anamnese Kernset 2.3.2 -->
     
