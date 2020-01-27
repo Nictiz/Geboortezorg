@@ -3829,6 +3829,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!-- Item(s) :: ziekenhuisnummer_lvrid -->
                         <xsl:for-each select="./ziekenhuis_baring/ziekenhuisnummer_lvrid">
                             <xsl:call-template name="makeIIValue">
+                                <!-- Root LVR-id is '2.16.840.1.113883.2.4.3.22.96.6' -->
+                                <xsl:with-param name="root">2.16.840.1.113883.2.4.3.22.96.6</xsl:with-param>
                                 <xsl:with-param name="xsiType" select="''"/>
                                 <xsl:with-param name="elemName">id</xsl:with-param>
                             </xsl:call-template>
