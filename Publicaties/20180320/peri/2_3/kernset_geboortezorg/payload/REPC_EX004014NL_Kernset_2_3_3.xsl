@@ -92,7 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </pertinentInformation3>
                 </xsl:for-each>
                 <!-- MdG NI bij geen informatie -->
-                <xsl:if test="not($zorgverlening/eindverantwoordelijk_in_welke_perinatale_periodeq)">
+                <xsl:if test="not($param_zorgverlening/eindverantwoordelijk_in_welke_perinatale_periodeq)">
                     <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
                         <observation classCode="OBS" moodCode="EVN">
                             <code code="Rpp" codeSystem="2.16.840.1.113883.2.4.4.13"/>
