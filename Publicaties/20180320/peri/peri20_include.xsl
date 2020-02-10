@@ -10,7 +10,8 @@ without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
 See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
---><xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+-->
+<xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:include href="../hl7/hl7_include.xsl"/>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900004_20110128000000">
         <!-- Graviditeit -->
@@ -31,7 +32,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Naam zorgverlener -->
-    
+
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900009_20110128000000">
         <!-- Actuele a terme datum indicator -->
         <observation classCode="OBS" moodCode="EVN">
@@ -206,10 +207,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
     <!-- Prenatale screening aangekaart -->
-    
+
 
     <!-- Prenatale screening aangekaart -->
-    
+
 
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900186_20111206000000">
         <!-- Infectieparameter HBsAg -->
@@ -219,7 +220,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Counseling prenatale gewenst -->
-    
+
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900197_20091001000000">
         <!-- Tijdstip begin actieve ontsluiting -->
         <observation classCode="OBS" moodCode="EVN">
@@ -308,17 +309,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </deceasedInd>
     </xsl:template>
     <!-- Direct IPD gewenst -->
-    
+
 
     <!-- Combinatietest gewenst -->
-    
+
 
 
     <!-- SEO gewenst -->
-    
+
 
     <!-- Direct GUO gewenst -->
-    
+
 
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900233_20141104005410">
         <!-- Faciliteit werkelijke plaats baring -->
@@ -691,7 +692,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </component>
         </organizer>
     </xsl:template>
-    
+
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900620_20141024000000">
         <act classCode="PCPR" moodCode="RQO" negationInd="false">
             <code code="308292007" codeSystem="2.16.840.1.113883.6.96" displayName="Transfer of care (procedure)"/>
@@ -1201,7 +1202,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
                     </xsl:for-each>
                     <!-- MdG: NI -->
-                    <xsl:if  test="not($vrouw/geboortedatum)">
+                    <xsl:if test="not($vrouw/geboortedatum)">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
                     </xsl:if>
                     <xsl:for-each select="$vrouw/taalvaardigheid_vrouw_nederlandse_taal">
@@ -1237,7 +1238,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Trisomy in History (y/n) -->
-    
+
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900861_20130314000000">
         <!-- Type partus -->
         <observation classCode="OBS" moodCode="EVN">
@@ -1351,12 +1352,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
                     </xsl:for-each>
                     <!-- MdG: NI -->
-                    <xsl:if  test="not($vrouw/geboortedatum)">
+                    <xsl:if test="not($vrouw/geboortedatum)">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
                     </xsl:if>
                     <!--<xsl:for-each select="$zwangerschap/maternale_sterfteq">-->
                     <!-- Altijd aanroepen, bij geen gegeven maternale_sterfte (0..1 R) in ADA deceasedInd='false' opnemen -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000"/>
                     <!--</xsl:for-each>-->
                     <xsl:for-each select="$vrouw/etniciteit">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900033_20091001000000"/>
@@ -1365,7 +1366,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </patient>
         </subject>
     </xsl:template>
-    
+
     <!-- Vrouw (Kernset versie) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900872_20161216103854">
         <xsl:param name="vrouw"/>
@@ -1384,7 +1385,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="inputValue" select="$vrouw/geboortedatum/@value"/>
                     </xsl:call-template>
                     <!-- MdG: NI -->
-                    <xsl:if  test="not($vrouw/geboortedatum)">
+                    <xsl:if test="not($vrouw/geboortedatum)">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
                     </xsl:if>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000">
@@ -1786,7 +1787,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Reden Verzending Counseling Bericht -->
-    
+
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900936_20140415000000">
         <!-- Diabetes mellitus -->
         <observation classCode="OBS" moodCode="EVN">
@@ -1984,6 +1985,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
+
     <!-- Onder behandeling (geweest)? -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900958_20161215115649">
         <observation classCode="OBS" moodCode="EVN">
@@ -2048,13 +2050,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <organizer classCode="CONTAINER" moodCode="EVN">
             <code code="417662000" codeSystem="2.16.840.1.113883.6.96" displayName="Past history of clinical finding"/>
             <!-- Als onder behandeling geweest? = Nee, dan alleen dat aangeven en geen anamnese opnemen -->
-            <xsl:if test="./onder_behandeling_geweestq[@value='false']">
+            <xsl:if test="./onder_behandeling_geweestq[@value = 'false']">
                 <component typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900958_20141027000000"/>
                 </component>
             </xsl:if>
             <!-- Bij een algemene anamnese met gegevens erin, 'Onder behandeling geweest?' op ja zetten, anders komt er een HL7 fout op de anamnese,
-            en de anamnese opnemen --> 
+            en de anamnese opnemen -->
             <xsl:if test="algemene_anamnese/*[@value] or algemene_anamnese/*[@code]">
                 <component typeCode="COMP">
                     <observation classCode="OBS" moodCode="EVN">
@@ -2074,12 +2076,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900964_20141027000000">
         <!-- Type vrouwelijke genitale verminking -->
         <xsl:choose>
-            <xsl:when test="./vrouwelijke_genitale_verminkingq/@value='true' and not(./type_vrouwelijke_genitale_verminking)">
+            <xsl:when test="./vrouwelijke_genitale_verminkingq/@value = 'true' and not(./type_vrouwelijke_genitale_verminking)">
                 <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
                     <observation classCode="OBS" moodCode="EVN" negationInd="false">
-                        <code code="95041000119101"
-                            codeSystem="2.16.840.1.113883.6.96"
-                            displayName="Vrouwelijke genitale verminking"/>
+                        <code code="95041000119101" codeSystem="2.16.840.1.113883.6.96" displayName="Vrouwelijke genitale verminking"/>
                         <value xsi:type="CE" nullFlavor="NI"/>
                     </observation>
                 </pertinentInformation3>
@@ -2391,7 +2391,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
     <!-- Hypertensieve aandoening -->
-    
+
     <!-- Hypertensieve aandoening -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900977_20161202145706">
         <observation classCode="OBS" moodCode="EVN">
@@ -2492,12 +2492,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900984_20141028000000">
         <!-- Pathologie vrouw -->
         <xsl:choose>
-            <xsl:when test="./pathologie_vrouwq/@value='true' and not(./pathologie_vrouw)">
+            <xsl:when test="./pathologie_vrouwq/@value = 'true' and not(./pathologie_vrouw)">
                 <component typeCode="COMP" contextConductionInd="true">
                     <observation classCode="OBS" moodCode="EVN" negationInd="false">
-                        <code code="362973001"
-                            codeSystem="2.16.840.1.113883.6.96"
-                            displayName="Diagnose postpartum"/>
+                        <code code="362973001" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnose postpartum"/>
                         <value xsi:type="CE" nullFlavor="NI"/>
                     </observation>
                 </component>
@@ -2756,7 +2754,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </outboundRelationship>
             </xsl:for-each>
             <!-- Item 82091 - Pijnbestrijding -->
-            <xsl:if test="./kindspecifieke_maternale_gegevens/pijnbestrijdingq/@value='false'">
+            <xsl:if test="./kindspecifieke_maternale_gegevens/pijnbestrijdingq/@value = 'false'">
                 <outboundRelationship typeCode="COMP">
                     <procedure classCode="PROC" moodCode="EVN" negationInd="true">
                         <id nullFlavor="NI"/>
@@ -2852,7 +2850,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <!-- Kindspecifieke kraamzorggegevens -->
             <xsl:variable name="var_rangnummer_kind" select="./ancestor-or-self::*/rangnummer_kind/@value"/>
-            <xsl:for-each select="../../postnatale_fase/(kindspecifieke_kraamzorggegevens|kindspecifieke_gegevens)[rangnummer_kind/@value = $var_rangnummer_kind or not(rangnummer_kind)]/voeding_kind_groep">
+            <xsl:for-each select="../../postnatale_fase/(kindspecifieke_kraamzorggegevens | kindspecifieke_gegevens)[rangnummer_kind/@value = $var_rangnummer_kind or not(rangnummer_kind)]/voeding_kind_groep">
                 <xsl:comment>Item: 70010 - Voeding kind</xsl:comment>
                 <outboundRelationship typeCode="COMP" contextConductionInd="true">
                     <!-- Item: 70010 - Voeding kind -->
@@ -3318,7 +3316,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </outboundRelationship>
         </xsl:if>
         <!-- MdG: bij wel problemen is vraag 'ja' -->
-        <xsl:variable name="kindprobq" select="if (not(./kindspecifieke_uitkomstgegevens/problematiek_kindq) and ./kindspecifieke_uitkomstgegevens/problematiek_kind) then 'true' else ./kindspecifieke_uitkomstgegevens/problematiek_kindq"/>
+        <xsl:variable name="kindprobq" select="
+                if (not(./kindspecifieke_uitkomstgegevens/problematiek_kindq) and ./kindspecifieke_uitkomstgegevens/problematiek_kind) then
+                    'true'
+                else
+                    ./kindspecifieke_uitkomstgegevens/problematiek_kindq"/>
         <!--Problematiek kind-->
         <xsl:call-template name="question_observation">
             <xsl:with-param name="parent_element_name" select="'outboundRelationship'"/>
@@ -3411,19 +3413,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
     <!-- Assigned Person [peri] -->
-    
+
 
     <!-- ControlAct AuthorOrPerformer [peri] -->
-    
+
 
     <!-- ControlAct Overseer Person (MCAI / MFMI) [peri] -->
-    
+
 
     <!-- Assigned Device [peri] -->
-    
+
 
     <!-- Generic ControlActProcess Checks [peri] -->
-    
+
 
     <!-- assignedEntity -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901045_20161201143523">
@@ -3444,7 +3446,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <!-- Verwijsdetails 2.3.2 -->
-    
+
     <!-- Zorginstelling Identificatie (Perined) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901047_20161202101906">
         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901018_20141107145228"/>
@@ -3585,12 +3587,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <!-- Reden verwijzing (obstetrische anamnese) 2.3.2-->
-    
+
     <!-- Reden Verwijzing 2.3.2 -->
-    
+
 
     <!-- Reden verwijzing (deze zwangerschap) 2.3.3 -->
-    
+
     <!-- Navelstrengprolaps -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901052_20161202154625">
         <observation classCode="OBS" moodCode="EVN">
@@ -3705,10 +3707,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <!-- Reden verwijzing (bevalling) 2.3.3 -->
-    
+
 
     <!-- Conditie Perineum Postpartum (verwijsreden) 2.3.2 -->
-    
+
     <!-- Bevalling Kernset -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901101_20180226150516">
         <organizer classCode="CONTAINER" moodCode="EVN">
@@ -3959,7 +3961,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="./kindspecifieke_uitkomstgegevens/congenitale_afwijkingenq">
                 <xsl:variable name="cong_afw_question" select="."/>
                 <xsl:choose>
-                    <xsl:when test="../congenitale_afwijkingen_groep/specificatie_congenitale_afwijking_groep/specificatie_congenitale_afwijking[.//(@value|@code|@nullFlavor)]">
+                    <xsl:when test="../congenitale_afwijkingen_groep/specificatie_congenitale_afwijking_groep/specificatie_congenitale_afwijking[.//(@value | @code | @nullFlavor)]">
                         <xsl:for-each select="../congenitale_afwijkingen_groep/specificatie_congenitale_afwijking_groep/specificatie_congenitale_afwijking">
                             <!-- Template :: Congenitale afwijkingen NoUnc -->
                             <outboundRelationship typeCode="COMP">
@@ -3979,7 +3981,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </outboundRelationship>
                     </xsl:otherwise>
                 </xsl:choose>
-            </xsl:for-each>            
+            </xsl:for-each>
             <xsl:for-each select="./kindspecifieke_uitkomstgegevens/congenitale_afwijkingen_groep/chromosomale_afwijkingenq">
                 <xsl:variable name="chr_afw_question" select="."/>
                 <xsl:for-each select="../specificatie_chromosomale_afwijking_groep/specificatie_chromosomale_afwijking">
@@ -4135,28 +4137,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <!-- Zorginstelling Identificatie -->
-    
+
 
     <!-- Zorginstelling Identificatie Counseling -->
-    
+
 
     <!-- Zorgverlener als performer -->
-    
+
 
     <!-- Leeftijd eiceldonatrice -->
-    
+
 
     <!-- Eicelextractiedatum -->
-    
+
 
     <!-- Cryo Embryo -->
-    
+
 
     <!-- EmbryoTransfer -->
-    
+
 
     <!-- Prenatale controle Combinatietest -->
-    
+
 
     <!-- Indicatie secundaire Sectio Caesarea -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901090_20161220000000">
@@ -4216,11 +4218,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Irregulaire antistoffen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900171_20161215113718">
         <observation classCode="OBS" moodCode="EVN">
-            <xsl:call-template name="makeNegationAttr"/>
+            <xsl:for-each select="../irregulaire_antistoffenq">
+                <xsl:call-template name="makeNegationAttr"/>
+            </xsl:for-each>
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900171"/>
             <code code="312457003" codeSystem="2.16.840.1.113883.6.96" displayName="Irregulaire antistoffen"/>
             <!-- Item(s) :: welke_irregulaire_antistoffen_vrouw_aanwezig-->
-            <xsl:for-each select="welke_irregulaire_antistoffen_vrouw_aanwezig">
+            <xsl:for-each select=".[local-name() = 'welke_irregulaire_antistoffen_vrouw_aanwezig']">
                 <xsl:call-template name="makeCEValue">
                     <xsl:with-param name="elemName">value</xsl:with-param>
                 </xsl:call-template>
@@ -4228,17 +4232,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Subfertiliteitsbehandeling -->
-    
+
     <!-- Subfertiliteitsbehandeling -->
     <!-- Subfertiliteitsbehandeling -->
     <!-- Ovulatie-inductie toegepast -->
-    
+
     <!-- Ovulatie-inductie toegepast -->
     <!-- Geassisteerde conceptie -->
-    
+
     <!-- Geassisteerde conceptie -->
     <!-- Eiceldonatie toegepast -->
-    
+
     <!-- Eiceldonatie toegepast -->
     <!-- Eiceldonatie toegepast -->
     <!-- Hb -->
@@ -4327,7 +4331,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- Item(s) :: tijdstip_actief_meepersen-->
             <xsl:call-template name="makeTS.DATE.MINValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
-            <xsl:with-param name="xsiType">TS</xsl:with-param>
+                <xsl:with-param name="xsiType">TS</xsl:with-param>
             </xsl:call-template>
         </observation>
     </xsl:template>
@@ -4343,7 +4347,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Episiotomie -->
-    
+
     <!-- Episiotomie -->
     <!-- Locatie episiotomie -->
     <!-- Pijnbestrijding -->
@@ -4363,7 +4367,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Succes vaginale kunstverlossing -->
     <!-- Indicatie vaginale kunstverlossing -->
     <!-- Section caesarea -->
-    
+
     <!-- Section caesarea -->
     <!-- Section caesarea -->
     <!-- Beslismoment sectio caesarea -->
@@ -4378,7 +4382,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Indicatiesectiocaesarea -->
-    
+
     <!-- Apgarscore na 5 min. -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900294_20161206103247">
         <observation classCode="OBS" moodCode="EVN">
@@ -4517,7 +4521,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Rhesus D Factor -->
     <!-- Acute Overdracht gewenste uitvoerder -->
     <!-- Rhesus c Factor -->
-    
+
     <!-- Rhesus c Factor -->
     <!-- Rhesus C Factor -->
     <!-- Zorgverlener (UZI-nummer) -->
@@ -4548,7 +4552,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Subfertiliteitsbehandeling (2.0) -->
     <!-- Proteïnurie (2.0) -->
     <!-- Wijze waarop de baring begon -->
-    
+
     <!-- Medicatie nageboortetijdperk -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900716_20161206130815">
         <observation classCode="OBS" moodCode="EVN">
@@ -4620,9 +4624,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </procedure>
     </xsl:template>
     <!-- Type partus -->
-    
+
     <!-- Type partus 2.3.2 -->
-    
+
     <!-- Overige interventies -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900893_20161206135049">
         <observation classCode="OBS" moodCode="EVN">
@@ -4691,7 +4695,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Zorgverlener en instelling (zonder type) -->
-    
+
     <!-- A terme datum (definitive) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900928_20161206110006">
         <observation classCode="OBS" moodCode="EVN">
@@ -4704,14 +4708,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Geboortedatum eiceldonatrice -->
-    
+
     <!-- Geboortedatum eiceldonatrice observed -->
     <!-- Counseling prenatale screening combinatietest -->
-    
+
     <!-- Counseling prenatale screening combinatietest -->
     <!-- Counseling prenatale screening combinatietest -->
     <!-- Counseling prenatale screening SEO -->
-    
+
     <!-- Diabetes Mellitus (y/n) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900936_20161202132728">
         <observation classCode="OBS" moodCode="EVN">
@@ -4881,7 +4885,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Onder behandeling (geweest)? -->
-    
+
     <!-- Algemene anamnese Kernset -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900959_20161205180704">
         <organizer classCode="CONTAINER" moodCode="EVN">
@@ -5018,12 +5022,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <organizer classCode="CONTAINER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900963"/>
             <code code="417662000" codeSystem="2.16.840.1.113883.6.96" displayName="Anamnese"/>
-            <xsl:for-each select="./onder_behandeling_geweestq[@value='false']">
+            <!-- AvdW removed [@value='false'] predicate, should also be outputted for true -->
+            <xsl:for-each select="./onder_behandeling_geweestq">
                 <component typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900958_20161215115649"/>
                 </component>
             </xsl:for-each>
-            <xsl:if test="algemene_anamnese/*[@value|@code|@nullFlavor]">
+            <xsl:if test="algemene_anamnese/*[@value | @code | @nullFlavor]">
                 <!-- Bij een algemene anamnese met gegevens erin, 'Onder behandeling geweest?' op ja zetten (als element ontbreekt), anders komt er een HL7 fout op de anamnese,
                 en de anamnese opnemen -->
                 <xsl:if test="not(onder_behandeling_geweestq)">
@@ -5035,7 +5040,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </observation>
                     </component>
                 </xsl:if>
-                <xsl:for-each select="./algemene_anamnese[.//(@value|@code|@nullFlavor)]">
+                <xsl:for-each select="./algemene_anamnese[.//(@value | @code | @nullFlavor)]">
                     <component typeCode="COMP">
                         <!-- algemene_anamnese -->
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900959_20161205180704"/>
@@ -5049,12 +5054,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900964_20161205183736">
         <!-- Type vrouwelijke genitale verminking -->
         <xsl:choose>
-            <xsl:when test="./vrouwelijke_genitale_verminkingq/@value='true' and not(./type_vrouwelijke_genitale_verminking)">
+            <xsl:when test="./vrouwelijke_genitale_verminkingq/@value = 'true' and not(./type_vrouwelijke_genitale_verminking)">
                 <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
                     <observation classCode="OBS" moodCode="EVN" negationInd="false">
-                        <code code="95041000119101"
-                            codeSystem="2.16.840.1.113883.6.96"
-                            displayName="Vrouwelijke genitale verminking"/>
+                        <code code="95041000119101" codeSystem="2.16.840.1.113883.6.96" displayName="Vrouwelijke genitale verminking"/>
                         <value xsi:type="CE" nullFlavor="NI"/>
                     </observation>
                 </pertinentInformation3>
@@ -5073,7 +5076,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     <!-- Obstetrische anamnese Kernset 2.3.2 -->
-    
+
     <!-- Intra-uteriene vruchtdood en methode -->
     <!-- TODO -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901091_20180220155029">
@@ -5351,7 +5354,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 
     <!-- Vorige uitkomst per kind Kernset PRN 2.3.2  -->
-    
+
     <!-- Type partus 2.3.3 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901107_20180228162810">
         <observation classCode="OBS" moodCode="EVN">
@@ -5468,7 +5471,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <organizer classCode="CONTAINER" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.6.10.90.900985"/>
                 <code code="12131-9" codeSystem="2.16.840.1.113883.6.1" displayName="Medisch onderzoek"/>
-                <xsl:for-each select="urine_bloed_en_aanvullende_onderzoeken/psie">
+                <xsl:for-each select="urine_bloed_en_aanvullende_onderzoeken/psie[.//(@value | @code | @nullFlavor)]">
                     <component typeCode="COMP" contextConductionInd="true">
                         <!-- Template :: PsiePRN -->
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900986_20161215113108"/>
@@ -5477,12 +5480,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </organizer>
         </xsl:for-each>
     </xsl:template>
+
     <!-- PsiePRN -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900986_20161215113108">
         <organizer classCode="CONTAINER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900986"/>
             <code code="PSIE" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="PSIE"/>
-            <xsl:for-each select="irregulaire_antistoffenq">
+            <xsl:for-each select="irregulaire_antistoffenq[@value = 'false'] | welke_irregulaire_antistoffen_vrouw_aanwezig[@code]">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: Irregulaire antistoffen -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900171_20161215113718"/>
@@ -5490,15 +5494,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </organizer>
     </xsl:template>
-    <!-- PsiePRN -->
-    <!-- Uitkomst per kind (subject) PRN Kernset -->
-    <!-- Bevalling Kernset -->
-    
-    <!-- Baring Kernset -->
-    
-    <!-- Baring PRN Kernset -->
-    <!-- Rol supervisor -->
-    <!-- Rol aanpakker kind PRN Kernset -->
+
     <!-- Ruggeprik gewenst, niet gekregen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900992_20161206134140">
         <observation classCode="OBS" moodCode="EVN">
@@ -5662,7 +5658,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Drugsgebruik? -->
     <!-- Prenatale controle -->
     <!-- Diagnose deze zwangerschap Kernset -->
-    
+
     <!-- Diagnose deze zwangerschap Kernsetbericht PRN -->
 
     <!-- PPROM? -->
@@ -5897,7 +5893,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Betrokkenheid kinderarts Reden -->
-    
+
     <!-- Pijnbestrijding periode -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901022_20161206145212">
         <observation classCode="OBS" moodCode="EVN">

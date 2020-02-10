@@ -13,16 +13,15 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xsl:import href="../payload/REPC_EX004014NL_Kernset_2_3_3.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
     <!-- the param can be called from outside this stylesheet, if no value is provided it defaults to whatever is set in 'select' -->
-    <xsl:param name="input_xml_payload" select="'../ada_instance/Minimaal.xml'"/>
-    <!--<xsl:param name="input_xml_payload" select="'../ada_instance/999.1 Test_NL.xml'"/>-->
+<!--    <xsl:param name="input_xml_payload" select="'../ada_instance/Minimaal.xml'"/>-->
+    <xsl:param name="input_xml_payload" select="'../ada_instance/999.1 Test_NL.xml'"/>
     <xsl:param name="input_xml_wrapper" select="'input_wrapper.xml'"/>
-    
-        <xsl:variable name="input_xml_payload_doc" select="document($input_xml_payload)"/>
     <xsl:param name="input_xml_wrapper_doc" select="document($input_xml_wrapper)"/>
-    <xsl:include href="../payload/REPC_EX004014NL_Kernset_2_3_3.xsl"/>
-
+    <xsl:variable name="input_xml_payload_doc" select="document($input_xml_payload)"/>
+    
     <xsl:template name="MakeWrapper">
         <xsl:call-template name="Wrappers">
             <xsl:with-param name="transmission_wrapper" select="$input_xml_wrapper_doc//transmission_wrapper"/>
@@ -42,7 +41,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="payload_xml" select="$input_xml_payload_doc"/>
         <xsl:for-each select="$transmission_wrapper">
             <xsl:for-each select="./schematron_href">
-                <xsl:processing-instruction name="xml-model">href="<xsl:value-of select="./@value"/>" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
+                <xsl:processing-instruction name="xml-model">phase="#ALL" href="<xsl:value-of select="./@value"/>" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
             </xsl:for-each>
             <!--<ABCD>-->
             <xsl:element name="{./root_xml_element/@value}">

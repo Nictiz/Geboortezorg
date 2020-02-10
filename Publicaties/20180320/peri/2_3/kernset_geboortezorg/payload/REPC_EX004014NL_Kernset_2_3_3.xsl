@@ -33,7 +33,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- This may be used if conversion is used for only payload. 
         Commented out as there is also a rule for '/' in the wrappers xsl -->
-<!--    <xsl:template match="/">
+  <!--  <xsl:template match="/">
         <xsl:call-template name="Kernset23">
             <xsl:with-param name="param_zorgverlening" select="//kernset_geboortezorg/zorgverlening"/>
             <xsl:with-param name="param_zorgverlenerzorginstelling" select="//kernset_geboortezorg/zorgverlenerzorginstelling"/>
@@ -45,8 +45,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="param_medisch_onderzoek" select="//kernset_geboortezorg/medisch_onderzoek"/>
             <xsl:with-param name="param_postnatale_fase" select="//kernset_geboortezorg/postnatale_fase"/>
         </xsl:call-template>
-    </xsl:template>-->
-
+    </xsl:template>
+-->
     <xsl:template name="Kernset23">
         <xsl:param name="param_zorgverlening"/>
         <xsl:param name="param_zorgverlenerzorginstelling"/>
@@ -57,6 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="param_uitkomst_per_kind"/>
         <xsl:param name="param_medisch_onderzoek"/>
         <xsl:param name="param_postnatale_fase"/>
+        
         <subject2 typeCode="SUBJ" contextConductionInd="false">
             <CareProvisionEvent classCode="PCPR" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.6.10.90.76"/>
@@ -70,11 +71,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900024_20120902000000"/>
                     </xsl:for-each>
                 </effectiveTime>
+                
                 <!-- Vrouw -->
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900872_20161216103854">
                     <xsl:with-param name="vrouw" select="$param_vrouw"/>
                     <xsl:with-param name="zwangerschap" select="$param_zwangerschap"/>
                 </xsl:call-template>
+                
                 <xsl:for-each select="$param_zorgverlenerzorginstelling/zorginstelling">
                     <verifier typeCode="LA">
                         <assignedPerson classCode="ASSIGNED">
@@ -85,6 +88,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </assignedPerson>
                     </verifier>
                 </xsl:for-each>
+                
                 <!-- Eindverantwoordelijk in periode -->
                 <xsl:for-each select="$param_zorgverlening/eindverantwoordelijk_in_welke_perinatale_periodeq[@value]">
                     <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
@@ -100,7 +104,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <value xsi:type="CE" nullFlavor="NI"/>
                         </observation>
                     </pertinentInformation3>
-                </xsl:if>                <!-- Conclusie risicostatus na intake -->
+                </xsl:if> 
+                
+                <!-- Conclusie risicostatus na intake -->
                 <xsl:for-each select="$param_zorgverlening/conclusie_risicostatus_na_intake">
                     <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
                         <!-- Template :: Conclusie risicostatus na intake -->

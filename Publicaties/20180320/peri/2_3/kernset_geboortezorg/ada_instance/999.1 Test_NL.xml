@@ -1,4 +1,5 @@
-<adaxml>
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="../ada_schemas/ada_kernset_geboortezorg.xsd">
     <meta status="new" created-by="arianne" last-update-by="arianne" creation-date="2018-01-28T16:08:41.254+01:00" last-update-date="2018-03-14T11:52:02.903+01:00"/>
     <data>
         <kernset_geboortezorg app="peri20-peri23" shortName="kernset_geboortezorg" formName="kernset_geboortezorg_23" transactionRef="2.16.840.1.113883.2.4.3.11.60.90.77.4.2437" transactionEffectiveDate="2016-11-22T08:24:02" versionDate="" prefix="peri20-" language="nl-NL" title="999.1-2" id="5b21c335-da75-4c87-984b-237c235d0373">
@@ -373,7 +374,9 @@
                 <maternale_onderzoeksgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.142">
                     <urine_bloed_en_aanvullende_onderzoeken conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80959">
                         <psie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.80949">
-                            <irregulaire_antistoffenq value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10812"/>
+                            <irregulaire_antistoffenq value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.10812"/>
+                            <welke_irregulaire_antistoffen_vrouw_aanwezig code="8376005" codeSystem="2.16.840.1.113883.6.96" displayName="Duffy"/>
+                            <welke_irregulaire_antistoffen_vrouw_aanwezig code="112162009" codeSystem="2.16.840.1.113883.6.96" displayName="Rhesus D"/>
                         </psie>
                     </urine_bloed_en_aanvullende_onderzoeken>
                 </maternale_onderzoeksgegevens>
