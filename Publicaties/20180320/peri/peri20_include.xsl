@@ -2849,8 +2849,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </outboundRelationship>
             </xsl:for-each>
             <!-- Kindspecifieke kraamzorggegevens -->
-            <xsl:variable name="var_rangnummer_kind" select="./ancestor-or-self::*/rangnummer_kind/@value"/>
-            <xsl:for-each select="../../postnatale_fase/(kindspecifieke_kraamzorggegevens | kindspecifieke_gegevens)[rangnummer_kind/@value = $var_rangnummer_kind or not(rangnummer_kind)]/voeding_kind_groep">
+            <xsl:variable name="var_rangnummer_kind" select=".//rangnummer_kind/@value"/>
+            <xsl:for-each select="../../postnatale_fase/(kindspecifieke_kraamzorggegevens | kindspecifieke_gegevens)[rangnummer_kind/@value = $var_rangnummer_kind or not(rangnummer_kind[@value])]/voeding_kind_groep">
                 <xsl:comment>Item: 70010 - Voeding kind</xsl:comment>
                 <outboundRelationship typeCode="COMP" contextConductionInd="true">
                     <!-- Item: 70010 - Voeding kind -->
@@ -3793,8 +3793,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- Baring Kernset -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901102_20180226151440">
-        <!-- Bij 2.3 is dit niet getest! -->
-        <xsl:variable name="var_rangnummer_kind" select="./ancestor-or-self::*/rangnummer_kind/@value"/>
         <procedure classCode="PROC" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901102"/>
             <id nullFlavor="NI"/>
@@ -3853,7 +3851,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900255_20161206133653"/>
                 </outboundRelationship>
             </xsl:for-each>
-            <xsl:for-each select="$var_rangnummer_kind">
+            <xsl:for-each select="./demografische_gegevens/rangnummer_kind">
                 <outboundRelationship typeCode="COMP">
                     <!-- Template :: Rangnummer kind -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900400_20161206133754"/>
@@ -4000,13 +3998,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901019_20161206135430"/>
                 </outboundRelationship>
             </xsl:for-each>
-            <xsl:for-each select="./kindspecifieke_uitkomstgegevens/kinderarts_betrokkenq">
+            <xsl:for-each select="./kindspecifieke_uitkomstgegevens[kinderarts_betrokkenq[@value | @nullFlavor] | betrokkenheid_kinderarts[.//(@value | @code | @nullFlavor)]]">
                 <outboundRelationship typeCode="COMP">
                     <!-- Template :: Betrokkenheid kinderarts -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901020_20161206135638"/>
                 </outboundRelationship>
             </xsl:for-each>
-            <xsl:for-each select="//postnatale_fase/kindspecifieke_gegevens[rangnummer_kind/@value = $var_rangnummer_kind or not(rangnummer_kind)]/voeding_kind_groep[voeding_kind_datum | substantie_voeding_kind]">
+            <xsl:variable name="var_rangnummer_kind" select="./demografische_gegevens/rangnummer_kind/@value"/>
+            <xsl:for-each select="//postnatale_fase/kindspecifieke_gegevens[rangnummer_kind/@value = $var_rangnummer_kind or not(rangnummer_kind[@value])]/voeding_kind_groep[voeding_kind_datum | substantie_voeding_kind]">
                 <outboundRelationship typeCode="COMP">
                     <!-- Template :: Voeding kind -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900724_20161206135654"/>
@@ -4021,7 +4020,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </procedure>
     </xsl:template>
 
-    <!-- Wijze waarop de baring begon -->
+   <!-- Wijze waarop de baring begon -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901103_20180227180051">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901103"/>
