@@ -7,14 +7,14 @@
           contextConductionInd="false">
    <CareProvisionEvent classCode="PCPR" moodCode="EVN">
       <templateId root="2.16.840.1.113883.2.4.6.10.90.73"/>
-      <id root="1.2.3.4.5" extension="15951"/>
+      <id root="2.16.840.1.113883.2.4.3.46.10.5.1.1111" extension=""/>
       <effectiveTime>
          <low value="20170403000000"/>
          <high value="20160704000000"/>
       </effectiveTime>
       <subject typeCode="SBJ">
          <patient classCode="PAT">
-            <id root="2.16.840.1.113883.2.4.6.3" extension="123456782"/>
+            <id extension="123456782" root="2.16.840.1.113883.2.4.6.3"/>
             <addr>
                <postalCode>1111AA</postalCode>
             </addr>

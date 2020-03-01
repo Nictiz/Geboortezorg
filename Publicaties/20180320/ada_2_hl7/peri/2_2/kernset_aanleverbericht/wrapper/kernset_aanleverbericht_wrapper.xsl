@@ -13,14 +13,14 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xsl:import href="../payload/REPC_EX004014NL_Kernset_2_2_4.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
     <!-- the param can be called from outside this stylesheet, if no value is provided it defaults to whatever is set in 'select' -->
     <xsl:param name="input_xml_payload" select="'../ada_instance/999.2 Test_NL.xml'"/>
     <xsl:param name="input_xml_wrapper" select="'input_wrapper.xml'"/>
     <xsl:variable name="input_xml_payload_doc" select="document($input_xml_payload)"/>
     <xsl:variable name="input_xml_wrapper_doc" select="document($input_xml_wrapper)"/>
-    <xsl:include href="../payload/REPC_EX004014NL_Kernset_2_2_4.xsl"/>
-
+  
     <xsl:template match="/">
         <xsl:call-template name="Wrappers">
             <xsl:with-param name="transmission_wrapper" select="$input_xml_wrapper_doc//transmission_wrapper"/>

@@ -13,7 +13,7 @@ A complete empty xml instance in the ada format is included in the folder "ada_n
 The folder "kernset_geboortezorg/wrapper contains the stylesheet that does the conversion including the wrappers: kernset_geboortezorg_wrapper.xsl. Please note that this will need to be customised for the appropriate implementation.
 
 The folder "kernset_aanleverbericht/payload" contains the stylesheet that does the conversion for the payload: "REPC_EX004014NL_Kernset_2_3_3.xsl"
-This xslt uses the "../../../peri20_include.xsl" and ../../../../hl7/hl7_include.xsl which is meant to be reused by other/different transactions (such as 'acute overdracht' or 'Kernset 2.2').
+This xslt uses the "../../../peri20_include.xsl" which is meant to be reused by other/different transactions (such as 'acute overdracht' or 'Kernset 2.2').
 
 The folder 'ada_instance' contains sample ada instance files. They are in no way functionally valid (i.e. the situation can probably not be validated in real life). The subfolder result contains the result of the conversion.
 
