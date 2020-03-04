@@ -1304,10 +1304,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="$vrouw/geboortedatum">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
                     </xsl:for-each>
-                    <!-- MdG: NI -->
-                    <xsl:if test="not($vrouw/geboortedatum)">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
-                    </xsl:if>
                     <xsl:for-each select="$vrouw/taalvaardigheid_vrouw_nederlandse_taal">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900727_20120503000000"/>
                     </xsl:for-each>
@@ -1461,13 +1457,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="$vrouw/geboortedatum">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
                     </xsl:for-each>
-                    <!-- MdG: NI -->
-                    <xsl:if test="not($vrouw/geboortedatum)">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
-                    </xsl:if>
-                    <!--<xsl:for-each select="$zwangerschap/maternale_sterfteq">-->
+                     <!--<xsl:for-each select="$zwangerschap/maternale_sterfteq">-->
                     <!-- Altijd aanroepen, bij geen gegeven maternale_sterfte (0..1 R) in ADA deceasedInd='false' opnemen -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000">
+                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000">
                         <!-- AvdW, 20200228 added input parameter, otherwise the mother may never be deceased -->
                         <xsl:with-param name="inputValue" select="$zwangerschap/maternale_sterfteq/@value"/>
                     </xsl:call-template>
@@ -1496,10 +1488,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="$vrouw/geboortedatum">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
                     </xsl:for-each>
-                    <!-- MdG: NI -->
-                    <xsl:if test="not($vrouw/geboortedatum)">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
-                    </xsl:if>
                     <xsl:for-each select="$zwangerschap/maternale_sterfteq">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000"/>
                     </xsl:for-each>
@@ -1527,10 +1515,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000">
                         <xsl:with-param name="inputValue" select="$vrouw/geboortedatum/@value"/>
                     </xsl:call-template>
-                    <!-- MdG: NI -->
-                    <xsl:if test="not($vrouw/geboortedatum)">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
-                    </xsl:if>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000">
                         <xsl:with-param name="inputValue" select="$zwangerschap/maternale_sterfteq/@value"/>
                     </xsl:call-template>
