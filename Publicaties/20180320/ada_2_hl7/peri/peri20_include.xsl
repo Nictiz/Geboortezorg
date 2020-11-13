@@ -4581,15 +4581,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <xsl:for-each select="./kindspecifieke_uitkomstgegevens/congenitale_afwijkingen_groep/chromosomale_afwijkingenq">
                 <xsl:variable name="chr_afw_question" select="."/>
-                <xsl:for-each select="../specificatie_chromosomale_afwijking_groep/specificatie_chromosomale_afwijking">
-                    <outboundRelationship typeCode="COMP">
-                        <!-- Template :: Chromosomale afwijkingen NoUnc -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901016_20161206135419">
-                            <xsl:with-param name="chr_afw_question" select="$chr_afw_question"/>
-                            <xsl:with-param name="chr_afw_observation" select="."/>
-                        </xsl:call-template>
-                    </outboundRelationship>
-                </xsl:for-each>
+                <!-- GZ-334, just the answer to the question (without specificatie_chromosomale_afwijking_groep) must also be outputted -->
+                <xsl:choose>
+                    <xsl:when test="../specificatie_chromosomale_afwijking_groep/specificatie_chromosomale_afwijking[.//(@value | @code | @nullFlavor)]">
+                        <xsl:for-each select="../specificatie_chromosomale_afwijking_groep/specificatie_chromosomale_afwijking">
+                            <outboundRelationship typeCode="COMP">
+                                <!-- Template :: Chromosomale afwijkingen NoUnc -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901016_20161206135419">
+                                    <xsl:with-param name="chr_afw_question" select="$chr_afw_question"/>
+                                    <xsl:with-param name="chr_afw_observation" select="."/>
+                                </xsl:call-template>
+                            </outboundRelationship>
+                        </xsl:for-each>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <outboundRelationship typeCode="COMP">
+                            <!-- Template :: Chromosomale afwijkingen NoUnc -->
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901016_20161206135419">
+                                <xsl:with-param name="chr_afw_question" select="$chr_afw_question"/>
+                            </xsl:call-template>
+                        </outboundRelationship>
+                    </xsl:otherwise>
+                </xsl:choose>                
             </xsl:for-each>
             <xsl:for-each select="./kindspecifieke_uitkomstgegevens/problematiek_kindq">
                 <outboundRelationship typeCode="COMP">
@@ -7638,7 +7651,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Chromosomale afwijkingen NoUnc -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901016_20161206135419">
         <xsl:param name="chr_afw_question"/>
-        <xsl:param name="chr_afw_observation"/>
+        <xsl:param name="chr_afw_observation" as="element()?"/>
         <observation classCode="OBS" moodCode="EVN">
             <xsl:call-template name="makeNegationAttr">
                 <xsl:with-param name="inputValue" select="$chr_afw_question/@value"/>
