@@ -1,0 +1,1 @@
+From version 2.3 onwards the location for the mapping XSLT's have migrated to https://github.com/Nictiz/HL7-mappings
